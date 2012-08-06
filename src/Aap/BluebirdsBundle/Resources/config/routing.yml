@@ -1,0 +1,3 @@
+team:
+  pattern:  /team/{name}
+  defaults: { _controller: AapBluebirdsBundle:Team:index }
