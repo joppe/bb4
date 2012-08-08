@@ -1,6 +1,73 @@
+/**
+ * reset the spacing of an element
+ */
+/**
+ * reset a list element
+ */
+/**
+ * reset the font size
+ */
+/**
+ * calculate the font size and line height in em's
+ *
+ * @param Number $font_size
+ * @param Number $line_height
+ */
+/**
+ * create a sprite
+ */
+/**
+ * @param String $name
+ */
+/**
+ * reset the spacing of an element
+ */
+/**
+ * reset a list element
+ */
+/**
+ * reset the font size
+ */
+/**
+ * calculate the font size and line height in em's
+ *
+ * @param Number $font_size
+ * @param Number $line_height
+ */
+/**
+ * create a sprite
+ */
+/**
+ * @param String $name
+ */
 body {
   padding: 0;
   margin: 0;
+  font: 0.75%/1em;
+  background: white;
+  color: black;
+  vertical-align: baseline; }
+
+nav ul {
+  padding: 0;
+  margin: 0;
+  list-style: none; }
+
+span.sprite {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  overflow: hidden;
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  text-indent: -9999px;
+  background-color: white;
+  background-image: url("../images/icons/glyphicons-halflings.png"); }
+
+span.sprite.movie {
+  background-position: -192px -0px; }
+
+body {
   background: blue;
   color: white;
   font-weight: bold; }

@@ -1,0 +1,26 @@
+@import '_mixins.scss';
+
+body {
+    @include reset-spacing;
+    @include reset-font-size;
+
+    background: white;
+    color: black;
+    vertical-align: baseline;
+}
+
+nav {
+    ul {
+        @include reset-list;
+    }
+}
+
+span.sprite {
+    @include sprite;
+
+    background-color: white;
+    background-image: url('../images/icons/glyphicons-halflings.png');
+}
+span.sprite.movie {
+    @include sprite-instance('movie');
+}

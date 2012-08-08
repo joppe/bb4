@@ -2,8 +2,8 @@ parameters:
     database_driver:   pdo_mysql
     database_host:     localhost
     database_port:     ~
-    database_name:     symfony
-    database_user:     root
+    database_name:     bb4
+    database_user:     dev
     database_password: ~
 
     mailer_transport:  smtp
@@ -12,4 +12,4 @@ parameters:
     mailer_password:   ~
 
     locale:            en
-    secret:            ThisTokenIsNotSoSecretChangeIt
+    secret:            grand-slam-homerun

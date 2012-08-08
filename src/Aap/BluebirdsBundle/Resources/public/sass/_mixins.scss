@@ -1,4 +1,71 @@
+@import '_config.scss';
+
+/**
+ * reset the spacing of an element
+ */
 @mixin reset-spacing {
-  padding: 0;
-  margin: 0;
+    padding: 0;
+    margin: 0;
+}
+
+/**
+ * reset a list element
+ */
+@mixin reset-list {
+    @include reset-spacing;
+
+    list-style: none;
+}
+
+/**
+ * reset the font size
+ */
+@mixin reset-font-size() {
+    $percentage: $base-font-size-px/16;
+    font: #{$percentage}%/1em;
+}
+
+/**
+ * calculate the font size and line height in em's
+ *
+ * @param Number $font_size
+ * @param Number $line_height
+ */
+@mixin font-px-to-em($font-size, $line-height: -1) {
+    $font-size-em: $font-size/$base-font-size-px;
+
+    font-size: #{$font-size-em}em;
+
+    @if ($line-height > 0)	{
+        line-height: #{$line-height/$font-size}em;
+    }
+}
+
+/**
+ * create a sprite
+ */
+@mixin sprite() {
+    display: inline-block;
+    width: #{$sprite-size}px;
+    height: #{$sprite-size}px;
+    overflow: hidden;
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    text-indent: -9999px;
+}
+
+/**
+ * @param String $name
+ */
+@mixin sprite-instance($name) {
+    $index: index($sprite-names, $name);
+
+    @if $index {
+        $index: $index - 1;
+        $row: floor($index / $sprite-items-per-row);
+        $column: $index - ($row * $sprite-items-per-row);
+        background-position: -#{$column * ($sprite-size + $sprite-offset)}px -#{$row * ($sprite-size + $sprite-offset)}px;
+    } @else {
+        background-position: #{$sprite-size + $sprite-offset}px #{$sprite-size + $sprite-offset}px;
+    }
 }

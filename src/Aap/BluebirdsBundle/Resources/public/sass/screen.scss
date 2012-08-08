@@ -1,8 +1,7 @@
 @import '_mixins.scss';
+@import '_bootstrap.scss';
 
 body {
-  @include reset-spacing;
-
   background: blue;
   color: white;
   font-weight: bold;
