@@ -1,0 +1,40 @@
+/**
+ * @param number $radius
+ */
+@mixin border-radius($radius: 0) {
+    -moz-border-radius: #{$radius}px;
+    -webkit-border-radius: #{$radius}px;
+    border-radius: #{$radius}px;
+}
+
+/**
+ * @param number $radius
+ */
+@mixin opacity($opacity) {
+    filter:alpha(opacity=$opacity*100); /* msie */
+    -moz-opacity: $opacity; /* firefox 1.0 */
+    -khtml-opacity: $opacity; /* webkit */
+    opacity: $opacity; /* css 3 */
+}
+
+/**
+ * @param string $value
+ *
+ * none:        The text of the element and sub-elements will appear as if they cannot be selected.
+ *              Any use of Selection however will contain these elements.
+ * text:        The text can be selected by the user.
+ * -moz-none:   The text of the element and sub-elements cannot be selected,
+ *              but selection can be enabled on sub-elements using -moz-user-select:text
+ * all:         In an HTML editor, if a double-click or context-click occurred in sub-elements,
+ *              the highest ancestor with this value will be selected.
+ * element:     Supported in Firefox and Internet Explorer. Enables selection to start within
+ *              the element; however, the selection will be contained by the bounds of that element.
+ */
+@mixin user-select($value: none) {
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}

@@ -1,4 +1,6 @@
-@import '_config.scss';
+@import '_css3.scss';
+
+$base-font-size-px: 12;
 
 /**
  * reset the spacing of an element
@@ -28,44 +30,60 @@
 /**
  * calculate the font size and line height in em's
  *
- * @param Number $font_size
- * @param Number $line_height
+ * @param number $font_size
+ * @param number $line_height, default -1
  */
 @mixin font-px-to-em($font-size, $line-height: -1) {
     $font-size-em: $font-size/$base-font-size-px;
 
     font-size: #{$font-size-em}em;
 
-    @if ($line-height > 0)	{
+    @if $line-height > 0 {
         line-height: #{$line-height/$font-size}em;
     }
 }
 
 /**
- * create a sprite
+ * create sprites
+ *
+ * @param list $sprites
+ * @param number $sprite-width
+ * @param number $sprite-height
+ * @param number $sprite-items-per-row
+ * @param number $background-color
+ * @param number $image-path
+ * @param number $sprite-offset-width, default 0
+ * @param number $sprite-offset-height, default 0
  */
-@mixin sprite() {
-    display: inline-block;
-    width: #{$sprite-size}px;
-    height: #{$sprite-size}px;
-    overflow: hidden;
-    background-repeat: no-repeat;
-    background-position: 0 0;
-    text-indent: -9999px;
-}
+@mixin create-sprites($sprites, $sprite-width, $sprite-height, $sprite-items-per-row, $background-color, $image-path, $sprite-offset-width: 0, $sprite-offset-height: 0) {
+    .sprite {
+        display: inline-block;
+        width: #{$sprite-width}px;
+        height: #{$sprite-height}px;
+        overflow: hidden;
+        background-image: url(#{$image-path});
+        background-color: $background-color;
+        background-repeat: no-repeat;
+        background-position: 0 0;
+        text-indent: -9999px;
 
-/**
- * @param String $name
- */
-@mixin sprite-instance($name) {
-    $index: index($sprite-names, $name);
+        &:hover {
+            @include opacity(0.4);
+        }
 
-    @if $index {
-        $index: $index - 1;
-        $row: floor($index / $sprite-items-per-row);
-        $column: $index - ($row * $sprite-items-per-row);
-        background-position: -#{$column * ($sprite-size + $sprite-offset)}px -#{$row * ($sprite-size + $sprite-offset)}px;
-    } @else {
-        background-position: #{$sprite-size + $sprite-offset}px #{$sprite-size + $sprite-offset}px;
+        @each $sprite in $sprites {
+            &.sprite-#{$sprite} {
+                $index: index($sprites, $sprite);
+
+                @if $index {
+                    $index: $index - 1;
+                    $row: floor($index / $sprite-items-per-row);
+                    $column: $index - ($row * $sprite-items-per-row);
+                    background-position: -#{$column * ($sprite-width + $sprite-offset-width)}px -#{$row * ($sprite-height + $sprite-offset-height)}px;
+                } @else {
+                    background-position: #{$sprite-width + $sprite-offset-width}px #{$sprite-height + $sprite-offset-height}px;
+                }
+            }
+        }
     }
 }

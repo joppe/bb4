@@ -1,3 +1,11 @@
+team_list:
+  pattern:  /teams
+  defaults: { _controller: AapBluebirdsBundle:Team:list }
+
 team:
   pattern:  /team/{slug}
-  defaults: { _controller: AapBluebirdsBundle:Team:index }
+  defaults: { _controller: AapBluebirdsBundle:Team:team }
+
+team_create:
+  pattern: /teams/create
+  defaults: { _controller: AapBluebirdsBundle:Team:create }

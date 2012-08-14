@@ -1,4 +1,23 @@
 /**
+ * @param number $radius
+ */
+/**
+ * @param number $radius
+ */
+/**
+ * @param string $value
+ *
+ * none:        The text of the element and sub-elements will appear as if they cannot be selected.
+ *              Any use of Selection however will contain these elements.
+ * text:        The text can be selected by the user.
+ * -moz-none:   The text of the element and sub-elements cannot be selected,
+ *              but selection can be enabled on sub-elements using -moz-user-select:text
+ * all:         In an HTML editor, if a double-click or context-click occurred in sub-elements,
+ *              the highest ancestor with this value will be selected.
+ * element:     Supported in Firefox and Internet Explorer. Enables selection to start within
+ *              the element; however, the selection will be contained by the bounds of that element.
+ */
+/**
  * reset the spacing of an element
  */
 /**
@@ -10,14 +29,39 @@
 /**
  * calculate the font size and line height in em's
  *
- * @param Number $font_size
- * @param Number $line_height
+ * @param number $font_size
+ * @param number $line_height, default -1
  */
 /**
- * create a sprite
+ * create sprites
+ *
+ * @param list $sprites
+ * @param number $sprite-width
+ * @param number $sprite-height
+ * @param number $sprite-items-per-row
+ * @param number $background-color
+ * @param number $image-path
+ * @param number $sprite-offset-width, default 0
+ * @param number $sprite-offset-height, default 0
  */
 /**
- * @param String $name
+ * @param number $radius
+ */
+/**
+ * @param number $radius
+ */
+/**
+ * @param string $value
+ *
+ * none:        The text of the element and sub-elements will appear as if they cannot be selected.
+ *              Any use of Selection however will contain these elements.
+ * text:        The text can be selected by the user.
+ * -moz-none:   The text of the element and sub-elements cannot be selected,
+ *              but selection can be enabled on sub-elements using -moz-user-select:text
+ * all:         In an HTML editor, if a double-click or context-click occurred in sub-elements,
+ *              the highest ancestor with this value will be selected.
+ * element:     Supported in Firefox and Internet Explorer. Enables selection to start within
+ *              the element; however, the selection will be contained by the bounds of that element.
  */
 /**
  * reset the spacing of an element
@@ -31,14 +75,39 @@
 /**
  * calculate the font size and line height in em's
  *
- * @param Number $font_size
- * @param Number $line_height
+ * @param number $font_size
+ * @param number $line_height, default -1
  */
 /**
- * create a sprite
+ * create sprites
+ *
+ * @param list $sprites
+ * @param number $sprite-width
+ * @param number $sprite-height
+ * @param number $sprite-items-per-row
+ * @param number $background-color
+ * @param number $image-path
+ * @param number $sprite-offset-width, default 0
+ * @param number $sprite-offset-height, default 0
  */
 /**
- * @param String $name
+ * @param number $radius
+ */
+/**
+ * @param number $radius
+ */
+/**
+ * @param string $value
+ *
+ * none:        The text of the element and sub-elements will appear as if they cannot be selected.
+ *              Any use of Selection however will contain these elements.
+ * text:        The text can be selected by the user.
+ * -moz-none:   The text of the element and sub-elements cannot be selected,
+ *              but selection can be enabled on sub-elements using -moz-user-select:text
+ * all:         In an HTML editor, if a double-click or context-click occurred in sub-elements,
+ *              the highest ancestor with this value will be selected.
+ * element:     Supported in Firefox and Internet Explorer. Enables selection to start within
+ *              the element; however, the selection will be contained by the bounds of that element.
  */
 body {
   padding: 0;
@@ -53,21 +122,323 @@ nav ul {
   margin: 0;
   list-style: none; }
 
-span.sprite {
+table {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid #DDDDDD; }
+  table tr:hover {
+    background: lime; }
+  table td,
+  table th {
+    text-align: left;
+    padding: 5px;
+    border: 1px solid #DDDDDD; }
+  table td {
+    vertical-align: top; }
+  table th {
+    font-weight: bold; }
+
+.sprite {
   display: inline-block;
   width: 14px;
   height: 14px;
   overflow: hidden;
+  background-image: url(../images/icons/glyphicons-halflings.png);
+  background-color: white;
   background-repeat: no-repeat;
   background-position: 0 0;
-  text-indent: -9999px;
-  background-color: white;
-  background-image: url("../images/icons/glyphicons-halflings.png"); }
-
-span.sprite.movie {
-  background-position: -192px -0px; }
+  text-indent: -9999px; }
+  .sprite:hover {
+    filter: alpha(opacity=40);
+    /* msie */
+    -moz-opacity: 0.4;
+    /* firefox 1.0 */
+    -khtml-opacity: 0.4;
+    /* webkit */
+    opacity: 0.4;
+    /* css 3 */ }
+  .sprite.sprite-glass {
+    background-position: -0px -0px; }
+  .sprite.sprite-music {
+    background-position: -24px -0px; }
+  .sprite.sprite-magnifier {
+    background-position: -48px -0px; }
+  .sprite.sprite-envelope {
+    background-position: -72px -0px; }
+  .sprite.sprite-heart {
+    background-position: -96px -0px; }
+  .sprite.sprite-star {
+    background-position: -120px -0px; }
+  .sprite.sprite-unstar {
+    background-position: -144px -0px; }
+  .sprite.sprite-user {
+    background-position: -168px -0px; }
+  .sprite.sprite-film-strip {
+    background-position: -192px -0px; }
+  .sprite.sprite-grid-large {
+    background-position: -216px -0px; }
+  .sprite.sprite-grid-small {
+    background-position: -240px -0px; }
+  .sprite.sprite-list {
+    background-position: -264px -0px; }
+  .sprite.sprite-ok {
+    background-position: -288px -0px; }
+  .sprite.sprite-remove {
+    background-position: -312px -0px; }
+  .sprite.sprite-zoom-in {
+    background-position: -336px -0px; }
+  .sprite.sprite-zoom-out {
+    background-position: -360px -0px; }
+  .sprite.sprite-off {
+    background-position: -384px -0px; }
+  .sprite.sprite-volume {
+    background-position: -408px -0px; }
+  .sprite.sprite-cogwheel {
+    background-position: -432px -0px; }
+  .sprite.sprite-trash {
+    background-position: -456px -0px; }
+  .sprite.sprite-home {
+    background-position: -0px -24px; }
+  .sprite.sprite-document {
+    background-position: -24px -24px; }
+  .sprite.sprite-clock {
+    background-position: -48px -24px; }
+  .sprite.sprite-road {
+    background-position: -72px -24px; }
+  .sprite.sprite-205 {
+    background-position: -96px -24px; }
+  .sprite.sprite-206 {
+    background-position: -120px -24px; }
+  .sprite.sprite-207 {
+    background-position: -144px -24px; }
+  .sprite.sprite-208 {
+    background-position: -168px -24px; }
+  .sprite.sprite-209 {
+    background-position: -192px -24px; }
+  .sprite.sprite-210 {
+    background-position: -216px -24px; }
+  .sprite.sprite-211 {
+    background-position: -240px -24px; }
+  .sprite.sprite-212 {
+    background-position: -264px -24px; }
+  .sprite.sprite-213 {
+    background-position: -288px -24px; }
+  .sprite.sprite-flag {
+    background-position: -312px -24px; }
+  .sprite.sprite-headphones {
+    background-position: -336px -24px; }
+  .sprite.sprite-mute {
+    background-position: -360px -24px; }
+  .sprite.sprite-volume-down {
+    background-position: -384px -24px; }
+  .sprite.sprite-volume-up {
+    background-position: -408px -24px; }
+  .sprite.sprite-qr-code {
+    background-position: -432px -24px; }
+  .sprite.sprite-bar-code {
+    background-position: -456px -24px; }
+  .sprite.sprite-tag {
+    background-position: -0px -48px; }
+  .sprite.sprite-tags {
+    background-position: -24px -48px; }
+  .sprite.sprite-303 {
+    background-position: -48px -48px; }
+  .sprite.sprite-304 {
+    background-position: -72px -48px; }
+  .sprite.sprite-305 {
+    background-position: -96px -48px; }
+  .sprite.sprite-306 {
+    background-position: -120px -48px; }
+  .sprite.sprite-307 {
+    background-position: -144px -48px; }
+  .sprite.sprite-308 {
+    background-position: -168px -48px; }
+  .sprite.sprite-309 {
+    background-position: -192px -48px; }
+  .sprite.sprite-310 {
+    background-position: -216px -48px; }
+  .sprite.sprite-311 {
+    background-position: -240px -48px; }
+  .sprite.sprite-312 {
+    background-position: -264px -48px; }
+  .sprite.sprite-313 {
+    background-position: -288px -48px; }
+  .sprite.sprite-314 {
+    background-position: -312px -48px; }
+  .sprite.sprite-315 {
+    background-position: -336px -48px; }
+  .sprite.sprite-316 {
+    background-position: -360px -48px; }
+  .sprite.sprite-317 {
+    background-position: -384px -48px; }
+  .sprite.sprite-318 {
+    background-position: -408px -48px; }
+  .sprite.sprite-movie {
+    background-position: -432px -48px; }
+  .sprite.sprite-image {
+    background-position: -456px -48px; }
+  .sprite.sprite-edit {
+    background-position: -0px -72px; }
+  .sprite.sprite-402 {
+    background-position: -24px -72px; }
+  .sprite.sprite-403 {
+    background-position: -48px -72px; }
+  .sprite.sprite-404 {
+    background-position: -72px -72px; }
+  .sprite.sprite-405 {
+    background-position: -96px -72px; }
+  .sprite.sprite-406 {
+    background-position: -120px -72px; }
+  .sprite.sprite-407 {
+    background-position: -144px -72px; }
+  .sprite.sprite-408 {
+    background-position: -168px -72px; }
+  .sprite.sprite-409 {
+    background-position: -192px -72px; }
+  .sprite.sprite-410 {
+    background-position: -216px -72px; }
+  .sprite.sprite-411 {
+    background-position: -240px -72px; }
+  .sprite.sprite-412 {
+    background-position: -264px -72px; }
+  .sprite.sprite-413 {
+    background-position: -288px -72px; }
+  .sprite.sprite-414 {
+    background-position: -312px -72px; }
+  .sprite.sprite-415 {
+    background-position: -336px -72px; }
+  .sprite.sprite-416 {
+    background-position: -360px -72px; }
+  .sprite.sprite-417 {
+    background-position: -384px -72px; }
+  .sprite.sprite-418 {
+    background-position: -408px -72px; }
+  .sprite.sprite-419 {
+    background-position: -432px -72px; }
+  .sprite.sprite-420 {
+    background-position: -456px -72px; }
+  .sprite.sprite-add-dark {
+    background-position: -0px -96px; }
+  .sprite.sprite-remove-dark {
+    background-position: -24px -96px; }
+  .sprite.sprite-cancel-dark {
+    background-position: -48px -96px; }
+  .sprite.sprite-ok-dark {
+    background-position: -72px -96px; }
+  .sprite.sprite-505 {
+    background-position: -96px -96px; }
+  .sprite.sprite-506 {
+    background-position: -120px -96px; }
+  .sprite.sprite-507 {
+    background-position: -144px -96px; }
+  .sprite.sprite-508 {
+    background-position: -168px -96px; }
+  .sprite.sprite-509 {
+    background-position: -192px -96px; }
+  .sprite.sprite-510 {
+    background-position: -216px -96px; }
+  .sprite.sprite-511 {
+    background-position: -240px -96px; }
+  .sprite.sprite-512 {
+    background-position: -264px -96px; }
+  .sprite.sprite-513 {
+    background-position: -288px -96px; }
+  .sprite.sprite-514 {
+    background-position: -312px -96px; }
+  .sprite.sprite-515 {
+    background-position: -336px -96px; }
+  .sprite.sprite-516 {
+    background-position: -360px -96px; }
+  .sprite.sprite-517 {
+    background-position: -384px -96px; }
+  .sprite.sprite-518 {
+    background-position: -408px -96px; }
+  .sprite.sprite-519 {
+    background-position: -432px -96px; }
+  .sprite.sprite-520 {
+    background-position: -456px -96px; }
+  .sprite.sprite-601 {
+    background-position: -0px -120px; }
+  .sprite.sprite-gift {
+    background-position: -24px -120px; }
+  .sprite.sprite-leaf {
+    background-position: -48px -120px; }
+  .sprite.sprite-fire {
+    background-position: -72px -120px; }
+  .sprite.sprite-605 {
+    background-position: -96px -120px; }
+  .sprite.sprite-606 {
+    background-position: -120px -120px; }
+  .sprite.sprite-607 {
+    background-position: -144px -120px; }
+  .sprite.sprite-608 {
+    background-position: -168px -120px; }
+  .sprite.sprite-609 {
+    background-position: -192px -120px; }
+  .sprite.sprite-610 {
+    background-position: -216px -120px; }
+  .sprite.sprite-611 {
+    background-position: -240px -120px; }
+  .sprite.sprite-612 {
+    background-position: -264px -120px; }
+  .sprite.sprite-613 {
+    background-position: -288px -120px; }
+  .sprite.sprite-614 {
+    background-position: -312px -120px; }
+  .sprite.sprite-615 {
+    background-position: -336px -120px; }
+  .sprite.sprite-cart {
+    background-position: -360px -120px; }
+  .sprite.sprite-folder-closed {
+    background-position: -384px -120px; }
+  .sprite.sprite-folder-open {
+    background-position: -408px -120px; }
+  .sprite.sprite-resize-height {
+    background-position: -432px -120px; }
+  .sprite.sprite-resize-width {
+    background-position: -456px -120px; }
+  .sprite.sprite-harddisk {
+    background-position: -0px -144px; }
+  .sprite.sprite-702 {
+    background-position: -24px -144px; }
+  .sprite.sprite-alarm {
+    background-position: -48px -144px; }
+  .sprite.sprite-thumb-up {
+    background-position: -72px -144px; }
+  .sprite.sprite-thumb-down {
+    background-position: -96px -144px; }
+  .sprite.sprite-706 {
+    background-position: -120px -144px; }
+  .sprite.sprite-707 {
+    background-position: -144px -144px; }
+  .sprite.sprite-708 {
+    background-position: -168px -144px; }
+  .sprite.sprite-709 {
+    background-position: -192px -144px; }
+  .sprite.sprite-710 {
+    background-position: -216px -144px; }
+  .sprite.sprite-711 {
+    background-position: -240px -144px; }
+  .sprite.sprite-712 {
+    background-position: -264px -144px; }
+  .sprite.sprite-713 {
+    background-position: -288px -144px; }
+  .sprite.sprite-714 {
+    background-position: -312px -144px; }
+  .sprite.sprite-715 {
+    background-position: -336px -144px; }
+  .sprite.sprite-716 {
+    background-position: -360px -144px; }
+  .sprite.sprite-717 {
+    background-position: -384px -144px; }
+  .sprite.sprite-718 {
+    background-position: -408px -144px; }
+  .sprite.sprite-719 {
+    background-position: -432px -144px; }
+  .sprite.sprite-720 {
+    background-position: -456px -144px; }
 
 body {
-  background: blue;
-  color: white;
-  font-weight: bold; }
+  font-family: Arial; }

@@ -44,6 +44,11 @@ class Player {
     /**
      * @ORM\Column(type="string", length=255)
      */
+    protected $mobile;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
     protected $street;
 
     /**
@@ -55,6 +60,11 @@ class Player {
      * @ORM\Column(type="string", length=255)
      */
     protected $city;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    protected $membership_number;
 
     /**
      * Get id
@@ -248,5 +258,51 @@ class Player {
     public function getCity()
     {
         return $this->city;
+    }
+
+    /**
+     * Set mobile
+     *
+     * @param string $mobile
+     * @return Player
+     */
+    public function setMobile($mobile)
+    {
+        $this->mobile = $mobile;
+    
+        return $this;
+    }
+
+    /**
+     * Get mobile
+     *
+     * @return string 
+     */
+    public function getMobile()
+    {
+        return $this->mobile;
+    }
+
+    /**
+     * Set membership_number
+     *
+     * @param string $membershipNumber
+     * @return Player
+     */
+    public function setMembershipNumber($membershipNumber)
+    {
+        $this->membership_number = $membershipNumber;
+    
+        return $this;
+    }
+
+    /**
+     * Get membership_number
+     *
+     * @return string 
+     */
+    public function getMembershipNumber()
+    {
+        return $this->membership_number;
     }
 }

@@ -1,0 +1,26 @@
+{% extends 'AapBluebirdsBundle::layout.html.twig' %}
+
+{% block title %}Teams{% endblock %}
+
+{% block body %}
+    <h1>Overzicht van teams</h1>
+    <a href="{{ path('team_create') }}"><span class="sprite sprite-add-dark"></span>Voeg een team toe</a>
+    {% if teams %}
+        <table>
+            <caption>Teams</caption>
+            <thead>
+                <tr>
+                    <th>Naam</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for team in teams %}
+                    <tr>
+                        <td>{{ team.name }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+    {% endif %}
+{% endblock %}

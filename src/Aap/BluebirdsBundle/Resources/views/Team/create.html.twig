@@ -1,0 +1,11 @@
+{% extends 'AapBluebirdsBundle::layout.html.twig' %}
+
+{% block title %}Teams{% endblock %}
+
+{% block body %}
+    <h1>Voeg een team toe</h1>
+    <form action="{{ path('team_create') }}" method="post" {{ form_enctype(form) }}>
+        {{ form_widget(form) }}
+        <input type="submit">
+    </form>
+{% endblock %}

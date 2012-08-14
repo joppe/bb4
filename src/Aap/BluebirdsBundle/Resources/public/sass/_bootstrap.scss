@@ -1,4 +1,6 @@
+@import '_config.scss';
 @import '_mixins.scss';
+@import '_css3.scss';
 
 body {
     @include reset-spacing;
@@ -15,12 +17,49 @@ nav {
     }
 }
 
-span.sprite {
-    @include sprite;
+table {
+    @include reset-spacing;
 
-    background-color: white;
-    background-image: url('../images/icons/glyphicons-halflings.png');
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #DDDDDD;
+
+    caption {
+
+    }
+
+    thead {
+
+    }
+
+    tbody {
+
+    }
+
+    tfoot {
+
+    }
+
+    tr {
+        &:hover {
+            background: lime;
+        }
+    }
+
+    td,
+    th {
+        text-align: left;
+        padding: 5px;
+        border: 1px solid #DDDDDD;
+    }
+
+    td {
+        vertical-align: top;
+    }
+
+    th {
+        font-weight: bold;
+    }
 }
-span.sprite.movie {
-    @include sprite-instance('movie');
-}
+
+@include create-sprites($sprites, $sprite-width, $sprite-height, $sprite-items-per-row, white, '../images/icons/glyphicons-halflings.png', $sprite-offset-width, $sprite-offset-height);
