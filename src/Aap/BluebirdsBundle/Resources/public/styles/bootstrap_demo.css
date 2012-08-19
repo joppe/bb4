@@ -25,6 +25,32 @@
  *
  */
 /**
+ * @param number $radius
+ */
+/**
+ * @param number $radius [0.0-1.0]
+ */
+/**
+ * @param string $value
+ *
+ * none:        The text of the element and sub-elements will appear as if they cannot be selected.
+ *              Any use of Selection however will contain these elements.
+ * text:        The text can be selected by the user.
+ * -moz-none:   The text of the element and sub-elements cannot be selected,
+ *              but selection can be enabled on sub-elements using -moz-user-select:text
+ * all:         In an HTML editor, if a double-click or context-click occurred in sub-elements,
+ *              the highest ancestor with this value will be selected.
+ * element:     Supported in Firefox and Internet Explorer. Enables selection to start within
+ *              the element; however, the selection will be contained by the bounds of that element.
+ */
+/**
+ * @param string $property
+ * @param number $duration [ease linear ease-in ease-out ease-in-out]
+ * @param string $timing-function
+ * @param number $delay default:0
+ *
+ */
+/**
  * reset the spacing of an element
  */
 /**
@@ -457,5 +483,27 @@ table {
   .sprite.sprite-720 {
     background-position: -456px -144px; }
 
-body {
-  font-family: Arial; }
+h1 {
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -o-border-radius: 3px;
+  border-radius: 3px;
+  background: black;
+  color: white; }
+
+a {
+  background: #ff0000;
+  -webkit-transition-property: background;
+  -moz-transition-property: background;
+  -o-transition-property: background;
+  transition-property: background;
+  -webkit-transition-duration: 0.4s;
+  -moz-transition-duration: 0.4s;
+  -o-transition-duration: 0.4s;
+  transition-duration: 0.4s;
+  -webkit-transition-timinig-function: ease;
+  -moz-transition-timinig-function: ease;
+  -o-transition-timinig-function: ease;
+  transition-timinig-function: ease; }
+  a:hover {
+    background: #ffff33; }

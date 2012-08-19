@@ -1,20 +1,23 @@
-/**
- * @param number $radius
- */
-@mixin border-radius($radius: 0) {
-    -moz-border-radius: #{$radius}px;
-    -webkit-border-radius: #{$radius}px;
-    border-radius: #{$radius}px;
+@mixin add-vendor-prefixes($property, $value) {
+    $vendor-prefixes: ('-webkit-' '-moz-' '-o-' '');
+
+    @each $vendor-prefix in $vendor-prefixes {
+        #{$vendor-prefix}#{$property}: $value;
+    }
 }
 
 /**
  * @param number $radius
  */
+@mixin border-radius($radius) {
+    @include add-vendor-prefixes(border-radius, #{$radius}px);
+}
+
+/**
+ * @param number $radius [0.0-1.0]
+ */
 @mixin opacity($opacity) {
-    filter:alpha(opacity=$opacity*100); /* msie */
-    -moz-opacity: $opacity; /* firefox 1.0 */
-    -khtml-opacity: $opacity; /* webkit */
-    opacity: $opacity; /* css 3 */
+    @include add-vendor-prefixes(opacity, $opacity);
 }
 
 /**
@@ -31,10 +34,22 @@
  *              the element; however, the selection will be contained by the bounds of that element.
  */
 @mixin user-select($value: none) {
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    -o-user-select: none;
-    user-select: none;
+    @include add-vendor-prefixes(user-select, $value);
+}
+
+/**
+ * @param string $property
+ * @param number $duration [ease linear ease-in ease-out ease-in-out]
+ * @param string $timing-function
+ * @param number $delay default:0
+ *
+ */
+@mixin transition($property, $duration, $timing-function, $delay:0) {
+    @include add-vendor-prefixes(transition-property, $property);
+    @include add-vendor-prefixes(transition-duration, #{$duration}s);
+    @include add-vendor-prefixes(transition-timinig-function, $timing-function);
+
+    @if $delay > 0 {
+        @include add-vendor-prefixes(transition-delay, #{$delay}s);
+    }
 }

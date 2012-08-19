@@ -9,3 +9,7 @@ team:
 team_create:
   pattern: /teams/create
   defaults: { _controller: AapBluebirdsBundle:Team:create }
+
+bootstrap_demo:
+  pattern: /bootstrap
+  defaults: { _controller: AapBluebirdsBundle:Bootstrap:index }
