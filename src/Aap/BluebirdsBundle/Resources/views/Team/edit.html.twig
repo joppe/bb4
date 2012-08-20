@@ -1,0 +1,24 @@
+{% extends 'AapBluebirdsBundle::layout.html.twig' %}
+
+{% block title %}Teams{% endblock %}
+
+{% block header %}
+    <h1>Edit team</h1>
+{% endblock %}
+
+{% block section %}
+    <form action="{{ path('team_edit', {'id': team.id}) }}" method="post" {{ form_enctype(form) }}>
+        <fieldset>
+            <legend>Edit team <em>{{ team.name }}</em></legend>
+            {{ form_widget(form) }}
+            <button type="submit">
+                <span class="sprite sprite-ok-sign"></span>
+                <span class="label">save</span>
+            </button>
+            <a href="{{ path('team_list') }}" class="button">
+                <span class="sprite sprite-remove-sign">cancel</span>
+                <span class="label">cancel</span>
+            </a>
+        </fieldset>
+    </form>
+{% endblock %}

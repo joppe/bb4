@@ -4,11 +4,15 @@ $sprite-offset-width: 10;
 $sprite-offset-height: 10;
 $sprite-items-per-row: 20;
 $sprites: (
-    'glass', 'music', 'magnifier', 'envelope', 'heart', 'star', 'unstar', 'user', 'film-strip', 'grid-large', 'grid-small', 'list', 'ok', 'remove', 'zoom-in', 'zoom-out', 'off', 'volume', 'cogwheel', 'trash',
-    'home',    'document',    'clock',    'road',    205,    206,    207,    208,    209,    210,    211,    212,    213,    'flag',    'headphones',    'mute',    'volume-down',    'volume-up',    'qr-code',    'bar-code',
-    'tag',    'tags',    303,    304,    305,    306,    307,    308,    309,    310,    311,    312,    313,    314,    315,    316,    317,    318,    'movie',    'image',
-    'edit',    402,    403,    404,    405,    406,    407,    408,    409,    410,    411,    412,    413,    414,    415,    416,    417,    418,    419,    420,
-    'add-dark',    'remove-dark',    'cancel-dark',    'ok-dark',    505,    506,    507,    508,    509,    510,    511,    512,    513,    514,    515,    516,    517,    518,    519,    520,
-    601,    'gift',    'leaf',    'fire',    605,    606,    607,    608,    609,    610,    611,    612,    613,    614,    615,    'cart',    'folder-closed',    'folder-open',    'resize-height',    'resize-width',
-    'harddisk',    702,    'alarm',    'thumb-up',    'thumb-down',    706,    707,    708,    709,    710,    711,    712,    713,    714,    715,    716,    717,    718,    719,    720
+    'glass',            'music',        'search',       'envelope',     'heart',            'star',         'star-empty',   'user',             'film',             'th-large',         'th',                   'th-list',              'ok',               'remove',               'zoom-in',          'zoom-out',         'off',              'signal',       'cog',              'trash',
+    'home',             'file',         'time',         'road',         'download-alt',     'download',     'upload',       'inbox',            'play-circle',      'repeat',           'refresh',              'list-alt',             'lock',             'flag',                 'headphones',       'volume-off',       'volume-down',      'volume-up',    'qr-code',          'bar-code',
+    'tag',              'tags',         'book',         'bookmark',     'print',            'camera',       'font',         'bold',             'italic',           'text-height',      'text-width',           'align-left',           'align-center',     'align-right',          'align-justify',    'list',             'indent-left',      'indent-right', 'facetime-video',   'picture',
+    'pencil',           'map-marker',   'adjust',       'tint',         'edit',             'share',        'check',        'move',             'step-backward',    'fast-backward',    'backward',             'play',                 'pause',            'stop',                 'forward',          'fast-forward',     'step-forward',     'eject',        'chevron-left',     'chevron-right',
+    'plus-sign',        'minus-sign',   'remove-sign',  'ok-sign',      'question-sign',    'info-sign',    'screenshot',   'remove-circle',    'ok-circle',        'ban-circle',       'arrow-left',           'arrow-right',          'arrow-up',         'arrow-down',           'share-alt',        'resize-full',      'resize-small',     'plus',         'minus',            'asterisk',
+    'exclamation-sign', 'gift',         'leaf',         'fire',         'eye-open',         'eye-close',    'warning-sign', 'plane',            'calendar',         'random',           'comment',              'magnet',               'chevron-up',       'chevron-down',         'retweet',          'shopping-cart',    'folder-close',     'folder-open',  'resize-vertical',  'resize-horizontal',
+    'hdd',              'bullhorn',     'bell',         'certificate',  'thumbs-up',        'thumbs-down',  'hand-right',   'hand-left',        'hand-up',          'hand-down',        'circle-arrow-right',   'circle-arrow-left',    'circle-arrow-up',  'circle-arrow-down',    'globe',            'wrench',           'tasks',            'filter',       'briefcase',        'fullscreen'
 );
+
+$add-color: #3366AA;
+$accept-color: #0bba36;
+$cancel-color: #ba1a04;

@@ -3,6 +3,7 @@
 namespace Aap\BluebirdsBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ORM\Entity
@@ -52,5 +53,50 @@ class Team {
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * @ORM\OneToMany(targetEntity="Player", mappedBy="team")
+     */
+    protected $players;
+
+    /**
+     * Constructor
+     */
+    public function __construct() {
+        $this->players = new ArrayCollection();
+    }
+
+    /**
+     * Add players
+     *
+     * @param Aap\BluebirdsBundle\Entity\Player $players
+     * @return Team
+     */
+    public function addPlayer(\Aap\BluebirdsBundle\Entity\Player $players)
+    {
+        $this->players[] = $players;
+    
+        return $this;
+    }
+
+    /**
+     * Remove players
+     *
+     * @param Aap\BluebirdsBundle\Entity\Player $players
+     */
+    public function removePlayer(\Aap\BluebirdsBundle\Entity\Player $players)
+    {
+        $this->players->removeElement($players);
+    }
+
+    /**
+     * Get players
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getPlayers()
+    {
+        return $this->players;
     }
 }

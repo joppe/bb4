@@ -1,0 +1,30 @@
+{% macro add(url, label) %}
+    {% if label is not defined %}
+        {% set label = 'Add' %}
+    {% endif%}
+    {{ _self._anchor(url, label, 'add', 'sprite-plus-sign') }}
+{% endmacro %}
+
+{% macro edit(url, label) %}
+    {% if label is not defined %}
+        {% set label = 'Edit' %}
+    {% endif%}
+    {{ _self._anchor(url, label, 'edit', 'sprite-pencil') }}
+{% endmacro %}
+
+{% macro delete(url, label) %}
+    {% if label is not defined %}
+        {% set label = 'Delete' %}
+    {% endif%}
+    {{ _self._anchor(url, label, 'delete', 'sprite-minus') }}
+{% endmacro %}
+
+{% macro _anchor(url, label, class_name, sprite) %}
+    <a href="{{ url }}" class="button {{ class_name}}">
+        <span class="sprite {{ sprite }}"></span>
+        <span class="label">{{ label }}</span>
+    </a>
+{% endmacro %}
+
+{% macro _button() %}
+{% endmacro %}

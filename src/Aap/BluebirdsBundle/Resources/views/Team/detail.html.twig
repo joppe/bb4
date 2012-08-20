@@ -1,0 +1,25 @@
+{% extends 'AapBluebirdsBundle::layout.html.twig' %}
+
+{% block title %}Teams{% endblock %}
+
+{% block header %}
+    <h1>Team details</h1>
+{% endblock %}
+
+{% block section %}
+    <a href="{{ path('team_list') }}" class="back">back</a>
+    {{ team.name }}
+    <a href="{{ path('player_create', {'team_id': team.id}) }}">Add player</a>
+    {% set players = team.getPlayers() %}
+    {% if players | length > 0 %}
+        <ul class="players">
+            {% for player in players %}
+                <li>
+                    {{ player.getFirstName() }}
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <em>No players</em>
+    {% endif %}
+{% endblock %}

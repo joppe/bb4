@@ -305,4 +305,33 @@ class Player {
     {
         return $this->membership_number;
     }
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Team", inversedBy="players")
+     * @ORM\JoinColumn(name="team_id", referencedColumnName="id")
+     */
+    protected $team;
+
+    /**
+     * Set team
+     *
+     * @param Aap\BluebirdsBundle\Entity\Team $team
+     * @return Player
+     */
+    public function setTeam(\Aap\BluebirdsBundle\Entity\Team $team = null)
+    {
+        $this->team = $team;
+    
+        return $this;
+    }
+
+    /**
+     * Get team
+     *
+     * @return Aap\BluebirdsBundle\Entity\Team 
+     */
+    public function getTeam()
+    {
+        return $this->team;
+    }
 }

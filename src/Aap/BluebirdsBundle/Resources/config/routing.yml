@@ -1,14 +1,35 @@
 team_list:
-  pattern:  /teams
+  pattern:  /team/list
   defaults: { _controller: AapBluebirdsBundle:Team:list }
 
-team:
-  pattern:  /team/{slug}
-  defaults: { _controller: AapBluebirdsBundle:Team:team }
+team_detail:
+  pattern:  /team/{id}
+  defaults: { _controller: AapBluebirdsBundle:Team:detail }
+
+team_edit:
+  pattern: /team/{id}/edit
+  defaults: { _controller: AapBluebirdsBundle:Team:edit }
 
 team_create:
-  pattern: /teams/create
+  pattern: /team/create
   defaults: { _controller: AapBluebirdsBundle:Team:create }
+
+team_delete:
+  pattern: /team/{id}/delete
+  defaults: { _controller: AapBluebirdsBundle:Team:delete }
+  # make sure it is a post
+
+player_create:
+  pattern: /team/{team_id}/player/create
+  defaults: { _controller: AapBluebirdsBundle:Player:create }
+
+player_edit:
+  pattern: /team/{team_id}/player/{id}/edit
+  defaults: { _controller: AapBluebirdsBundle:Player:edit }
+
+player_delete:
+  pattern: /team/{team_id}/player/{id}/delete
+  defaults: { _controller: AapBluebirdsBundle:Player:delete }
 
 bootstrap_demo:
   pattern: /bootstrap

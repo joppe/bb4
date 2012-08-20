@@ -53,3 +53,19 @@
         @include add-vendor-prefixes(transition-delay, #{$delay}s);
     }
 }
+
+/**
+ * @param number $horizontal
+ * @param number $vertical
+ * @param number $blur
+ * @param number $spread
+ * @param string $color
+ * @param string $inset default:''
+ */
+@mixin box-shadow($horizontal, $vertical, $blur, $spread, $color, $inset: '') {
+    @if $inset == 'inset' {
+        @include add-vendor-prefixes(box-shadow, $inset #{$horizontal}px #{$vertical}px #{$blur}px #{$spread}px $color);
+    } @else {
+        @include add-vendor-prefixes(box-shadow, #{$horizontal}px #{$vertical}px #{$blur}px #{$spread}px $color);
+    }
+}

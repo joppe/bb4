@@ -11,6 +11,10 @@ body {
     vertical-align: baseline;
 }
 
+a {
+    color: black;
+}
+
 nav {
     ul {
         @include reset-list;
@@ -20,37 +24,23 @@ nav {
 table {
     @include reset-spacing;
 
-    width: 100%;
     border-collapse: collapse;
     border: 1px solid #DDDDDD;
 
     caption {
-
-    }
-
-    thead {
-
-    }
-
-    tbody {
-
-    }
-
-    tfoot {
-
+        padding: 5px;
+        text-align: left;
     }
 
     tr {
-        &:hover {
-            background: lime;
-        }
+
     }
 
     td,
     th {
         text-align: left;
-        padding: 5px;
-        border: 1px solid #DDDDDD;
+        padding: 5px 25px 5px 5px;
+        border: 1px solid #dddddd;
     }
 
     td {
@@ -60,6 +50,85 @@ table {
     th {
         font-weight: bold;
     }
+
+    thead {
+
+    }
+
+    tbody {
+        tr {
+            &:nth-child(2n+2) {
+                background: #eeeeee;
+
+                &:hover {
+                    background: #bbbbbb;
+                }
+            }
+            &:hover {
+                background: #bbbbbb;
+            }
+        }
+    }
+
+    tfoot {
+
+    }
 }
 
-@include create-sprites($sprites, $sprite-width, $sprite-height, $sprite-items-per-row, white, '../images/icons/glyphicons-halflings.png', $sprite-offset-width, $sprite-offset-height);
+header,
+section,
+footer {
+    padding: 5px;
+}
+
+button,
+.button {
+    @include border-radius(5);
+    @include box-shadow(1, 1, 1, 0, #000000);
+
+    display: inline-block;
+    margin: 0;
+    padding: 0 5px;
+    border: 1px solid #ffffff;
+    text-decoration: none;
+
+    &:hover {
+        @include opacity(0.8);
+    }
+
+    span.label {
+        @include font-px-to-em(11, 20);
+
+        display: inline-block;
+        padding-right: 10px;
+        color: white;
+        font-weight: bold;
+        text-transform: lowercase;
+    }
+    span.sprite {
+        vertical-align: middle;
+    }
+
+    &.add {
+        background-color: $add-color;
+    }
+    &.edit,
+    &.accept {
+        background-color: $accept-color;
+    }
+    &.delete,
+    &.cancel {
+        background-color: $cancel-color;
+    }
+}
+
+ul.actions {
+    @include reset-list;
+
+    li {
+        float: left;
+        padding-right: 10px;
+    }
+}
+
+@include create-sprites($sprites, $sprite-width, $sprite-height, $sprite-items-per-row, transparent, '../images/icons/glyphicons-halflings-white.png', $sprite-offset-width, $sprite-offset-height);

@@ -23,11 +23,13 @@ class TeamController extends Controller {
         ;
 
         return $this->render('AapBluebirdsBundle:Team:list.html.twig', array(
-            'teams' => $teams
+            'teams' => $teams,
         ));
     }
 
     /**
+     * Create a team
+     *
      * @param \Symfony\Component\HttpFoundation\Request $request
      * @return \Symfony\Component\HttpFoundation\Response
      */
@@ -51,20 +53,87 @@ class TeamController extends Controller {
         }
 
         return $this->render('AapBluebirdsBundle:Team:create.html.twig', array(
-            'form' => $form->createView()
+            'form' => $form->createView(),
         ));
     }
 
     /**
-     * Display the team homepage
+     * Display a team details
      *
-     * @param string $slug
+     * @param int $id
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function teamAction($slug) {
-//        return new Response('team ' . $name);
-        return $this->render('AapBluebirdsBundle:Team:team.html.twig', array(
-            'team_name' => 'Blue Birds 4'
+    public function detailAction($id) {
+        $team = $this->getDoctrine()
+            ->getRepository('AapBluebirdsBundle:Team')
+            ->find($id);
+
+        if (!$team) {
+            $this->forward($this->generateUrl('team_list'));
+        }
+
+        return $this->render('AapBluebirdsBundle:Team:detail.html.twig', array(
+            'team' => $team,
+        ));
+    }
+
+    /**
+     * Delete a team
+     *
+     * @param int $id
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
+    public function deleteAction($id) {
+        $em = $this->getDoctrine()->getEntityManager();
+
+        $team = $em
+            ->getRepository('AapBluebirdsBundle:Team')
+            ->find($id);
+
+        if ($team) {
+            $em->remove($team);
+            $em->flush();
+        }
+
+        return $this->redirect($this->generateUrl('team_list'));
+    }
+
+    /**
+     * Edit a team
+     *
+     * @param int $id
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function editAction($id) {
+        $em = $this->getDoctrine()->getEntityManager();
+
+        $team = $em
+            ->getRepository('AapBluebirdsBundle:Team')
+            ->find($id);
+
+        if (!$team) {
+            $this->redirect($this->generateUrl('team_list'));
+        }
+
+        $form = $this->createForm(new TeamType(), $team);
+        $request = $this->getRequest();
+
+        if ($request->getMethod() == 'POST') {
+            $form->bindRequest($request);
+
+            if ($form->isValid()) {
+
+                $team = $form->getData();
+                $em->persist($team);
+                $em->flush();
+
+                return $this->redirect($this->generateUrl('team_list'));
+            }
+        }
+
+        return $this->render('AapBluebirdsBundle:Team:edit.html.twig', array(
+            'team' => $team,
+            'form' => $form->createView(),
         ));
     }
 }
