@@ -23,8 +23,8 @@ $base-font-size-px: 12;
  * reset the font size
  */
 @mixin reset-font-size() {
-    $percentage: $base-font-size-px/16;
-    font: #{$percentage}%/1em;
+    font-size: percentage($base-font-size-px/16);
+    line-height: 1em;
 }
 
 /**
@@ -41,6 +41,20 @@ $base-font-size-px: 12;
     @if $line-height > 0 {
         line-height: #{$line-height/$font-size}em;
     }
+}
+
+/**
+ * @param color $start-color
+ * @param color $end-color
+ */
+@mixin linear-gradient($start-color, $end-color) {
+    background: #{$start-color}; /* Old browsers */
+    background: -moz-linear-gradient(top, #{$start-color} 0%, #{$end-color} 100%); /* FF3.6+ */
+    background: -webkit-linear-gradient(top, #{$start-color} 0%,#{$end-color} 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, #{$start-color} 0%,#{$end-color} 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, #{$start-color} 0%,#{$end-color} 100%); /* IE10+ */
+    background: linear-gradient(to bottom, #{$start-color} 0%,#{$end-color} 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#{$start-color}', endColorstr='#{$end-color}',GradientType=0 ); /* IE6-9 */
 }
 
 /**

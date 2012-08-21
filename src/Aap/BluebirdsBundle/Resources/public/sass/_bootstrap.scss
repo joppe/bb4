@@ -6,13 +6,24 @@ body {
     @include reset-spacing;
     @include reset-font-size;
 
-    background: white;
-    color: black;
     vertical-align: baseline;
+    background: white;
+    //font-family: Helvetica,Arial,sans-serif;
+    font: 62.5%/1.26, Helvetica,Arial,sans-serif;
+    color: black;
 }
 
 a {
     color: black;
+}
+
+p,
+table,
+ul,
+ol {
+    @include reset-spacing;
+
+    margin: 0 0 20px 0;
 }
 
 nav {
@@ -22,8 +33,7 @@ nav {
 }
 
 table {
-    @include reset-spacing;
-
+    padding: 0;
     border-collapse: collapse;
     border: 1px solid #DDDDDD;
 
@@ -61,11 +71,11 @@ table {
                 background: #eeeeee;
 
                 &:hover {
-                    background: #bbbbbb;
+                    background: #cccccc;
                 }
             }
             &:hover {
-                background: #bbbbbb;
+                background: #cccccc;
             }
         }
     }
@@ -84,12 +94,18 @@ footer {
 button,
 .button {
     @include border-radius(5);
-    @include box-shadow(1, 1, 1, 0, #000000);
+    @include box-shadow(1, 1, 1, 0, rgba(0,0,0,0.4));
+    @include linear-gradient(#ffffff, #cccccc);
+    border: 1px solid #eeeeee;
 
     display: inline-block;
     margin: 0;
-    padding: 0 5px;
-    border: 1px solid #ffffff;
+    padding: 0 15px;
+    color: black;
+    cursor: pointer;
+    text-align: center;
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+    vertical-align: middle;
     text-decoration: none;
 
     &:hover {
@@ -101,7 +117,6 @@ button,
 
         display: inline-block;
         padding-right: 10px;
-        color: white;
         font-weight: bold;
         text-transform: lowercase;
     }
