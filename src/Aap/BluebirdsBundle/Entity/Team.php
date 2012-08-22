@@ -2,6 +2,8 @@
 
 namespace Aap\BluebirdsBundle\Entity;
 
+use Aap\BluebirdsBundle\Entity\Player;
+
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 
@@ -70,10 +72,10 @@ class Team {
     /**
      * Add players
      *
-     * @param Aap\BluebirdsBundle\Entity\Player $players
+     * @param Player $players
      * @return Team
      */
-    public function addPlayer(\Aap\BluebirdsBundle\Entity\Player $players)
+    public function addPlayer(Player $players)
     {
         $this->players[] = $players;
     
@@ -83,9 +85,9 @@ class Team {
     /**
      * Remove players
      *
-     * @param Aap\BluebirdsBundle\Entity\Player $players
+     * @param Player $players
      */
-    public function removePlayer(\Aap\BluebirdsBundle\Entity\Player $players)
+    public function removePlayer(Player $players)
     {
         $this->players->removeElement($players);
     }

@@ -33,6 +33,10 @@
  * @param string $inset default:''
  */
 /**
+ * @param color $start-color
+ * @param color $end-color
+ */
+/**
  * reset the spacing of an element
  */
 /**
@@ -46,10 +50,6 @@
  *
  * @param number $font_size
  * @param number $line_height, default -1
- */
-/**
- * @param color $start-color
- * @param color $end-color
  */
 /**
  * create sprites
@@ -98,6 +98,10 @@
  * @param string $inset default:''
  */
 /**
+ * @param color $start-color
+ * @param color $end-color
+ */
+/**
  * reset the spacing of an element
  */
 /**
@@ -111,10 +115,6 @@
  *
  * @param number $font_size
  * @param number $line_height, default -1
- */
-/**
- * @param color $start-color
- * @param color $end-color
  */
 /**
  * create sprites
@@ -161,6 +161,10 @@
  * @param number $spread
  * @param string $color
  * @param string $inset default:''
+ */
+/**
+ * @param color $start-color
+ * @param color $end-color
  */
 body {
   padding: 0;
@@ -169,7 +173,7 @@ body {
   line-height: 1em;
   vertical-align: baseline;
   background: white;
-  font: 62.5%/1.26, Helvetica, Arial, sans-serif;
+  font-family: Helvetica,Arial,sans-serif;
   color: black; }
 
 a {
@@ -204,17 +208,21 @@ table {
     vertical-align: top; }
   table th {
     font-weight: bold; }
+  table thead tr {
+    background-color: #eeeeee; }
+    table thead tr th {
+      border-top: 1px solid white;
+      border-bottom: 1px solid white; }
+      table thead tr th:first-child {
+        border-left: 1px solid white; }
+      table thead tr th:last-child {
+        border-left: 1px solid white; }
   table tbody tr:nth-child(2n+2) {
-    background: #eeeeee; }
+    background-color: #eeeeee; }
     table tbody tr:nth-child(2n+2):hover {
-      background: #cccccc; }
+      background-color: #dddddd; }
   table tbody tr:hover {
-    background: #cccccc; }
-
-header,
-section,
-footer {
-  padding: 5px; }
+    background-color: #dddddd; }
 
 button,
 .button {
@@ -585,6 +593,31 @@ ul.actions {
 
 body {
   text-align: center; }
+
+header ul.tabs {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  display: inline-block;
+  margin: 0 auto; }
+  header ul.tabs li {
+    float: left;
+    padding: 10px;
+    background: #000000;
+    border-left: 1px solid white; }
+    header ul.tabs li:first-child {
+      border: none; }
+    header ul.tabs li a {
+      color: white;
+      font-weight: bold;
+      text-decoration: none; }
+    header ul.tabs li.active {
+      background: orange; }
+    header ul.tabs li:hover {
+      -webkit-opacity: 0.8;
+      -moz-opacity: 0.8;
+      -o-opacity: 0.8;
+      opacity: 0.8; }
 
 section#main {
   -webkit-border-radius: 5px;

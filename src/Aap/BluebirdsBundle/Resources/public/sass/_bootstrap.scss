@@ -8,8 +8,7 @@ body {
 
     vertical-align: baseline;
     background: white;
-    //font-family: Helvetica,Arial,sans-serif;
-    font: 62.5%/1.26, Helvetica,Arial,sans-serif;
+    font-family: Helvetica,Arial,sans-serif;
     color: black;
 }
 
@@ -62,20 +61,34 @@ table {
     }
 
     thead {
+        tr {
+            background-color: #eeeeee;
 
+            th {
+                border-top: 1px solid white;
+                border-bottom: 1px solid white;
+
+                &:first-child {
+                    border-left: 1px solid white;
+                }
+                &:last-child {
+                    border-left: 1px solid white;
+                }
+            }
+        }
     }
 
     tbody {
         tr {
             &:nth-child(2n+2) {
-                background: #eeeeee;
+                background-color: #eeeeee;
 
                 &:hover {
-                    background: #cccccc;
+                    background-color: #dddddd;
                 }
             }
             &:hover {
-                background: #cccccc;
+                background-color: #dddddd;
             }
         }
     }
@@ -83,12 +96,6 @@ table {
     tfoot {
 
     }
-}
-
-header,
-section,
-footer {
-    padding: 5px;
 }
 
 button,

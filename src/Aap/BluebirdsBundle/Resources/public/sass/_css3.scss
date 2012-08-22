@@ -69,3 +69,18 @@
         @include add-vendor-prefixes(box-shadow, #{$horizontal}px #{$vertical}px #{$blur}px #{$spread}px $color);
     }
 }
+
+
+/**
+ * @param color $start-color
+ * @param color $end-color
+ */
+@mixin linear-gradient($start-color, $end-color) {
+    background: #{$start-color}; /* Old browsers */
+    background: -moz-linear-gradient(top, #{$start-color} 0%, #{$end-color} 100%); /* FF3.6+ */
+    background: -webkit-linear-gradient(top, #{$start-color} 0%,#{$end-color} 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, #{$start-color} 0%,#{$end-color} 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, #{$start-color} 0%,#{$end-color} 100%); /* IE10+ */
+    background: linear-gradient(to bottom, #{$start-color} 0%,#{$end-color} 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#{$start-color}', endColorstr='#{$end-color}',GradientType=0 ); /* IE6-9 */
+}

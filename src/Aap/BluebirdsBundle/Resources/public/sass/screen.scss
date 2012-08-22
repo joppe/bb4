@@ -5,6 +5,38 @@ body {
     text-align: center;
 }
 
+header {
+    ul.tabs {
+        @include reset-list;
+        display: inline-block;
+        margin: 0 auto;
+
+        li {
+            float: left;
+            padding: 10px;
+            background: #000000;
+            border-left: 1px solid white;
+
+            &:first-child {
+                border: none;
+            }
+
+            a {
+                color: white;
+                font-weight: bold;
+                text-decoration: none;
+            }
+
+            &.active {
+                background: orange;
+            }
+
+            &:hover {
+                @include opacity(0.8);
+            }
+        }
+    }
+}
 section#main {
     @include border-radius(5);
     @include box-shadow(1, 1, 2, 0, rgba(0,0,0,0.6));
