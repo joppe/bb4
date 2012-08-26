@@ -1,3 +1,41 @@
+# overview
+overview:
+    pattern: /
+    defaults: { _controller: AapBluebirdsBundle:Overview:index }
+
+# positions
+position_list:
+    pattern: /admin/positions
+    defaults: { _controller: AapBluebirdsBundle:Position:list }
+position_create:
+    pattern: /admin/positions/create
+    defaults: { _controller: AapBluebirdsBundle:Position:create }
+position_edit:
+    pattern: /admin/positions/edit/{id}
+    defaults: { _controller: AapBluebirdsBundle:Position:edit }
+position_detail:
+    pattern: /admin/positions/detail/{id}
+    defaults: { _controller: AapBluebirdsBundle:Position:detail }
+position_delete:
+    pattern: /admin/positions/delete/{id}
+    defaults: { _controller: AapBluebirdsBundle:Position:delete }
+
+# clubs
+club_list:
+    pattern: /admin/clubs
+    defaults: { _controller: AapBluebirdsBundle:Club:list }
+club_create:
+    pattern: /admin/clubs/create
+    defaults: { _controller: AapBluebirdsBundle:Club:create }
+club_edit:
+    pattern: /admin/clubs/edit/{id}
+    defaults: { _controller: AapBluebirdsBundle:Club:edit }
+club_detail:
+    pattern: /admin/clubs/detail/{id}
+    defaults: { _controller: AapBluebirdsBundle:Club:detail }
+club_delete:
+    pattern: /admin/clubs/delete/{id}
+    defaults: { _controller: AapBluebirdsBundle:Club:delete }
 
 
 ## team

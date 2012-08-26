@@ -333,6 +333,32 @@ ul.actions {
     float: left;
     padding-right: 10px; }
 
+form fieldset {
+  padding: 0;
+  margin: 0;
+  border: none; }
+form div > div {
+  padding: 0 0 5px 0; }
+form label {
+  display: inline-block;
+  width: 150px; }
+form input[type=text],
+form input[type=number] {
+  width: 300px;
+  border: 1px solid #cccccc; }
+
+dl {
+  padding: 0;
+  margin: 0;
+  display: block;
+  width: 100%;
+  overflow: hidden; }
+  dl dt {
+    clear: left;
+    float: left; }
+  dl dd {
+    float: left; }
+
 .sprite {
   display: inline-block;
   width: 14px;

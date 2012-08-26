@@ -1,0 +1,11 @@
+{% extends 'AapBluebirdsBundle::admin.html.twig' %}
+
+{% block title %}Clubs{% endblock %}
+
+{% block section %}
+    <a href="{{ path('club_list') }}" class="back">Back</a>
+    <dl>
+        <dt>Name:</dt>
+        <dd>{{ club.name }}</dd>
+    </dl>
+{% endblock %}

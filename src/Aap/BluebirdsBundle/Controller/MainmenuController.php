@@ -8,22 +8,27 @@ class MainmenuController extends Controller {
     public function menuItemsAction() {
         $menu_items = array(
             array(
-                'title' => 'Teams',
-                'identifier' => 'team',
-                'href' => $this->generateUrl('team_list'),
+                'title' => 'Clubs',
+                'identifier' => 'clubs',
+                'href' => $this->generateUrl('club_list'),
             ),
             array(
-                'title' => 'Members',
-                'identifier' => 'member',
-                'href' => $this->generateUrl('member_list'),
+                'title' => 'Positions',
+                'identifier' => 'positions',
+                'href' => $this->generateUrl('position_list'),
             ),
+//            array(
+//                'title' => 'Members',
+//                'identifier' => 'member',
+//                'href' => $this->generateUrl('member_list'),
+//            ),
         );
 
         $active = null;
         $path = preg_replace('/^\//', '', $this->getRequest()->server->get('PATH_INFO'));
         $path_parts = explode('/', $path);
-        if (count($path_parts) > 0) {
-            $active = $path_parts[0];
+        if (count($path_parts) > 1) {
+            $active = $path_parts[1];
         }
 
         return $this->render('AapBluebirdsBundle:Mainmenu:menuItems.html.twig', array(

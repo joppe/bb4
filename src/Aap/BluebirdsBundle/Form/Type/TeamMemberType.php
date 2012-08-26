@@ -1,6 +1,6 @@
 <?php
 
-namespace Aap\BluebirdsBundle\Form;
+namespace Aap\BluebirdsBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;

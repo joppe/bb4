@@ -1,0 +1,15 @@
+{% extends 'AapBluebirdsBundle::admin.html.twig' %}
+
+{% block title %}Positions{% endblock %}
+
+{% block section %}
+    <a href="{{ path('position_list') }}" class="back">Back</a>
+    <dl>
+        <dt>Name:</dt>
+        <dd>{{ position.name }}</dd>
+        <dt>Number:</dt>
+        <dd>{{ position.number }}</dd>
+        <dt>Rating:</dt>
+        <dd>{{ position.rating }}</dd>
+    </dl>
+{% endblock %}

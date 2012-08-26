@@ -38,7 +38,6 @@ header {
     }
 }
 section#main {
-    @include border-radius(5);
     @include box-shadow(1, 1, 2, 0, rgba(0,0,0,0.6));
 
     margin: 0 auto;

@@ -153,4 +153,43 @@ ul.actions {
     }
 }
 
+form {
+    fieldset {
+        @include reset-spacing;
+
+        border: none;
+    }
+
+    div > div {
+        padding: 0 0 5px 0;
+
+    }
+    label {
+        display: inline-block;
+        width: 150px;
+    }
+
+    input[type=text],
+    input[type=number] {
+        width: 300px;
+        border: 1px solid #cccccc;
+    }
+}
+
+dl {
+    @include reset-spacing;
+
+    display: block;
+    width: 100%;
+    overflow: hidden;
+
+    dt {
+        clear: left;
+        float: left;
+    }
+    dd {
+        float: left;
+    }
+}
+
 @include create-sprites($sprites, $sprite-width, $sprite-height, $sprite-items-per-row, transparent, '../images/icons/glyphicons-halflings-white.png', $sprite-offset-width, $sprite-offset-height);
