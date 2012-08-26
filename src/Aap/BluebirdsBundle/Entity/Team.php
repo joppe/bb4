@@ -2,7 +2,8 @@
 
 namespace Aap\BluebirdsBundle\Entity;
 
-use Aap\BluebirdsBundle\Entity\Player;
+use Aap\BluebirdsBundle\Entity\Club;
+use Aap\BluebirdsBundle\Entity\TeamMember;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -23,6 +24,24 @@ class Team {
      * @ORM\Column(type="string", length=255)
      */
     protected $name;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Club", inversedBy="teams")
+     * @ORM\JoinColumn(name="club_id", referencedColumnName="id")
+     */
+    protected $club;
+
+    /**
+     * @ORM\OneToMany(targetEntity="TeamMember", mappedBy="team")
+     */
+    protected $team_members;
+
+    /**
+     * Constructor
+     */
+    public function __construct() {
+        $this->team_members = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -58,47 +77,58 @@ class Team {
     }
 
     /**
-     * @ORM\OneToMany(targetEntity="Player", mappedBy="team")
-     */
-    protected $players;
-
-    /**
-     * Constructor
-     */
-    public function __construct() {
-        $this->players = new ArrayCollection();
-    }
-
-    /**
-     * Add players
+     * Set club
      *
-     * @param Player $players
+     * @param Aap\BluebirdsBundle\Entity\Club $club
      * @return Team
      */
-    public function addPlayer(Player $players)
+    public function setClub(\Aap\BluebirdsBundle\Entity\Club $club = null)
     {
-        $this->players[] = $players;
+        $this->club = $club;
     
         return $this;
     }
 
     /**
-     * Remove players
+     * Get club
      *
-     * @param Player $players
+     * @return Aap\BluebirdsBundle\Entity\Club 
      */
-    public function removePlayer(Player $players)
+    public function getClub()
     {
-        $this->players->removeElement($players);
+        return $this->club;
     }
 
     /**
-     * Get players
+     * Add team_members
+     *
+     * @param Aap\BluebirdsBundle\Entity\TeamMember $teamMembers
+     * @return Team
+     */
+    public function addTeamMember(\Aap\BluebirdsBundle\Entity\TeamMember $teamMembers)
+    {
+        $this->team_members[] = $teamMembers;
+    
+        return $this;
+    }
+
+    /**
+     * Remove team_members
+     *
+     * @param Aap\BluebirdsBundle\Entity\TeamMember $teamMembers
+     */
+    public function removeTeamMember(\Aap\BluebirdsBundle\Entity\TeamMember $teamMembers)
+    {
+        $this->team_members->removeElement($teamMembers);
+    }
+
+    /**
+     * Get team_members
      *
      * @return Doctrine\Common\Collections\Collection 
      */
-    public function getPlayers()
+    public function getTeamMembers()
     {
-        return $this->players;
+        return $this->team_members;
     }
 }

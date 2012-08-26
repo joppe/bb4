@@ -2,10 +2,12 @@
 
 namespace Aap\BluebirdsBundle\Entity;
 
-use Aap\BluebirdsBundle\Entity\Team;
-use Aap\BluebirdsBundle\Entity\Member;
+use Aap\BluebirdsBundle\Entity\TeamMember;
+use Aap\BluebirdsBundle\Entity\Game;
+use Aap\BluebirdsBundle\Entity\Position;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ORM\Entity
@@ -20,16 +22,28 @@ class Player {
     protected $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Team", inversedBy="players")
-     * @ORM\JoinColumn(name="team_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="TeamMember", inversedBy="players")
+     * @ORM\JoinColumn(name="player_id", referencedColumnName="id")
      */
-    protected $team;
+    protected $team_member;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Member", inversedBy="players")
-     * @ORM\JoinColumn(name="member_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="Game", inversedBy="players")
+     * @ORM\JoinColumn(name="game_id", referencedColumnName="id")
      */
-    protected $member;
+    protected $game;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Position", mappedBy="player")
+     */
+    protected $positions;
+
+    /**
+     * Constructor
+     */
+    public function __construct() {
+        $this->positions = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -42,48 +56,81 @@ class Player {
     }
 
     /**
-     * Set team
+     * Set team_member
      *
-     * @param Aap\BluebirdsBundle\Entity\Team $team
+     * @param Aap\BluebirdsBundle\Entity\TeamMember $teamMember
      * @return Player
      */
-    public function setTeam(\Aap\BluebirdsBundle\Entity\Team $team = null)
+    public function setTeamMember(\Aap\BluebirdsBundle\Entity\TeamMember $teamMember = null)
     {
-        $this->team = $team;
+        $this->team_member = $teamMember;
     
         return $this;
     }
 
     /**
-     * Get team
+     * Get team_member
      *
-     * @return Aap\BluebirdsBundle\Entity\Team 
+     * @return Aap\BluebirdsBundle\Entity\TeamMember 
      */
-    public function getTeam()
+    public function getTeamMember()
     {
-        return $this->team;
+        return $this->team_member;
     }
 
     /**
-     * Set member
+     * Set game
      *
-     * @param Aap\BluebirdsBundle\Entity\Member $member
+     * @param Aap\BluebirdsBundle\Entity\Game $game
      * @return Player
      */
-    public function setMember(\Aap\BluebirdsBundle\Entity\Member $member = null)
+    public function setGame(\Aap\BluebirdsBundle\Entity\Game $game = null)
     {
-        $this->member = $member;
+        $this->game = $game;
     
         return $this;
     }
 
     /**
-     * Get member
+     * Get game
      *
-     * @return Aap\BluebirdsBundle\Entity\Member 
+     * @return Aap\BluebirdsBundle\Entity\Game 
      */
-    public function getMember()
+    public function getGame()
     {
-        return $this->member;
+        return $this->game;
+    }
+
+    /**
+     * Add positions
+     *
+     * @param Aap\BluebirdsBundle\Entity\Position $positions
+     * @return Player
+     */
+    public function addPosition(\Aap\BluebirdsBundle\Entity\Position $positions)
+    {
+        $this->positions[] = $positions;
+    
+        return $this;
+    }
+
+    /**
+     * Remove positions
+     *
+     * @param Aap\BluebirdsBundle\Entity\Position $positions
+     */
+    public function removePosition(\Aap\BluebirdsBundle\Entity\Position $positions)
+    {
+        $this->positions->removeElement($positions);
+    }
+
+    /**
+     * Get positions
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getPositions()
+    {
+        return $this->positions;
     }
 }
