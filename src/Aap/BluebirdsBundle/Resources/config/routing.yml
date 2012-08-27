@@ -37,6 +37,23 @@ club_delete:
     pattern: /admin/clubs/delete/{id}
     defaults: { _controller: AapBluebirdsBundle:Club:delete }
 
+# teams
+team_list:
+    pattern: /admin/teams
+    defaults: { _controller: AapBluebirdsBundle:Team:list }
+team_create:
+    pattern: /admin/teams/create
+    defaults: { _controller: AapBluebirdsBundle:Team:create }
+team_edit:
+    pattern: /admin/teams/edit/{id}
+    defaults: { _controller: AapBluebirdsBundle:Team:edit }
+team_detail:
+    pattern: /admin/teams/detail/{id}
+    defaults: { _controller: AapBluebirdsBundle:Team:detail }
+team_delete:
+    pattern: /admin/teams/delete/{id}
+    defaults: { _controller: AapBluebirdsBundle:Team:delete }
+
 
 ## team
 #team_list:

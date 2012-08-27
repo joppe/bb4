@@ -10,6 +10,7 @@ class PlayerType extends AbstractType {
     public function buildForm(FormBuilderInterface $builder, array $options) {
         $builder
             ->add('team_member')
+            ->add('played_time')
             ->add('game')
         ;
     }

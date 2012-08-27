@@ -1,12 +1,8 @@
-{% extends 'AapBluebirdsBundle::layout.html.twig' %}
+{% extends 'AapBluebirdsBundle::admin.html.twig' %}
 
 {% import 'AapBluebirdsBundle::macros/buttons.html.twig' as buttons %}
 
 {% block title %}Teams{% endblock %}
-
-{% block header %}
-    <h1>Overview of teams</h1>
-{% endblock %}
 
 {% block section %}
     {{ buttons.add(path('team_create'), 'Add team') }}

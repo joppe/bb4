@@ -1,11 +1,18 @@
-{% extends 'AapBluebirdsBundle::layout.html.twig' %}
+{% extends 'AapBluebirdsBundle::admin.html.twig' %}
+
+{% import 'AapBluebirdsBundle::macros/buttons.html.twig' as buttons %}
 
 {% block title %}Teams{% endblock %}
 
-{% block body %}
-    <h1>Voeg een team toe</h1>
+{% block section %}
+    <h1>Create a team</h1>
     <form action="{{ path('team_create') }}" method="post" {{ form_enctype(form) }}>
-        {{ form_widget(form) }}
-        <input type="submit">
+        <fieldset>
+            {{ form_widget(form) }}
+        </fieldset>
+        <fieldset class="buttons">
+            {{ buttons.save('Save') }}
+            {{ buttons.cancel(path('team_list'), 'Cancel') }}
+        </fieldset>
     </form>
 {% endblock %}

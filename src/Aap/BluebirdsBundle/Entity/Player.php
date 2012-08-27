@@ -22,6 +22,11 @@ class Player {
     protected $id;
 
     /**
+     * @ORM\Column(type="integer")
+     */
+    protected $played_time;
+
+    /**
      * @ORM\ManyToOne(targetEntity="TeamMember", inversedBy="players")
      * @ORM\JoinColumn(name="player_id", referencedColumnName="id")
      */

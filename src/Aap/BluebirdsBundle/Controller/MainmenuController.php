@@ -13,6 +13,11 @@ class MainmenuController extends Controller {
                 'href' => $this->generateUrl('club_list'),
             ),
             array(
+                'title' => 'Teams',
+                'identifier' => 'teams',
+                'href' => $this->generateUrl('team_list'),
+            ),
+            array(
                 'title' => 'Positions',
                 'identifier' => 'positions',
                 'href' => $this->generateUrl('position_list'),
