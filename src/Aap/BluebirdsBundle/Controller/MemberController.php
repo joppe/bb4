@@ -2,9 +2,12 @@
 
 namespace Aap\BluebirdsBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Aap\BluebirdsBundle\Entity\Member;
+use Aap\BluebirdsBundle\Form\Type\MemberType;
+
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class MemberController extends Controller {
     /**
@@ -13,14 +16,14 @@ class MemberController extends Controller {
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function listAction() {
-//        $teams = $this
-//                    ->getDoctrine()
-//                    ->getRepository('AapBluebirdsBundle:Team')
-//                    ->findAll()
-//        ;
+        $members = $this
+            ->getDoctrine()
+            ->getRepository('AapBluebirdsBundle:Member')
+            ->findAll()
+        ;
 
         return $this->render('AapBluebirdsBundle:Member:list.html.twig', array(
-//            'teams' => $teams,
+            'members' => $members
         ));
     }
 
@@ -31,46 +34,46 @@ class MemberController extends Controller {
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function createAction(Request $request) {
-//        $team = new Team();
-//
-//        $form = $this->createForm(new TeamType(), $team);
-//
-//        if ($request->getMethod() == 'POST') {
-//            $form->bindRequest($request);
-//
-//            if ($form->isValid()) {
-//
-//                $team = $form->getData();
-//                $em = $this->getDoctrine()->getEntityManager();
-//                $em->persist($team);
-//                $em->flush();
-//
-//                return $this->redirect($this->generateUrl('team_list'));
-//            }
-//        }
+        $member = new Member();
+
+        $form = $this->createForm(new MemberType(), $member);
+
+        if ($request->getMethod() == 'POST') {
+            $form->bindRequest($request);
+
+            if ($form->isValid()) {
+
+                $member = $form->getData();
+                $em = $this->getDoctrine()->getEntityManager();
+                $em->persist($member);
+                $em->flush();
+
+                return $this->redirect($this->generateUrl('member_list'));
+            }
+        }
 
         return $this->render('AapBluebirdsBundle:Member:create.html.twig', array(
-//            'form' => $form->createView(),
+            'form' => $form->createView(),
         ));
     }
 
     /**
-     * Display a member details
+     * Display a member's details
      *
      * @param int $id
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function detailAction($id) {
-//        $team = $this->getDoctrine()
-//            ->getRepository('AapBluebirdsBundle:Team')
-//            ->find($id);
-//
-//        if (!$team) {
-//            $this->forward($this->generateUrl('team_list'));
-//        }
+        $member = $this->getDoctrine()
+            ->getRepository('AapBluebirdsBundle:Member')
+            ->find($id);
 
+        if (!$member) {
+            $this->forward($this->generateUrl('member_list'));
+        }
+        var_dump(get_class($member)); die();
         return $this->render('AapBluebirdsBundle:Member:detail.html.twig', array(
-//            'team' => $team,
+            'member' => $member,
         ));
     }
 
@@ -81,16 +84,16 @@ class MemberController extends Controller {
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function deleteAction($id) {
-//        $em = $this->getDoctrine()->getEntityManager();
-//
-//        $team = $em
-//            ->getRepository('AapBluebirdsBundle:Team')
-//            ->find($id);
-//
-//        if ($team) {
-//            $em->remove($team);
-//            $em->flush();
-//        }
+        $em = $this->getDoctrine()->getEntityManager();
+
+        $member = $em
+            ->getRepository('AapBluebirdsBundle:Member')
+            ->find($id);
+
+        if ($member) {
+            $em->remove($member);
+            $em->flush();
+        }
 
         return $this->redirect($this->generateUrl('member_list'));
     }
@@ -102,35 +105,35 @@ class MemberController extends Controller {
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function editAction($id) {
-//        $em = $this->getDoctrine()->getEntityManager();
-//
-//        $team = $em
-//            ->getRepository('AapBluebirdsBundle:Team')
-//            ->find($id);
-//
-//        if (!$team) {
-//            $this->redirect($this->generateUrl('team_list'));
-//        }
-//
-//        $form = $this->createForm(new TeamType(), $team);
-//        $request = $this->getRequest();
-//
-//        if ($request->getMethod() == 'POST') {
-//            $form->bindRequest($request);
-//
-//            if ($form->isValid()) {
-//
-//                $team = $form->getData();
-//                $em->persist($team);
-//                $em->flush();
-//
-//                return $this->redirect($this->generateUrl('team_list'));
-//            }
-//        }
+        $em = $this->getDoctrine()->getEntityManager();
+
+        $member = $em
+            ->getRepository('AapBluebirdsBundle:Member')
+            ->find($id);
+
+        if (!$member) {
+            $this->redirect($this->generateUrl('member_list'));
+        }
+
+        $form = $this->createForm(new MemberType(), $member);
+        $request = $this->getRequest();
+
+        if ($request->getMethod() == 'POST') {
+            $form->bindRequest($request);
+
+            if ($form->isValid()) {
+
+                $member = $form->getData();
+                $em->persist($member);
+                $em->flush();
+
+                return $this->redirect($this->generateUrl('member_list'));
+            }
+        }
 
         return $this->render('AapBluebirdsBundle:Member:edit.html.twig', array(
-//            'team' => $team,
-//            'form' => $form->createView(),
+            'member' => $member,
+            'form' => $form->createView(),
         ));
     }
 }

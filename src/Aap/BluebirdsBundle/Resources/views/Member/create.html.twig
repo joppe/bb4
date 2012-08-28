@@ -1,1 +1,18 @@
-create
+{% extends 'AapBluebirdsBundle::admin.html.twig' %}
+
+{% import 'AapBluebirdsBundle::macros/buttons.html.twig' as buttons %}
+
+{% block title %}Member{% endblock %}
+
+{% block section %}
+    <h1>Create a member</h1>
+    <form action="{{ path('member_create') }}" method="post" {{ form_enctype(form) }}>
+        <fieldset>
+            {{ form_widget(form) }}
+        </fieldset>
+        <fieldset class="buttons">
+            {{ buttons.save('Save') }}
+            {{ buttons.cancel(path('member_list'), 'Cancel') }}
+        </fieldset>
+    </form>
+{% endblock %}

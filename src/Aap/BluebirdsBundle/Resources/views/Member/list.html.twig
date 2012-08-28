@@ -1,1 +1,47 @@
-list
+{% extends 'AapBluebirdsBundle::admin.html.twig' %}
+
+{% import 'AapBluebirdsBundle::macros/buttons.html.twig' as buttons %}
+
+{% block title %}Overview of member{% endblock %}
+
+{% block section %}
+    {{ buttons.add(path('member_create'), 'Add member') }}
+    {% if members %}
+        <table>
+            <caption>Member</caption>
+            <thead>
+                <tr>
+                    <th>Firstname</th>
+                    <th>Lastname</th>
+                    <th>Club</th>
+                    <th>Membership number</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for member in members %}
+                    <tr>
+                        <td>
+                            <a href="{{ path('member_detail', {'id': member.id}) }}">{{ member.firstName }}</a>
+                        </td>
+                        <td>{{ member.lastName }}</td>
+                        <td>{{ member.getClub().name }}</td>
+                        <td>{{ member.membershipNumber }}</td>
+                        <td>
+                            <ul class="actions">
+                                <li>
+                                    {{ buttons.edit(path('member_edit', {'id': member.id }), 'edit') }}
+                                </li>
+                                <li>
+                                    {{ buttons.delete(path('member_delete', {'id': member.id }), 'delete') }}
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <em>No members found</em>
+    {% endif %}
+{% endblock %}

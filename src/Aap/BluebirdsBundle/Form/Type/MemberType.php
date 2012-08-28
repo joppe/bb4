@@ -2,24 +2,36 @@
 
 namespace Aap\BluebirdsBundle\Form\Type;
 
+use Aap\BluebirdsBundle\Entity\Club;
+
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Doctrine\ORM\EntityRepository;
 
 class MemberType extends AbstractType {
     public function buildForm(FormBuilderInterface $builder, array $options) {
         $builder
-            ->add('first_name')
-            ->add('middle_name')
-            ->add('last_name')
-            ->add('email')
-            ->add('telephone')
-            ->add('mobile')
-            ->add('street')
-            ->add('zip')
-            ->add('city')
-            ->add('membership_number')
-            ->add('club')
+            ->add('first_name', 'text', array('required' => false))
+            ->add('middle_name', 'text', array('required' => false))
+            ->add('last_name', 'text', array('required' => false))
+            ->add('email', 'text', array('required' => false))
+            ->add('telephone', 'text', array('required' => false))
+            ->add('mobile', 'text', array('required' => false))
+            ->add('street', 'text', array('required' => false))
+            ->add('zip', 'text', array('required' => false))
+            ->add('city', 'text', array('required' => false))
+            ->add('membership_number', 'text', array('required' => false))
+            ->add('club', 'entity', array(
+                'class' => 'AapBluebirdsBundle:Club',
+                'query_builder' => function (EntityRepository $er) {
+                    return $er
+                        ->createQueryBuilder('c')
+                        ->orderBy('c.name', 'ASC')
+                    ;
+                },
+                'property' => 'name'
+            ))
         ;
     }
 

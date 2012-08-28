@@ -1,1 +1,11 @@
-detail
+{% extends 'AapBluebirdsBundle::admin.html.twig' %}
+
+{% block title %}Member{% endblock %}
+
+{% block section %}
+    <a href="{{ path('member_list') }}" class="back">Back</a>
+    <dl>
+        <dt>Firstname:</dt>
+        <dd>{{ member.first_name }}</dd>
+    </dl>
+{% endblock %}

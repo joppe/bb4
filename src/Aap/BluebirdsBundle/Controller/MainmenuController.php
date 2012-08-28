@@ -18,15 +18,15 @@ class MainmenuController extends Controller {
                 'href' => $this->generateUrl('team_list'),
             ),
             array(
+                'title' => 'Members',
+                'identifier' => 'members',
+                'href' => $this->generateUrl('member_list'),
+            ),
+            array(
                 'title' => 'Positions',
                 'identifier' => 'positions',
                 'href' => $this->generateUrl('position_list'),
             ),
-//            array(
-//                'title' => 'Members',
-//                'identifier' => 'member',
-//                'href' => $this->generateUrl('member_list'),
-//            ),
         );
 
         $active = null;

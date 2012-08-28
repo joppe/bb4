@@ -12,13 +12,17 @@
             <thead>
                 <tr>
                     <th>Name</th>
+                    <th>Club</th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
                 {% for team in teams %}
                     <tr>
-                        <td><a href="{{ path('team_detail', {'id': team.id}) }}">{{ team.name }}</a></td>
+                        <td>
+                            <a href="{{ path('team_detail', {'id': team.id}) }}">{{ team.name }}</a>
+                        </td>
+                        <td>{{ team.getClub().name }}</td>
                         <td>
                             <ul class="actions">
                                 <li>

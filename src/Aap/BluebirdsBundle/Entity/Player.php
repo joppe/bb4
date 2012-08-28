@@ -138,4 +138,27 @@ class Player {
     {
         return $this->positions;
     }
+
+    /**
+     * Set played_time
+     *
+     * @param integer $playedTime
+     * @return Player
+     */
+    public function setPlayedTime($playedTime)
+    {
+        $this->played_time = $playedTime;
+    
+        return $this;
+    }
+
+    /**
+     * Get played_time
+     *
+     * @return integer 
+     */
+    public function getPlayedTime()
+    {
+        return $this->played_time;
+    }
 }

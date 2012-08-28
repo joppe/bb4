@@ -1,1 +1,18 @@
-edit
+{% extends 'AapBluebirdsBundle::admin.html.twig' %}
+
+{% import 'AapBluebirdsBundle::macros/buttons.html.twig' as buttons %}
+
+{% block title %}Members{% endblock %}
+
+{% block section %}
+    <form action="{{ path('member_edit', {'id': member.id}) }}" method="post" {{ form_enctype(form) }}>
+        <fieldset>
+            <legend>Edit member <em>{{ member.firstName }}</em></legend>
+            {{ form_widget(form) }}
+        </fieldset>
+        <fieldset class="buttons">
+            {{ buttons.save('Save') }}
+            {{ buttons.cancel(path('member_list'), 'Cancel') }}
+        </fieldset>
+    </form>
+{% endblock %}
