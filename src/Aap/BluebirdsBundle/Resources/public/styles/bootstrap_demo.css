@@ -359,6 +359,30 @@ dl {
   dl dd {
     float: left; }
 
+ul.tabs {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  display: inline-block; }
+  ul.tabs li {
+    float: left;
+    padding: 10px;
+    background: #1240ab;
+    border-left: 1px solid white; }
+    ul.tabs li:first-child {
+      border: none; }
+    ul.tabs li a {
+      color: white;
+      font-weight: bold;
+      text-decoration: none; }
+    ul.tabs li.active {
+      background: green; }
+    ul.tabs li:hover {
+      -webkit-opacity: 0.8;
+      -moz-opacity: 0.8;
+      -o-opacity: 0.8;
+      opacity: 0.8; }
+
 .sprite {
   display: inline-block;
   width: 14px;

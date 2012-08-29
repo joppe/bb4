@@ -1,11 +1,14 @@
 {% extends 'AapBluebirdsBundle::admin.html.twig' %}
 
+{% import 'AapBluebirdsBundle::macros/members.html.twig' as members %}
+
 {% block title %}Member{% endblock %}
 
 {% block section %}
     <a href="{{ path('member_list') }}" class="back">Back</a>
+    {{ members.fullname(member) }}
     <dl>
         <dt>Firstname:</dt>
-        <dd>{{ member.first_name }}</dd>
+        <dd>{{ member.firstName }}</dd>
     </dl>
 {% endblock %}

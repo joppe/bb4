@@ -321,6 +321,30 @@ dl {
   dl dd {
     float: left; }
 
+ul.tabs {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  display: inline-block; }
+  ul.tabs li {
+    float: left;
+    padding: 10px;
+    background: #1240ab;
+    border-left: 1px solid white; }
+    ul.tabs li:first-child {
+      border: none; }
+    ul.tabs li a {
+      color: white;
+      font-weight: bold;
+      text-decoration: none; }
+    ul.tabs li.active {
+      background: green; }
+    ul.tabs li:hover {
+      -webkit-opacity: 0.8;
+      -moz-opacity: 0.8;
+      -o-opacity: 0.8;
+      opacity: 0.8; }
+
 .sprite {
   display: inline-block;
   width: 14px;
@@ -618,32 +642,11 @@ dl {
     background-position: -456px -144px; }
 
 body {
-  text-align: center; }
+  text-align: center;
+  background: #eeeeee; }
 
 header ul.tabs {
-  padding: 0;
-  margin: 0;
-  list-style: none;
-  display: inline-block;
-  margin: 0 auto; }
-  header ul.tabs li {
-    float: left;
-    padding: 10px;
-    background: #000000;
-    border-left: 1px solid white; }
-    header ul.tabs li:first-child {
-      border: none; }
-    header ul.tabs li a {
-      color: white;
-      font-weight: bold;
-      text-decoration: none; }
-    header ul.tabs li.active {
-      background: orange; }
-    header ul.tabs li:hover {
-      -webkit-opacity: 0.8;
-      -moz-opacity: 0.8;
-      -o-opacity: 0.8;
-      opacity: 0.8; }
+  margin: 0 auto 20px auto; }
 
 section#main {
   -webkit-box-shadow: 1px 1px 2px 0px rgba(0, 0, 0, 0.6);
@@ -653,4 +656,5 @@ section#main {
   margin: 0 auto;
   padding: 20px;
   width: 800px;
+  background: white;
   text-align: left; }
