@@ -71,7 +71,7 @@ class MemberController extends Controller {
         if (!$member) {
             $this->forward($this->generateUrl('member_list'));
         }
-        var_dump(get_class($member)); die();
+
         return $this->render('AapBluebirdsBundle:Member:detail.html.twig', array(
             'member' => $member,
         ));

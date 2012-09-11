@@ -210,7 +210,7 @@ body {
   font-size: 75%;
   line-height: 1em;
   vertical-align: baseline;
-  background: white;
+  background: #ffffff;
   font-family: Helvetica,Arial,sans-serif;
   color: black; }
 
@@ -235,8 +235,10 @@ table {
   border-collapse: collapse;
   border: 1px solid #DDDDDD; }
   table caption {
+    font-size: 1.167em;
     padding: 5px;
-    text-align: left; }
+    text-align: left;
+    font-weight: bold; }
   table td,
   table th {
     text-align: left;
@@ -247,14 +249,16 @@ table {
   table th {
     font-weight: bold; }
   table thead tr {
-    background-color: #eeeeee; }
+    background-color: #aaaaaa; }
     table thead tr th {
-      border-top: 1px solid white;
-      border-bottom: 1px solid white; }
+      border-top: 1px solid #aaaaaa;
+      border-bottom: 1px solid #aaaaaa;
+      color: white;
+      text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.4); }
       table thead tr th:first-child {
-        border-left: 1px solid white; }
+        border-left: 1px solid #dddddd; }
       table thead tr th:last-child {
-        border-left: 1px solid white; }
+        border-left: 1px solid #dddddd; }
   table tbody tr:nth-child(2n+2) {
     background-color: #eeeeee; }
     table tbody tr:nth-child(2n+2):hover {

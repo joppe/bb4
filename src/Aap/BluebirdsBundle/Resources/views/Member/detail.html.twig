@@ -4,8 +4,9 @@
 
 {% block section %}
     <a href="{{ path('member_list') }}" class="back">Back</a>
+    {% set properties = ['firstName'] %}
     <dl>
         <dt>Firstname:</dt>
-        <dd>{{ member.first_name }}</dd>
+        <dd>{{ member.firstName }}</dd>
     </dl>
 {% endblock %}

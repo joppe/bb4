@@ -7,7 +7,7 @@ body {
     @include reset-font-size;
 
     vertical-align: baseline;
-    background: white;
+    background: #ffffff;
     font-family: Helvetica,Arial,sans-serif;
     color: black;
 }
@@ -37,8 +37,11 @@ table {
     border: 1px solid #DDDDDD;
 
     caption {
+        @include font-px-to-em(14);
+
         padding: 5px;
         text-align: left;
+        font-weight: bold;
     }
 
     tr {
@@ -62,17 +65,19 @@ table {
 
     thead {
         tr {
-            background-color: #eeeeee;
+            background-color: #aaaaaa;
 
             th {
-                border-top: 1px solid white;
-                border-bottom: 1px solid white;
+                border-top: 1px solid #aaaaaa;
+                border-bottom: 1px solid #aaaaaa;
+                color: white;
+                text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.4);
 
                 &:first-child {
-                    border-left: 1px solid white;
+                    border-left: 1px solid #dddddd;
                 }
                 &:last-child {
-                    border-left: 1px solid white;
+                    border-left: 1px solid #dddddd;
                 }
             }
         }
