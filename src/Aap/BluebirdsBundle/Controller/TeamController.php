@@ -74,6 +74,7 @@ class TeamController extends Controller {
 
         return $this->render('AapBluebirdsBundle:Team:detail.html.twig', array(
             'team' => $team,
+            'team_member_action' => $this->getRequest()->query->get('team_member_action', 'list'),
         ));
     }
 

@@ -71,6 +71,23 @@ member_delete:
     pattern: /admin/members/delete/{id}
     defaults: { _controller: AapBluebirdsBundle:Member:delete }
 
+# team_members
+team_member_list:
+    pattern: /admin/team_members/{team_id}
+    defaults: { _controller: AapBluebirdsBundle:TeamMember:list }
+team_member_create:
+    pattern: /admin/team_members/{team_id}/create
+    defaults: { _controller: AapBluebirdsBundle:TeamMember:create }
+team_member_edit:
+    pattern: /admin/team_members/{team_id}/edit/{id}
+    defaults: { _controller: AapBluebirdsBundle:TeamMember:edit }
+team_member_detail:
+    pattern: /admin/team_members/{team_id}/detail/{id}
+    defaults: { _controller: AapBluebirdsBundle:TeamMember:detail }
+team_member_delete:
+    pattern: /admin/team_members/{team_id}/delete/{id}
+    defaults: { _controller: AapBluebirdsBundle:TeamMember:delete }
+
 
 ## player
 #player_create:

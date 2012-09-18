@@ -3,38 +3,12 @@
 
 body {
     text-align: center;
+    background: #eeeeee;
 }
 
 header {
     ul.tabs {
-        @include reset-list;
-        display: inline-block;
-        margin: 0 auto;
-
-        li {
-            float: left;
-            padding: 10px;
-            background: #000000;
-            border-left: 1px solid white;
-
-            &:first-child {
-                border: none;
-            }
-
-            a {
-                color: white;
-                font-weight: bold;
-                text-decoration: none;
-            }
-
-            &.active {
-                background: orange;
-            }
-
-            &:hover {
-                @include opacity(0.8);
-            }
-        }
+        margin: 0 auto 20px auto;
     }
 }
 section#main {
@@ -43,5 +17,6 @@ section#main {
     margin: 0 auto;
     padding: 20px;
     width: 800px;
+    background: white;
     text-align: left;
 }

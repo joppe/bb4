@@ -102,30 +102,33 @@ table {
 
     }
 }
-
 button,
 .button {
-    @include border-radius(5);
+    @include border-radius(3);
     @include box-shadow(1, 1, 1, 0, rgba(0,0,0,0.4));
     @include linear-gradient(#ffffff, #cccccc);
-    border: 1px solid #eeeeee;
+    @include reset-spacing;
 
     display: inline-block;
-    margin: 0;
-    padding: 0 15px;
+    padding: 0 5px;
+    border: 1px solid #eeeeee;
     color: black;
     cursor: pointer;
     text-align: center;
     text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
-    vertical-align: middle;
     text-decoration: none;
+    font-size: 100%;
+    line-height: 100%;
 
     &:hover {
         @include opacity(0.8);
     }
 
+    span {
+        font-family: Helvetica,Arial,sans-serif;
+    }
     span.label {
-        @include font-px-to-em(11, 20);
+        @include font-px-to-em(11, 24);
 
         display: inline-block;
         padding-right: 10px;
@@ -137,15 +140,25 @@ button,
     }
 
     &.add {
-        background-color: $add-color;
+        @include linear-gradient(rgba($add-color, 0.4), $add-color);
+        border: 1px solid $add-color;
+        color: #ffffff;
+        text-shadow: 0 1px 1px rgba(#000000, 0.75);
     }
     &.edit,
+    &.save,
     &.accept {
-        background-color: $accept-color;
+        @include linear-gradient(rgba($accept-color, 0.4), $accept-color);
+        border: 1px solid $accept-color;
+        color: #ffffff;
+        text-shadow: 0 1px 1px rgba(#000000, 0.75);
     }
     &.delete,
     &.cancel {
-        background-color: $cancel-color;
+        @include linear-gradient(rgba($cancel-color, 0.4), $cancel-color);
+        border: 1px solid $cancel-color;
+        color: #ffffff;
+        text-shadow: 0 1px 1px rgba(#000000, 0.75);
     }
 }
 
@@ -194,6 +207,37 @@ dl {
     }
     dd {
         float: left;
+    }
+}
+
+ul.tabs {
+    @include reset-list;
+
+    display: inline-block;
+
+    li {
+        float: left;
+        padding: 10px;
+        background: $base-color;
+        border-left: 1px solid white;
+
+        &:first-child {
+            border: none;
+        }
+
+        a {
+            color: white;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        &.active {
+            background: green;
+        }
+
+        &:hover {
+            @include opacity(0.8);
+        }
     }
 }
 

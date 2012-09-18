@@ -1,0 +1,10 @@
+<a href="{{ path('team_detail', {'id': team.id, 'team_member_action': 'create'}) }}">Add team member</a>
+{% if team.getTeamMembers() | length > 0 %}
+    <ul>
+        {% for team_member in team.getTeamMembers() %}
+            <li>
+                .
+            </li>
+        {% endfor %}
+    </ul>
+{% endif %}
