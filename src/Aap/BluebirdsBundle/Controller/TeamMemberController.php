@@ -14,10 +14,17 @@ class TeamMemberController extends Controller {
     /**
      * List team members
      *
-     * @param \Aap\BluebirdsBundle\Entity\Team $team
+     * @param int $team_id
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
-    public function listAction($team) {
+    public function listAction($team_id) {
+        $em = $this->getDoctrine()->getEntityManager();
+
+        $team = $em
+            ->getRepository('AapBluebirdsBundle:Team')
+            ->find($team_id)
+        ;
+
         return $this->render('AapBluebirdsBundle:TeamMember:list.html.twig', array(
             'team' => $team,
         ));
@@ -26,11 +33,23 @@ class TeamMemberController extends Controller {
     /**
      * Create a team member
      *
-     * @param \Aap\BluebirdsBundle\Entity\Team $team
+     * @param int $team_id
      * @param \Symfony\Component\HttpFoundation\Request $request
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
-    public function createAction($team, Request $request) {
+    public function createAction($team_id, Request $request) {
+        $skip_member_ids = array();
+        $em = $this->getDoctrine()->getEntityManager();
+
+        $team = $em
+            ->getRepository('AapBluebirdsBundle:Team')
+            ->find($team_id)
+        ;
+
+        foreach ($team->getTeamMembers() as $team_mebers) {
+            $skip_member_ids[] = $team_mebers->getMember()->getId();
+        }
+
         $team_member = new TeamMember();
         $team_member->setTeam($team);
 
@@ -39,11 +58,12 @@ class TeamMemberController extends Controller {
         $form = $this->createFormBuilder($team_member)
             ->add('member', 'entity', array(
                 'class' => 'AapBluebirdsBundle:Member',
-                'query_builder' => function (EntityRepository $er) use ($team) {
+                'query_builder' => function (EntityRepository $er) use ($team, $skip_member_ids) {
                     return $er
                         ->createQueryBuilder('m')
-                        ->where('m.club = :club')
+                        ->where('m.club = :club AND m.id NOT IN (:member_ids)')
                         ->setParameter('club', $team->getClub())
+                        ->setParameter('member_ids', implode(',', $skip_member_ids))
                         ->orderBy('m.first_name', 'ASC')
                     ;
                 },
@@ -61,7 +81,9 @@ class TeamMemberController extends Controller {
                 $em->persist($team);
                 $em->flush();
 
-//                return $this->redirect($this->generateUrl('team_list'));
+                return $this->redirect($this->generateUrl('team_detail', array(
+                    'id' => $team->getId()
+                )));
             }
         }
 

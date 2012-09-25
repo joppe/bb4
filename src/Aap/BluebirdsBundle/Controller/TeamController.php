@@ -17,9 +17,9 @@ class TeamController extends Controller {
      */
     public function listAction() {
         $teams = $this
-                    ->getDoctrine()
-                    ->getRepository('AapBluebirdsBundle:Team')
-                    ->findAll()
+            ->getDoctrine()
+            ->getRepository('AapBluebirdsBundle:Team')
+            ->findAll()
         ;
 
         return $this->render('AapBluebirdsBundle:Team:list.html.twig', array(
@@ -66,7 +66,8 @@ class TeamController extends Controller {
     public function detailAction($id) {
         $team = $this->getDoctrine()
             ->getRepository('AapBluebirdsBundle:Team')
-            ->find($id);
+            ->find($id)
+        ;
 
         if (!$team) {
             $this->forward($this->generateUrl('team_list'));
@@ -74,7 +75,7 @@ class TeamController extends Controller {
 
         return $this->render('AapBluebirdsBundle:Team:detail.html.twig', array(
             'team' => $team,
-            'team_member_action' => $this->getRequest()->query->get('team_member_action', 'list'),
+            'team_member_action' => $this->getRequest()->query->get('action', 'list'),
         ));
     }
 
@@ -89,7 +90,8 @@ class TeamController extends Controller {
 
         $team = $em
             ->getRepository('AapBluebirdsBundle:Team')
-            ->find($id);
+            ->find($id)
+        ;
 
         if ($team) {
             $em->remove($team);
@@ -110,7 +112,8 @@ class TeamController extends Controller {
 
         $team = $em
             ->getRepository('AapBluebirdsBundle:Team')
-            ->find($id);
+            ->find($id)
+        ;
 
         if (!$team) {
             $this->redirect($this->generateUrl('team_list'));

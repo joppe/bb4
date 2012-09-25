@@ -11,5 +11,5 @@
         <dd>{{ team.getClub().name }}</dd>
     </dl>
     <h2>Members</h2>
-    {% render 'AapBluebirdsBundle:TeamMember:' ~ team_member_action with {'team': team} %}
+    {% render 'AapBluebirdsBundle:TeamMember:' ~ team_member_action with {'team_id': team.id} %}
 {% endblock %}

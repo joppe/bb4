@@ -1,6 +1,7 @@
 {% import 'AapBluebirdsBundle::macros/buttons.html.twig' as buttons %}
+
 <h2>Create a team member</h2>
-<form action="{{ path('club_create') }}" method="post" {{ form_enctype(form) }}>
+<form action="{{ path('team_member_create', {'team_id': team.id}) }}" method="post" {{ form_enctype(form) }}>
     <fieldset>
         {{ form_widget(form) }}
     </fieldset>

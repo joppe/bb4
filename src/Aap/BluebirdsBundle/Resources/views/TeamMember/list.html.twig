@@ -1,9 +1,14 @@
-<a href="{{ path('team_detail', {'id': team.id, 'team_member_action': 'create'}) }}">Add team member</a>
+{% import 'AapBluebirdsBundle::macros/buttons.html.twig' as _buttons %}
+{% import 'AapBluebirdsBundle::macros/members.html.twig' as _members %}
+
+<a href="{{ path('team_detail', {'id': team.id, 'action': 'create'}) }}">Add team member</a>
 {% if team.getTeamMembers() | length > 0 %}
     <ul>
         {% for team_member in team.getTeamMembers() %}
+            {% set member = team_member.getMember() %}
             <li>
-                .
+                <a href="{{ path('member_detail', {'id': member.id}) }}">{{ _members.fullname(member) }}</a>
+                {#{{ _buttons.delete(path('member_delete', {'id': member.id })) }}#}
             </li>
         {% endfor %}
     </ul>
