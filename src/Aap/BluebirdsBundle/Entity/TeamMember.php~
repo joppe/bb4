@@ -1,0 +1,41 @@
+<?php
+
+namespace Aap\BluebirdsBundle\Entity;
+
+use Aap\BluebirdsBundle\Entity\Team;
+use Aap\BluebirdsBundle\Entity\Member;
+use Aap\BluebirdsBundle\Entity\PreferredPosition;
+use Aap\BluebirdsBundle\Entity\Player;
+
+use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="team_member")
+ */
+class TeamMember {
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Team", inversedBy="team_members")
+     * @ORM\JoinColumn(name="team_id", referencedColumnName="id")
+     */
+    protected $team;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Member", inversedBy="team_members")
+     * @ORM\JoinColumn(name="member_id", referencedColumnName="id")
+     */
+    protected $member;
+
+    /**
+     * @ORM\OneToMany(targetEntity="PreferredPosition", mappedBy="team_member")
+     */
+    protected $preferred_positions;
+}

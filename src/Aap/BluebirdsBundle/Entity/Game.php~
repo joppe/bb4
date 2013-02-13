@@ -1,0 +1,54 @@
+<?php
+
+namespace Aap\BluebirdsBundle\Entity;
+
+use Aap\BluebirdsBundle\Entity\Team;
+use Aap\BluebirdsBundle\Entity\Player;
+
+use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="game")
+ */
+class Game {
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    protected $date_time;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Team", inversedBy="home_games")
+     * @ORM\JoinColumn(name="home_team_id", referencedColumnName="id")
+     */
+    protected $home_team;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Team", inversedBy="away_games")
+     * @ORM\JoinColumn(name="away_team_id", referencedColumnName="id")
+     */
+    protected $away_team;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    protected $score_home_team;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    protected $score_away_team;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Player", mappedBy="game")
+     */
+    protected $players;
+}

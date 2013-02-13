@@ -37,12 +37,24 @@ class Team {
     protected $team_members;
 
     /**
+     * @ORM\OneToMany(targetEntity="Game", mappedBy="home_team")
+     */
+    protected $home_games;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Game", mappedBy="away_team")
+     */
+    protected $away_games;
+    /**
      * Constructor
      */
-    public function __construct() {
-        $this->team_members = new ArrayCollection();
+    public function __construct()
+    {
+        $this->team_members = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->home_games = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->away_games = new \Doctrine\Common\Collections\ArrayCollection();
     }
-
+    
     /**
      * Get id
      *
@@ -79,7 +91,7 @@ class Team {
     /**
      * Set club
      *
-     * @param Aap\BluebirdsBundle\Entity\Club $club
+     * @param \Aap\BluebirdsBundle\Entity\Club $club
      * @return Team
      */
     public function setClub(\Aap\BluebirdsBundle\Entity\Club $club = null)
@@ -92,7 +104,7 @@ class Team {
     /**
      * Get club
      *
-     * @return Aap\BluebirdsBundle\Entity\Club 
+     * @return \Aap\BluebirdsBundle\Entity\Club 
      */
     public function getClub()
     {
@@ -102,7 +114,7 @@ class Team {
     /**
      * Add team_members
      *
-     * @param Aap\BluebirdsBundle\Entity\TeamMember $teamMembers
+     * @param \Aap\BluebirdsBundle\Entity\TeamMember $teamMembers
      * @return Team
      */
     public function addTeamMember(\Aap\BluebirdsBundle\Entity\TeamMember $teamMembers)
@@ -115,7 +127,7 @@ class Team {
     /**
      * Remove team_members
      *
-     * @param Aap\BluebirdsBundle\Entity\TeamMember $teamMembers
+     * @param \Aap\BluebirdsBundle\Entity\TeamMember $teamMembers
      */
     public function removeTeamMember(\Aap\BluebirdsBundle\Entity\TeamMember $teamMembers)
     {
@@ -125,10 +137,76 @@ class Team {
     /**
      * Get team_members
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection 
      */
     public function getTeamMembers()
     {
         return $this->team_members;
+    }
+
+    /**
+     * Add home_games
+     *
+     * @param \Aap\BluebirdsBundle\Entity\Game $homeGames
+     * @return Team
+     */
+    public function addHomeGame(\Aap\BluebirdsBundle\Entity\Game $homeGames)
+    {
+        $this->home_games[] = $homeGames;
+    
+        return $this;
+    }
+
+    /**
+     * Remove home_games
+     *
+     * @param \Aap\BluebirdsBundle\Entity\Game $homeGames
+     */
+    public function removeHomeGame(\Aap\BluebirdsBundle\Entity\Game $homeGames)
+    {
+        $this->home_games->removeElement($homeGames);
+    }
+
+    /**
+     * Get home_games
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getHomeGames()
+    {
+        return $this->home_games;
+    }
+
+    /**
+     * Add away_games
+     *
+     * @param \Aap\BluebirdsBundle\Entity\Game $awayGames
+     * @return Team
+     */
+    public function addAwayGame(\Aap\BluebirdsBundle\Entity\Game $awayGames)
+    {
+        $this->away_games[] = $awayGames;
+    
+        return $this;
+    }
+
+    /**
+     * Remove away_games
+     *
+     * @param \Aap\BluebirdsBundle\Entity\Game $awayGames
+     */
+    public function removeAwayGame(\Aap\BluebirdsBundle\Entity\Game $awayGames)
+    {
+        $this->away_games->removeElement($awayGames);
+    }
+
+    /**
+     * Get away_games
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getAwayGames()
+    {
+        return $this->away_games;
     }
 }

@@ -51,14 +51,14 @@ class Game {
      * @ORM\OneToMany(targetEntity="Player", mappedBy="game")
      */
     protected $players;
-
     /**
      * Constructor
      */
-    public function __construct() {
-        $this->players = new ArrayCollection();
+    public function __construct()
+    {
+        $this->players = new \Doctrine\Common\Collections\ArrayCollection();
     }
-
+    
     /**
      * Get id
      *
@@ -141,7 +141,7 @@ class Game {
     /**
      * Set home_team
      *
-     * @param Aap\BluebirdsBundle\Entity\Team $homeTeam
+     * @param \Aap\BluebirdsBundle\Entity\Team $homeTeam
      * @return Game
      */
     public function setHomeTeam(\Aap\BluebirdsBundle\Entity\Team $homeTeam = null)
@@ -154,7 +154,7 @@ class Game {
     /**
      * Get home_team
      *
-     * @return Aap\BluebirdsBundle\Entity\Team 
+     * @return \Aap\BluebirdsBundle\Entity\Team 
      */
     public function getHomeTeam()
     {
@@ -164,7 +164,7 @@ class Game {
     /**
      * Set away_team
      *
-     * @param Aap\BluebirdsBundle\Entity\Team $awayTeam
+     * @param \Aap\BluebirdsBundle\Entity\Team $awayTeam
      * @return Game
      */
     public function setAwayTeam(\Aap\BluebirdsBundle\Entity\Team $awayTeam = null)
@@ -177,7 +177,7 @@ class Game {
     /**
      * Get away_team
      *
-     * @return Aap\BluebirdsBundle\Entity\Team 
+     * @return \Aap\BluebirdsBundle\Entity\Team 
      */
     public function getAwayTeam()
     {
@@ -187,7 +187,7 @@ class Game {
     /**
      * Add players
      *
-     * @param Aap\BluebirdsBundle\Entity\Player $players
+     * @param \Aap\BluebirdsBundle\Entity\Player $players
      * @return Game
      */
     public function addPlayer(\Aap\BluebirdsBundle\Entity\Player $players)
@@ -200,7 +200,7 @@ class Game {
     /**
      * Remove players
      *
-     * @param Aap\BluebirdsBundle\Entity\Player $players
+     * @param \Aap\BluebirdsBundle\Entity\Player $players
      */
     public function removePlayer(\Aap\BluebirdsBundle\Entity\Player $players)
     {
@@ -210,7 +210,7 @@ class Game {
     /**
      * Get players
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection 
      */
     public function getPlayers()
     {

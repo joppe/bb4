@@ -1,0 +1,47 @@
+<?php
+
+namespace Aap\BluebirdsBundle\Entity;
+
+use Aap\BluebirdsBundle\Entity\PreferredPosition;
+use Aap\BluebirdsBundle\Entity\PlayerPosition;
+
+use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="position")
+ */
+class Position {
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    protected $name;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    protected $field_number;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    protected $rating_weight;
+
+    /**
+     * @ORM\OneToMany(targetEntity="PreferredPosition", mappedBy="positon")
+     */
+    protected $preferred_positons;
+
+    /**
+     * @ORM\OneToMany(targetEntity="PlayerPosition", mappedBy="position")
+     */
+    protected $player_positions;
+}

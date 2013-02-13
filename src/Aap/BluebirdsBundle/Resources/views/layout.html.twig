@@ -1,7 +1,11 @@
 {% extends '::base.html.twig' %}
 
 {% block styles %}
-    <link rel="stylesheet" type="text/css" href="{{ asset('bundles/aapbluebirds/styles/screen.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('bundles/aapbluebirds/css/bootstrap.min.css') }}">
+{% endblock %}
+
+{% block javascripts %}
+    <script data-main="{{ asset('bundles/aapbluebirds/js/bb4') }}" src="{{ asset('bundles/aapbluebirds/js/3rd-party/require.js') }}"></script>
 {% endblock %}
 
 {% block body %}

@@ -12,7 +12,8 @@ use Doctrine\Common\Collections\ArrayCollection;
  * @ORM\Entity
  * @ORM\Table(name="member")
  */
-class Member {
+class Member
+{
     /**
      * @ORM\Id
      * @ORM\Column(type="integer")
@@ -82,12 +83,18 @@ class Member {
     protected $team_members;
 
     /**
+     * @ORM\OneToMany(targetEntity="Player", mappedBy="member")
+     */
+    protected $players;
+    /**
      * Constructor
      */
-    public function __construct() {
-        $this->team_members = new ArrayCollection();
+    public function __construct()
+    {
+        $this->team_members = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->players = new \Doctrine\Common\Collections\ArrayCollection();
     }
-
+    
     /**
      * Get id
      *
@@ -331,7 +338,7 @@ class Member {
     /**
      * Set club
      *
-     * @param Aap\BluebirdsBundle\Entity\Club $club
+     * @param \Aap\BluebirdsBundle\Entity\Club $club
      * @return Member
      */
     public function setClub(\Aap\BluebirdsBundle\Entity\Club $club = null)
@@ -344,7 +351,7 @@ class Member {
     /**
      * Get club
      *
-     * @return Aap\BluebirdsBundle\Entity\Club 
+     * @return \Aap\BluebirdsBundle\Entity\Club 
      */
     public function getClub()
     {
@@ -354,7 +361,7 @@ class Member {
     /**
      * Add team_members
      *
-     * @param Aap\BluebirdsBundle\Entity\TeamMember $teamMembers
+     * @param \Aap\BluebirdsBundle\Entity\TeamMember $teamMembers
      * @return Member
      */
     public function addTeamMember(\Aap\BluebirdsBundle\Entity\TeamMember $teamMembers)
@@ -367,7 +374,7 @@ class Member {
     /**
      * Remove team_members
      *
-     * @param Aap\BluebirdsBundle\Entity\TeamMember $teamMembers
+     * @param \Aap\BluebirdsBundle\Entity\TeamMember $teamMembers
      */
     public function removeTeamMember(\Aap\BluebirdsBundle\Entity\TeamMember $teamMembers)
     {
@@ -377,10 +384,43 @@ class Member {
     /**
      * Get team_members
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection 
      */
     public function getTeamMembers()
     {
         return $this->team_members;
+    }
+
+    /**
+     * Add players
+     *
+     * @param \Aap\BluebirdsBundle\Entity\Player $players
+     * @return Member
+     */
+    public function addPlayer(\Aap\BluebirdsBundle\Entity\Player $players)
+    {
+        $this->players[] = $players;
+    
+        return $this;
+    }
+
+    /**
+     * Remove players
+     *
+     * @param \Aap\BluebirdsBundle\Entity\Player $players
+     */
+    public function removePlayer(\Aap\BluebirdsBundle\Entity\Player $players)
+    {
+        $this->players->removeElement($players);
+    }
+
+    /**
+     * Get players
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getPlayers()
+    {
+        return $this->players;
     }
 }

@@ -1,0 +1,19 @@
+{
+    "name": "Blue Birds",
+    "address": "Mekelweg",
+    "website": "http://www.bluebirds.nl",
+    "members": [
+        {
+            "first_name": "Joppe",
+            "middle_name": "",
+            "last_name": "Aarts",
+            "email": "joppe@apestaartje.info",
+            "team_member": [1]
+        }
+    ],
+    "teams": [
+        {
+            "name": "BB4"
+        }
+    ]
+}

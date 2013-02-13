@@ -1,0 +1,48 @@
+<?php
+
+namespace Aap\BluebirdsBundle\Entity;
+
+use Aap\BluebirdsBundle\Entity\Club;
+use Aap\BluebirdsBundle\Entity\TeamMember;
+
+use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="team")
+ */
+class Team {
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    protected $name;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Club", inversedBy="teams")
+     * @ORM\JoinColumn(name="club_id", referencedColumnName="id")
+     */
+    protected $club;
+
+    /**
+     * @ORM\OneToMany(targetEntity="TeamMember", mappedBy="team")
+     */
+    protected $team_members;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Game", mappedBy="home_team")
+     */
+    protected $home_games;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Game", mappedBy="away_team")
+     */
+    protected $away_games;
+}

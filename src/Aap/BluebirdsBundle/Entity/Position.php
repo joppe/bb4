@@ -28,12 +28,12 @@ class Position {
     /**
      * @ORM\Column(type="integer")
      */
-    protected $number;
+    protected $field_number;
 
     /**
      * @ORM\Column(type="integer")
      */
-    protected $rating;
+    protected $rating_weight;
 
     /**
      * @ORM\OneToMany(targetEntity="PreferredPosition", mappedBy="positon")
@@ -87,55 +87,55 @@ class Position {
     }
 
     /**
-     * Set number
+     * Set field_number
      *
-     * @param integer $number
+     * @param integer $fieldNumber
      * @return Position
      */
-    public function setNumber($number)
+    public function setFieldNumber($fieldNumber)
     {
-        $this->number = $number;
+        $this->field_number = $fieldNumber;
     
         return $this;
     }
 
     /**
-     * Get number
+     * Get field_number
      *
      * @return integer 
      */
-    public function getNumber()
+    public function getFieldNumber()
     {
-        return $this->number;
+        return $this->field_number;
     }
 
     /**
-     * Set rating
+     * Set rating_weight
      *
-     * @param integer $rating
+     * @param integer $ratingWeight
      * @return Position
      */
-    public function setRating($rating)
+    public function setRatingWeight($ratingWeight)
     {
-        $this->rating = $rating;
+        $this->rating_weight = $ratingWeight;
     
         return $this;
     }
 
     /**
-     * Get rating
+     * Get rating_weight
      *
      * @return integer 
      */
-    public function getRating()
+    public function getRatingWeight()
     {
-        return $this->rating;
+        return $this->rating_weight;
     }
 
     /**
      * Add preferred_positons
      *
-     * @param Aap\BluebirdsBundle\Entity\PreferredPosition $preferredPositons
+     * @param \Aap\BluebirdsBundle\Entity\PreferredPosition $preferredPositons
      * @return Position
      */
     public function addPreferredPositon(\Aap\BluebirdsBundle\Entity\PreferredPosition $preferredPositons)
@@ -148,7 +148,7 @@ class Position {
     /**
      * Remove preferred_positons
      *
-     * @param Aap\BluebirdsBundle\Entity\PreferredPosition $preferredPositons
+     * @param \Aap\BluebirdsBundle\Entity\PreferredPosition $preferredPositons
      */
     public function removePreferredPositon(\Aap\BluebirdsBundle\Entity\PreferredPosition $preferredPositons)
     {
@@ -158,7 +158,7 @@ class Position {
     /**
      * Get preferred_positons
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection 
      */
     public function getPreferredPositons()
     {
@@ -168,7 +168,7 @@ class Position {
     /**
      * Add player_positions
      *
-     * @param Aap\BluebirdsBundle\Entity\PlayerPosition $playerPositions
+     * @param \Aap\BluebirdsBundle\Entity\PlayerPosition $playerPositions
      * @return Position
      */
     public function addPlayerPosition(\Aap\BluebirdsBundle\Entity\PlayerPosition $playerPositions)
@@ -181,7 +181,7 @@ class Position {
     /**
      * Remove player_positions
      *
-     * @param Aap\BluebirdsBundle\Entity\PlayerPosition $playerPositions
+     * @param \Aap\BluebirdsBundle\Entity\PlayerPosition $playerPositions
      */
     public function removePlayerPosition(\Aap\BluebirdsBundle\Entity\PlayerPosition $playerPositions)
     {
@@ -191,7 +191,7 @@ class Position {
     /**
      * Get player_positions
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection 
      */
     public function getPlayerPositions()
     {

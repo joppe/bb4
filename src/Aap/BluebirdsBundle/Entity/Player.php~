@@ -1,0 +1,65 @@
+<?php
+
+namespace Aap\BluebirdsBundle\Entity;
+
+use Aap\BluebirdsBundle\Entity\TeamMember;
+use Aap\BluebirdsBundle\Entity\Game;
+use Aap\BluebirdsBundle\Entity\Position;
+
+use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="player")
+ */
+class Player {
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    protected $played_time;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    protected $at_bat;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    protected $runs;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    protected $hits;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    protected $errors;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Member", inversedBy="players")
+     * @ORM\JoinColumn(name="member_id", referencedColumnName="id")
+     */
+    protected $member;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Game", inversedBy="players")
+     * @ORM\JoinColumn(name="game_id", referencedColumnName="id")
+     */
+    protected $game;
+
+    /**
+     * @ORM\OneToMany(targetEntity="PlayerPosition", mappedBy="player")
+     */
+    protected $player_positions;
+}

@@ -1,7 +1,0 @@
-<ul class="tabs">
-    {% for menu_item in menu_items %}
-        <li{% if menu_item.identifier == active %} class="active"{% endif %}>
-            <a href="{{ menu_item.href }}">{{ menu_item.title }}</a>
-        </li>
-    {% endfor %}
-</ul>

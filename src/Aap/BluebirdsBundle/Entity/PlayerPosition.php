@@ -72,7 +72,7 @@ class PlayerPosition {
     /**
      * Set player
      *
-     * @param Aap\BluebirdsBundle\Entity\Player $player
+     * @param \Aap\BluebirdsBundle\Entity\Player $player
      * @return PlayerPosition
      */
     public function setPlayer(\Aap\BluebirdsBundle\Entity\Player $player = null)
@@ -85,7 +85,7 @@ class PlayerPosition {
     /**
      * Get player
      *
-     * @return Aap\BluebirdsBundle\Entity\Player 
+     * @return \Aap\BluebirdsBundle\Entity\Player 
      */
     public function getPlayer()
     {
@@ -95,7 +95,7 @@ class PlayerPosition {
     /**
      * Set position
      *
-     * @param Aap\BluebirdsBundle\Entity\Position $position
+     * @param \Aap\BluebirdsBundle\Entity\Position $position
      * @return PlayerPosition
      */
     public function setPosition(\Aap\BluebirdsBundle\Entity\Position $position = null)
@@ -108,7 +108,7 @@ class PlayerPosition {
     /**
      * Get position
      *
-     * @return Aap\BluebirdsBundle\Entity\Position 
+     * @return \Aap\BluebirdsBundle\Entity\Position 
      */
     public function getPosition()
     {

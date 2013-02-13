@@ -12,7 +12,8 @@ use Doctrine\Common\Collections\ArrayCollection;
  * @ORM\Entity
  * @ORM\Table(name="club")
  */
-class Club {
+class Club
+{
     /**
      * @ORM\Id
      * @ORM\Column(type="integer")
@@ -34,15 +35,15 @@ class Club {
      * @ORM\OneToMany(targetEntity="Team", mappedBy="club")
      */
     protected $teams;
-
     /**
      * Constructor
      */
-    public function __construct() {
-        $this->members = new ArrayCollection();
-        $this->teams = new ArrayCollection();
+    public function __construct()
+    {
+        $this->members = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->teams = new \Doctrine\Common\Collections\ArrayCollection();
     }
-
+    
     /**
      * Get id
      *
@@ -79,7 +80,7 @@ class Club {
     /**
      * Add members
      *
-     * @param Aap\BluebirdsBundle\Entity\Member $members
+     * @param \Aap\BluebirdsBundle\Entity\Member $members
      * @return Club
      */
     public function addMember(\Aap\BluebirdsBundle\Entity\Member $members)
@@ -92,7 +93,7 @@ class Club {
     /**
      * Remove members
      *
-     * @param Aap\BluebirdsBundle\Entity\Member $members
+     * @param \Aap\BluebirdsBundle\Entity\Member $members
      */
     public function removeMember(\Aap\BluebirdsBundle\Entity\Member $members)
     {
@@ -102,7 +103,7 @@ class Club {
     /**
      * Get members
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection 
      */
     public function getMembers()
     {
@@ -112,7 +113,7 @@ class Club {
     /**
      * Add teams
      *
-     * @param Aap\BluebirdsBundle\Entity\Team $teams
+     * @param \Aap\BluebirdsBundle\Entity\Team $teams
      * @return Club
      */
     public function addTeam(\Aap\BluebirdsBundle\Entity\Team $teams)
@@ -125,7 +126,7 @@ class Club {
     /**
      * Remove teams
      *
-     * @param Aap\BluebirdsBundle\Entity\Team $teams
+     * @param \Aap\BluebirdsBundle\Entity\Team $teams
      */
     public function removeTeam(\Aap\BluebirdsBundle\Entity\Team $teams)
     {
@@ -135,10 +136,31 @@ class Club {
     /**
      * Get teams
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection 
      */
     public function getTeams()
     {
         return $this->teams;
+    }
+
+    public function loadData($data)
+    {
+        foreach ($data as $key => $value) {
+            switch ($key) {
+                case 'id':
+                    // skip
+                    break;
+                default:
+                    throw new \InvalidArgumentException("{$key} is not a valid property");
+            }
+        }
+    }
+
+
+    public function asData()
+    {
+        return array(
+            'id' => (int) $this->getId(),
+        );
     }
 }

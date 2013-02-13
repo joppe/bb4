@@ -1,0 +1,38 @@
+<?php
+
+namespace Aap\BluebirdsBundle\Entity;
+
+use Aap\BluebirdsBundle\Entity\Player;
+use Aap\BluebirdsBundle\Entity\Position;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="player_position")
+ */
+class PlayerPosition {
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    protected $rating;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Player", inversedBy="positions")
+     * @ORM\JoinColumn(name="player_id", referencedColumnName="id")
+     */
+    protected $player;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Position", inversedBy="player_positions")
+     * @ORM\JoinColumn(name="postiton_id", referencedColumnName="id")
+     */
+    protected $position;
+}

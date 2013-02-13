@@ -1,0 +1,38 @@
+<?php
+
+namespace Aap\BluebirdsBundle\Entity;
+
+use Aap\BluebirdsBundle\Entity\Member;
+use Aap\BluebirdsBundle\Entity\Team;
+
+use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="club")
+ */
+class Club
+{
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    protected $name;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Member", mappedBy="club")
+     */
+    protected $members;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Team", mappedBy="club")
+     */
+    protected $teams;
+}

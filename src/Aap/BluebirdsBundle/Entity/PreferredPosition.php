@@ -72,7 +72,7 @@ class PreferredPosition {
     /**
      * Set team_member
      *
-     * @param Aap\BluebirdsBundle\Entity\TeamMember $teamMember
+     * @param \Aap\BluebirdsBundle\Entity\TeamMember $teamMember
      * @return PreferredPosition
      */
     public function setTeamMember(\Aap\BluebirdsBundle\Entity\TeamMember $teamMember = null)
@@ -85,7 +85,7 @@ class PreferredPosition {
     /**
      * Get team_member
      *
-     * @return Aap\BluebirdsBundle\Entity\TeamMember 
+     * @return \Aap\BluebirdsBundle\Entity\TeamMember 
      */
     public function getTeamMember()
     {
@@ -95,7 +95,7 @@ class PreferredPosition {
     /**
      * Set postition
      *
-     * @param Aap\BluebirdsBundle\Entity\Position $postition
+     * @param \Aap\BluebirdsBundle\Entity\Position $postition
      * @return PreferredPosition
      */
     public function setPostition(\Aap\BluebirdsBundle\Entity\Position $postition = null)
@@ -108,7 +108,7 @@ class PreferredPosition {
     /**
      * Get postition
      *
-     * @return Aap\BluebirdsBundle\Entity\Position 
+     * @return \Aap\BluebirdsBundle\Entity\Position 
      */
     public function getPostition()
     {
