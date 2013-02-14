@@ -1,4 +1,4 @@
 # admin
 admin:
-    pattern: /admin
-    defaults: { _controller: AapBluebirdsBundle:Admin:index }
+    resource: "@AapBluebirdsBundle/Controller"
+    type: annotation

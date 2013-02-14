@@ -5,17 +5,18 @@
 {% endblock %}
 
 {% block javascripts %}
-    <script data-main="{{ asset('bundles/aapbluebirds/js/bb4') }}" src="{{ asset('bundles/aapbluebirds/js/3rd-party/require.js') }}"></script>
+    <script data-main="{{ asset('bundles/aapbluebirds/js/admin') }}" src="{{ asset('bundles/aapbluebirds/js/3rd-party/require.js') }}"></script>
 {% endblock %}
 
 {% block body %}
-    <header>
-        {% block header %}{% endblock %}
-    </header>
-    <section id="main">
-        {% block section %}{% endblock %}
-    </section>
-    <footer>
-        {% block footer %}{% endblock %}
-    </footer>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container">
+                <a class="brand" href="#">BB4</a>
+            </div>
+        </div>
+    </div>
+    <div class="container" id="content"></div>
+    {% block templates %}
+    {% endblock %}
 {% endblock %}
