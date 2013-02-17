@@ -5,11 +5,15 @@ define(['jquery', 'backbone', 'core/model'], function ($, Backbone, CoreModel) {
 
     var Club;
 
-    Club = CoreModel.extend({
+    Club = Backbone.Model.extend({
         defaults: {
             name: '',
-            memebers: '',
-            teams: ''
+            members: '', // TODO mode to collections property of Core.Model
+            teams: '' // TODO mode to collections property of Core.Model
+        },
+
+        url: function () {
+            return 'admin/Club/' + (this.isNew() ? 0 : this.get('id'));
         }
     });
 

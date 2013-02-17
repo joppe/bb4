@@ -9,9 +9,7 @@ define(['backbone', 'admin/club/list'], function (Backbone, ClubList) {
         routes: {
             '': 'showClubs',
             'clubs': 'showClubs',
-            'club/:id': 'showClub',
-            'teams': 'showTeams',
-            'team/:id': 'showTeam'
+            'teams': 'showTeams'
         },
 
         initialize: function (options) {
@@ -19,21 +17,13 @@ define(['backbone', 'admin/club/list'], function (Backbone, ClubList) {
         },
 
         showClubs: function () {
-            console.log('showClubs');
+            console.log('Router: showClubs');
             var list = new ClubList();
             this.$container.html(list.render().el);
         },
 
-        showClub: function (clubId) {
-            console.log('showClub ' + clubId);
-        },
-
         showTeams: function () {
-            console.log('showTeams');
-        },
-
-        showTeam: function (teamId) {
-            console.log('showTeam ' + teamId);
+            console.log('Router: showTeams');
         }
     });
 

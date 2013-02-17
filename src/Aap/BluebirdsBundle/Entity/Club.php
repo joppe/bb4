@@ -148,7 +148,12 @@ class Club
         foreach ($data as $key => $value) {
             switch ($key) {
                 case 'id':
+                case 'members':
+                case 'teams':
                     // skip
+                    break;
+                case 'name':
+                    $this->setName($value);
                     break;
                 default:
                     throw new \InvalidArgumentException("{$key} is not a valid property");
@@ -161,6 +166,7 @@ class Club
     {
         return array(
             'id' => (int) $this->getId(),
+            'name' => $this->getName(),
         );
     }
 }

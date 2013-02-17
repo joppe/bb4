@@ -1,6 +1,7 @@
 /*global requirejs, require, window*/
 
 requirejs.config({
+    urlArgs: 'bust=' + (new Date()).getTime(),
     paths: {
         jquery: '3rd-party/jquery-1.9.0.min',
         backbone: '3rd-party/backbone-min',
@@ -48,10 +49,8 @@ require(
             ],
             router: router
         });
-        $('div.navbar-fixed-top div.container').append(mainmenu.render().el);
+        $('div.navbar div.container').append(mainmenu.render().el);
 
-    //    var mainMenu = new NavigationMain();
-    //    $('div.navbar-fixed-top .container').append(mainMenu.render().el);
-
-        window.console.log('hello bb4!');
-});
+//        window.console.log('hello bb4!');
+    }
+);

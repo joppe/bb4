@@ -8,6 +8,10 @@ define(['jquery', 'backbone'], function ($, Backbone) {
     Team = Backbone.Model.extend({
         defaults: {
 
+        },
+
+        url: function () {
+            return 'admin/Team/0';
         }
     });
 
