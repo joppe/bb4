@@ -38,17 +38,15 @@ define(['jquery', 'backbone', 'underscore'], function ($, Backbone, _) {
 
             event.preventDefault();
 
-            this.model.save({
+            this.model.save(this.model.attributes, {
                 success: function () {
-                    console.log('__');
-                    console.log(arguments);
-//                    self.collection.add();
+                    self.collection.add(self.model);
+                    self.unrender();
                 },
                 error: function () {
                     console.log('error');
                 }
             });
-            //this.unrender();
         },
 
         cancel: function (event) {
