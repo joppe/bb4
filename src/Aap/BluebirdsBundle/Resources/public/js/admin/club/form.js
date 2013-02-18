@@ -12,11 +12,13 @@ define(['jquery', 'backbone', 'underscore'], function ($, Backbone, _) {
 
         events: {
             'keyup #field-name': 'updateName',
-            'click button[type="submit"]': 'save',
-            'click button[type="button"]': 'cancel'
+            'click a.btn-primary': 'save',
+            'click a.btn': 'cancel',
+            'click button.close': 'cancel'
         },
 
         unrender: function () {
+            this.$el.modal('hide');
             this.$el.remove();
         },
 
@@ -26,6 +28,10 @@ define(['jquery', 'backbone', 'underscore'], function ($, Backbone, _) {
 
         render: function () {
             this.$el.html(this.template(this.model.toJSON()));
+            this.$el.modal({
+                keyboard: true,
+                show: true
+            });
             return this;
         },
 
@@ -39,8 +45,8 @@ define(['jquery', 'backbone', 'underscore'], function ($, Backbone, _) {
             event.preventDefault();
 
             this.model.save(this.model.attributes, {
-                success: function () {
-                    self.collection.add(self.model);
+                success: function (club, response) {
+                    self.collection.add(response.result);
                     self.unrender();
                 },
                 error: function () {

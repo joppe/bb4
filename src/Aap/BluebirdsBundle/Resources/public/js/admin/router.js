@@ -24,6 +24,7 @@ define(['backbone', 'admin/club/list'], function (Backbone, ClubList) {
 
         showTeams: function () {
             console.log('Router: showTeams');
+            this.$container.empty();
         }
     });
 

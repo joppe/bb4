@@ -6,7 +6,8 @@ requirejs.config({
         jquery: '3rd-party/jquery-1.9.0.min',
         backbone: '3rd-party/backbone-min',
         underscore: '3rd-party/underscore-min',
-        json: '3rd-party/json2'
+        json: '3rd-party/json2',
+        bootstrap: '3rd-party/bootstrap.min'
     },
     shim: {
         backbone: {
@@ -18,6 +19,10 @@ requirejs.config({
         },
         json: {
             exports: 'JSON'
+        },
+        bootstrap: {
+            deps: ['jquery'],
+            exports: 'Bootstrap'
         }
     }
 });
@@ -40,17 +45,21 @@ require(
             menuItems: [
                 {
                     title: 'Clubs',
-                    url: '#clubs'
+                    url: '#clubs',
+                    routes: ['showClubs']
                 },
                 {
                     title: 'Teams',
-                    url: '#teams'
+                    url: '#teams',
+                    routes: ['showTeams']
                 }
             ],
             router: router
         });
         $('div.navbar div.container').append(mainmenu.render().el);
 
-//        window.console.log('hello bb4!');
+        router.navigate('/', {
+            trigger: true
+        });
     }
 );

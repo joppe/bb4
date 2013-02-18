@@ -12,8 +12,18 @@ define(['jquery', 'backbone', 'underscore'], function ($, Backbone, _) {
         template: _.template($('#tmpl-menu-item').html()),
 
         initialize: function (options) {
+            var self = this;
+
             this.data = options.data;
             this.router = options.router;
+
+            this.router.on('route', function (route) {
+                if (self.data.routes.indexOf(route) !== -1) {
+                    self.$el.addClass('active');
+                } else {
+                    self.$el.removeClass('active');
+                }
+            });
         },
 
         render: function () {

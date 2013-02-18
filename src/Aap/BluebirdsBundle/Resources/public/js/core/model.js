@@ -6,9 +6,7 @@ define(['jquery', 'backbone', 'underscore'], function ($, Backbone, _) {
     var Model;
 
     Model = Backbone.Model.extend({
-        collections: {
-
-        }
+        collections: null
     });
 
     return Model;

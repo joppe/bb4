@@ -1,5 +1,9 @@
 <script type="text/tmpl-javascript" id="tmpl-list-item">
-    <tr>
-        <td><%= name %></td>
-    </tr>
+    <td class="name"><%= name %></td>
+    <td>
+        <div class="btn-group">
+            <a class="btn edit" data-club-id="<%= id %>" href="#"><i class="icon-pencil"></i></a>
+            <a class="btn remove" data-club-id="<%= id %>" href="#"><i class="icon-remove-sign"></i></a>
+        </div>
+    </td>
 </script>
