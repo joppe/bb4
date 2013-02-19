@@ -1,4 +1,4 @@
-/*global define*/
+/*global define, window*/
 
 define(
     ['jquery', 'bootstrap', 'backbone', 'underscore', 'core/club/collection', 'core/club/model', 'admin/club/form', 'core/view/confirm'],
@@ -43,7 +43,7 @@ define(
                 'click a.remove': 'showRemovePopup'
             },
 
-            initialize: function (options) {
+            initialize: function () {
                 this.clubs = new ClubCollection();
                 this.clubs.on('reset', this.addClubs, this);
                 this.clubs.on('add', this.addClub, this);
@@ -95,7 +95,7 @@ define(
                             var club = self.clubs.get($anchor.data('club-id'));
                             club.destroy({
                                 error: function () {
-                                    console.log('error while deleting layer group');
+                                    window.console.log('error while deleting layer group');
                                 }
                             });
                         }
