@@ -31,7 +31,7 @@ define(
             render: function () {
                 var attributes = this.model.toJSON();
                 attributes.clubs = this.clubs;
-console.log(attributes);
+
                 this.$el.html(this.template(attributes));
                 this.$el.modal({
                     keyboard: true,

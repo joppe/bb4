@@ -1,8 +1,8 @@
 /*global define, window*/
 
 define(
-    ['jquery', 'bootstrap', 'backbone', 'underscore', 'core/club/collection', 'core/club/model', 'admin/club/form', 'core/view/confirm'],
-    function ($, Bootstrap, Backbone, _, ClubCollection, ClubModel, ClubForm, Confirm) {
+    ['jquery', 'bootstrap', 'backbone', 'underscore', 'core/position/collection', 'core/position/model', 'admin/position/form', 'core/view/confirm'],
+    function ($, Bootstrap, Backbone, _, PositionCollection, PositionModel, PositionForm, Confirm) {
         'use strict';
 
         var List,
@@ -33,7 +33,7 @@ define(
         });
 
         List = Backbone.View.extend({
-            id: 'club-list',
+            id: 'position-list',
 
             template: _.template($('#tmpl-list').html()),
 
@@ -44,42 +44,42 @@ define(
             },
 
             initialize: function () {
-                this.clubs = new ClubCollection();
-                this.clubs.on('reset', this.addClubs, this);
-                this.clubs.on('add', this.addClub, this);
-                this.clubs.fetch();
+                this.positions = new PositionCollection();
+                this.positions.on('reset', this.addPositions, this);
+                this.positions.on('add', this.addPosition, this);
+                this.positions.fetch();
             },
 
             render: function () {
                 this.$el.html(this.template({
                     headers: ['Name', ''],
-                    entityName: 'Club'
+                    entityName: 'Position'
                 }));
                 return this;
             },
 
-            addClubs: function () {
+            addPositions: function () {
                 var self = this;
 
                 this.$el.find('tbody').empty();
-                this.clubs.each(function (club) {
-                    self.addClub(club);
+                this.positions.each(function (position) {
+                    self.addPosition(position);
                 });
             },
 
-            addClub: function (club) {
+            addPosition: function (position) {
                 var view = new ListItem({
-                        model: club
+                        model: position
                     });
 
                 this.$el.find('tbody').append(view.render().el);
             },
 
             showCreateForm: function (event) {
-                var club = new ClubModel(),
-                    form = new ClubForm({
-                        collection: this.clubs,
-                        model: club
+                var position = new PositionModel(),
+                    form = new PositionForm({
+                        collection: this.positions,
+                        model: position
                     });
 
                 event.preventDefault();
@@ -91,12 +91,12 @@ define(
                 var self = this,
                     $anchor = $(event.currentTarget),
                     message = new Confirm({
-                        entityName: 'Club',
+                        entityName: 'Position',
                         proceed: function () {
-                            var club = self.clubs.get($anchor.data('id'));
-                            club.destroy({
+                            var position = self.positions.get($anchor.data('id'));
+                            position.destroy({
                                 error: function () {
-                                    window.console.log('error while deleting club');
+                                    window.console.log('error while deleting position');
                                 }
                             });
                         }
@@ -109,10 +109,10 @@ define(
 
             showEditForm: function (event) {
                 var $anchor = $(event.currentTarget),
-                    club = this.clubs.get($anchor.data('id')),
-                    form = new ClubForm({
-                        collection: this.clubs,
-                        model: club
+                    position = this.positions.get($anchor.data('id')),
+                    form = new PositionForm({
+                        collection: this.positions,
+                        model: position
                     });
 
                 event.preventDefault();

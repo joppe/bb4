@@ -1,0 +1,42 @@
+<script type="text/tmpl-javascript" id="tmpl-position-form">
+    <div class="modal">
+        <div class="modal-header">
+            <button type="button" class="close" aria-hidden="true">&times;</button>
+            <h3>Position</h3>
+        </div>
+        <div class="modal-body">
+            <form class="form-horizontal">
+                <div class="control-group">
+                    <label class="control-label" for="field-name">Name</label>
+                    <div class="controls">
+                        <input type="text" id="field-name" placeholder="Name" value="<%= name %>">
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="field-field_number">Field number</label>
+                    <div class="controls">
+                        <select id="field-field_number">
+                            <% _.each(_.range(1, 10), function (index) { %>
+                                <option value="<%= index %>"<% if (index == field_number) { %> selected="selected"<% } %>><%= index %></option>
+                            <% }) %>
+                        </select>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="field-rating_weight">Rating weight</label>
+                    <div class="controls">
+                        <select id="field-rating_weight">
+                            <% _.each(_.range(1, 10), function (index) { %>
+                                <option value="<%= index %>"<% if (index == rating_weight) { %> selected="selected"<% } %>><%= index %></option>
+                            <% }) %>
+                        </select>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <a href="#" class="btn">Close</a>
+            <a href="#" class="btn btn-primary">Save changes</a>
+        </div>
+    </div>
+</script>

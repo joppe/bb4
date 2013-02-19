@@ -197,4 +197,43 @@ class Position {
     {
         return $this->player_positions;
     }
+
+    /**
+     * @param $data
+     * @throws \InvalidArgumentException
+     */
+    public function loadData($data)
+    {
+        foreach ($data as $key => $value) {
+            switch ($key) {
+                case 'id':
+                    // skip
+                    break;
+                case 'name':
+                    $this->setName($value);
+                    break;
+                case 'field_number':
+                    $this->setFieldNumber($value);
+                    break;
+                case 'rating_weight':
+                    $this->setRatingWeight($value);
+                    break;
+                default:
+                    throw new \InvalidArgumentException("{$key} is not a valid property");
+            }
+        }
+    }
+
+    /**
+     * @return array
+     */
+    public function asData()
+    {
+        return array(
+            'id' => (int) $this->getId(),
+            'name' => $this->getName(),
+            'field_number' => $this->getFieldNumber(),
+            'rating_weight' => $this->getRatingWeight(),
+        );
+    }
 }

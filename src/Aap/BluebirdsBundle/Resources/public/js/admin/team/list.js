@@ -104,7 +104,7 @@ define(
                             var club = self.teams.get($anchor.data('id'));
                             club.destroy({
                                 error: function () {
-                                    window.console.log('error while deleting layer group');
+                                    window.console.log('error while deleting team');
                                 }
                             });
                         }

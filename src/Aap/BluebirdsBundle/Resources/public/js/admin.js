@@ -52,6 +52,11 @@ require(
                     title: 'Teams',
                     url: '#teams',
                     routes: ['showTeams']
+                },
+                {
+                    title: 'Positions',
+                    url: '#positions',
+                    routes: ['showPositions']
                 }
             ],
             router: router
