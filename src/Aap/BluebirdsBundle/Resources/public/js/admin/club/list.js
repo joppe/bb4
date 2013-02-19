@@ -92,7 +92,7 @@ define(
                     message = new Confirm({
                         entityName: 'Club',
                         proceed: function () {
-                            var club = self.clubs.get($anchor.data('club-id'));
+                            var club = self.clubs.get($anchor.data('id'));
                             club.destroy({
                                 error: function () {
                                     window.console.log('error while deleting layer group');
@@ -108,7 +108,7 @@ define(
 
             showEditForm: function (event) {
                 var $anchor = $(event.currentTarget),
-                    club = this.clubs.get($anchor.data('club-id')),
+                    club = this.clubs.get($anchor.data('id')),
                     form = new ClubForm({
                         collection: this.clubs,
                         model: club
