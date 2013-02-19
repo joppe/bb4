@@ -1,4 +1,4 @@
-/*global define*/
+/*global define, window*/
 
 define(['jquery', 'backbone', 'underscore'], function ($, Backbone, _) {
     'use strict';
@@ -45,12 +45,12 @@ define(['jquery', 'backbone', 'underscore'], function ($, Backbone, _) {
             event.preventDefault();
 
             this.model.save(this.model.attributes, {
-                success: function (club, response) {
+                success: function (model, response) {
                     self.collection.add(response.result);
                     self.unrender();
                 },
                 error: function () {
-                    console.log('error');
+                    window.console.log('error');
                 }
             });
         },
