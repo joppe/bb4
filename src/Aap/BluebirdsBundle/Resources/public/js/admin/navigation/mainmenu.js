@@ -1,4 +1,4 @@
-/*global define*/
+/*global define, window*/
 
 define(['jquery', 'backbone', 'underscore'], function ($, Backbone, _) {
     'use strict';
@@ -12,18 +12,27 @@ define(['jquery', 'backbone', 'underscore'], function ($, Backbone, _) {
         template: _.template($('#tmpl-menu-item').html()),
 
         initialize: function (options) {
-            var self = this;
+            var self = this,
+                hash = window.location.hash.replace('#', ''),
+                currentRoute;
 
             this.data = options.data;
             this.router = options.router;
 
+            currentRoute = this.router.routes[hash];
+            this.checkState(currentRoute);
+
             this.router.on('route', function (route) {
-                if (self.data.routes.indexOf(route) !== -1) {
-                    self.$el.addClass('active');
-                } else {
-                    self.$el.removeClass('active');
-                }
+                self.checkState(route);
             });
+        },
+
+        checkState: function (route) {
+            if (this.data.routes.indexOf(route) !== -1) {
+                this.$el.addClass('active');
+            } else {
+                this.$el.removeClass('active');
+            }
         },
 
         render: function () {
