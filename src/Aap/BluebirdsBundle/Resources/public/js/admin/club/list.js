@@ -52,7 +52,8 @@ define(
 
             render: function () {
                 this.$el.html(this.template({
-                    headers: ['Name', '']
+                    headers: ['Name', ''],
+                    entityName: 'Club'
                 }));
                 return this;
             },
