@@ -19,7 +19,7 @@ define(['jquery', 'backbone', 'underscore'], function ($, Backbone, _) {
 
         unrender: function () {
             this.$el.modal('hide');
-            this.remove();
+            this.$el.remove();
         },
 
         initialize: function (options) {
