@@ -242,6 +242,7 @@ class Team {
         return array(
             'id' => (int) $this->getId(),
             'name' => $this->getName(),
+            'club_id' => $this->getClub()->getId()
         );
     }
 }

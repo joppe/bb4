@@ -11,7 +11,7 @@
                     <div class="controls">
                         <select id="field-club" name="club">
                             <% clubs.each(function (club) { %>
-                                <option value="<%= club.get('id') %>"><%= club.get('name') %></option>
+                                <option value="<%= club.get('id') %>"<% if (club_id == club.get('id')) { %>selected="selected"<% } %>><%= club.get('name') %></option>
                             <% }) %>
                         </select>
                     </div>
