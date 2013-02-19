@@ -28,7 +28,7 @@ define(
             },
 
             unrender: function () {
-                this.$el.remove();
+                this.remove();
             }
         });
 
