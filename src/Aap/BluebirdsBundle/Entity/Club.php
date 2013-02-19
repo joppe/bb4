@@ -143,6 +143,10 @@ class Club
         return $this->teams;
     }
 
+    /**
+     * @param array $data
+     * @throws \InvalidArgumentException
+     */
     public function loadData($data)
     {
         foreach ($data as $key => $value) {
@@ -161,7 +165,9 @@ class Club
         }
     }
 
-
+    /**
+     * @return array
+     */
     public function asData()
     {
         return array(

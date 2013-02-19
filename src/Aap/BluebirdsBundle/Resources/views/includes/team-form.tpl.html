@@ -1,11 +1,21 @@
-<script type="text/tmpl-javascript" id="tmpl-club-form">
+<script type="text/tmpl-javascript" id="tmpl-team-form">
     <div class="modal">
         <div class="modal-header">
             <button type="button" class="close" aria-hidden="true">&times;</button>
-            <h3>Club</h3>
+            <h3>Team</h3>
         </div>
         <div class="modal-body">
             <form class="form-horizontal">
+                <div class="control-group">
+                    <label class="control-label" for="field-club">Club</label>
+                    <div class="controls">
+                        <select id="field-club" name="club">
+                            <% clubs.each(function (club) { %>
+                                <option value="<%= club.get('id') %>"><%= club.get('name') %></option>
+                            <% }) %>
+                        </select>
+                    </div>
+                </div>
                 <div class="control-group">
                     <label class="control-label" for="field-name">Name</label>
                     <div class="controls">

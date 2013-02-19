@@ -1,14 +1,14 @@
 /*global define*/
 
-define(['jquery', 'backbone', 'core/club/model'], function ($, Backbone, ClubModel) {
+define(['jquery', 'backbone', 'core/team/model'], function ($, Backbone, TeamModel) {
     'use strict';
 
     var Collection;
 
     Collection = Backbone.Collection.extend({
-        model: ClubModel,
+        model: TeamModel,
 
-        url: 'admin/Club',
+        url: 'admin/Team',
 
         parse: function (response) {
             return response.result;

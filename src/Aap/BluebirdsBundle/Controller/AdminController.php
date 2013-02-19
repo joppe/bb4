@@ -3,6 +3,7 @@
 namespace Aap\BluebirdsBundle\Controller;
 
 use Aap\BluebirdsBundle\Entity\Club;
+use Aap\BluebirdsBundle\Entity\Repository\RESTRepositoryInterface;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -109,11 +110,16 @@ class AdminController extends Controller
         $className = 'Aap\\BluebirdsBundle\\Entity\\' . $entityName;
 
         if (class_exists($className)) {
-            $em = $this->getDoctrine()->getManager();
             $data = json_decode($this->getRequest()->getContent(), true);
-
+            $em = $this->getDoctrine()->getManager();
+            $repository = $em->getRepository('AapBluebirdsBundle:' . $entityName);
             $entity = new $className();
-            $entity->loadData($data);
+
+            if ($repository instanceof RESTRepositoryInterface) {
+                $entity = $repository->hydrate($entity, $data);
+            } else {
+                $entity->loadData($data);
+            }
 
             $em->persist($entity);
             $em->flush();
@@ -140,19 +146,20 @@ class AdminController extends Controller
         $entity = null;
 
         if (class_exists('Aap\\BluebirdsBundle\\Entity\\' . $entityName)) {
-            $entity = $this->getDoctrine()
-                ->getRepository('AapBluebirdsBundle:' . $entityName)
-                ->find($id);
+            $data = json_decode($this->getRequest()->getContent(), true);
+            $em = $this->getDoctrine()->getManager();
+            $repository = $em->getRepository('AapBluebirdsBundle:' . $entityName);
+            $entity = $repository->find($id);
 
             if ($entity) {
-                $data = json_decode($this->getRequest()->getContent(), true);
-                $em = $this->getDoctrine()->getManager();
-                $entity->loadData($data);
+                if ($repository instanceof RESTRepositoryInterface) {
+                    $entity = $repository->hydrate($entity, $data);
+                } else {
+                    $entity->loadData($data);
+                }
 
                 $em->persist($entity);
                 $em->flush();
-
-                $entity = $entity->asData();
             } else {
                 $error = $entityName . ' with id "' . $id . '" not found.';
             }

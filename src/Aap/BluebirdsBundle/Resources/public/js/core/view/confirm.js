@@ -29,14 +29,18 @@ define(['jquery', 'backbone', 'underscore'], function ($, Backbone, _) {
             this.$el.remove();
         },
 
-        proceed: function () {
+        proceed: function (event) {
+            event.preventDefault();
+
             if (this.options.proceed) {
                 this.options.proceed();
             }
             this.unrender();
         },
 
-        cancel: function () {
+        cancel: function (event) {
+            event.preventDefault();
+
             if (this.options.cancel) {
                 this.options.cancel();
             }

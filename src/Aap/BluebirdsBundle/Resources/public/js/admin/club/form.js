@@ -11,7 +11,6 @@ define(['jquery', 'backbone', 'underscore'], function ($, Backbone, _) {
         template: _.template($('#tmpl-club-form').html()),
 
         events: {
-            'keyup #field-name': 'updateName',
             'click a.btn-primary': 'save',
             'click a.btn': 'cancel',
             'click button.close': 'cancel'
@@ -35,14 +34,12 @@ define(['jquery', 'backbone', 'underscore'], function ($, Backbone, _) {
             return this;
         },
 
-        updateName: function () {
-            this.model.set('name', $('#field-name').val());
-        },
-
         save: function (event) {
             var self = this;
 
             event.preventDefault();
+
+            this.model.set('name', $('#field-name').val());
 
             this.model.save(this.model.attributes, {
                 success: function (model, response) {

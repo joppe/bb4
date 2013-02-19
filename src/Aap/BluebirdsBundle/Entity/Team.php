@@ -11,6 +11,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 /**
  * @ORM\Entity
  * @ORM\Table(name="team")
+ * @ORM\Entity(repositoryClass="Aap\BluebirdsBundle\Entity\Repository\TeamRepository")
  */
 class Team {
     /**
@@ -208,5 +209,39 @@ class Team {
     public function getAwayGames()
     {
         return $this->away_games;
+    }
+
+    /**
+     * @param $data
+     * @throws \InvalidArgumentException
+     */
+    public function loadData($data)
+    {
+        foreach ($data as $key => $value) {
+            switch ($key) {
+                case 'id':
+                    // skip
+                    break;
+                case 'name':
+                    $this->setName($value);
+                    break;
+                case 'club':
+                    $this->setClub($value);
+                    break;
+                default:
+                    throw new \InvalidArgumentException("{$key} is not a valid property");
+            }
+        }
+    }
+
+    /**
+     * @return array
+     */
+    public function asData()
+    {
+        return array(
+            'id' => (int) $this->getId(),
+            'name' => $this->getName(),
+        );
     }
 }

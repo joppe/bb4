@@ -1,66 +1,71 @@
-/*global define*/
+/*global define, window*/
 
-define(['jquery', 'backbone', 'underscore'], function ($, Backbone, _) {
-    'use strict';
+define(
+    ['jquery', 'backbone', 'underscore'],
+    function ($, Backbone, _) {
+        'use strict';
 
-    var Form;
+        var Form;
 
-    Form = Backbone.View.extend({
-        id: 'club-form',
+        Form = Backbone.View.extend({
+            id: 'team-form',
 
-        template: _.template($('#tmpl-club-form').html()),
+            template: _.template($('#tmpl-team-form').html()),
 
-        events: {
-            'keyup #field-name': 'updateName',
-            'click a.btn-primary': 'save',
-            'click a.btn': 'cancel',
-            'click button.close': 'cancel'
-        },
+            events: {
+                'click a.btn-primary': 'save',
+                'click a.btn': 'cancel',
+                'click button.close': 'cancel'
+            },
 
-        unrender: function () {
-            this.$el.modal('hide');
-            this.$el.remove();
-        },
+            unrender: function () {
+                this.$el.modal('hide');
+                this.remove();
+            },
 
-        initialize: function (options) {
-            this.collection = options.collection;
-        },
+            initialize: function (options) {
+                this.collection = options.collection;
+                this.clubs = options.clubs;
+            },
 
-        render: function () {
-            this.$el.html(this.template(this.model.toJSON()));
-            this.$el.modal({
-                keyboard: true,
-                show: true
-            });
-            return this;
-        },
+            render: function () {
+                var attributes = this.model.toJSON();
+                attributes.clubs = this.clubs;
 
-        updateName: function () {
-            this.model.set('name', $('#field-name').val());
-        },
+                this.$el.html(this.template(attributes));
+                this.$el.modal({
+                    keyboard: true,
+                    show: true
+                });
+                return this;
+            },
 
-        save: function (event) {
-            var self = this;
+            save: function (event) {
+                var self = this;
 
-            event.preventDefault();
+                event.preventDefault();
 
-            this.model.save(this.model.attributes, {
-                success: function (club, response) {
-                    self.collection.add(response.result);
-                    self.unrender();
-                },
-                error: function () {
-                    console.log('error');
-                }
-            });
-        },
+                this.model.set('name', $('#field-name').val());
+                this.model.set('club_id', $('#field-club').val());
 
-        cancel: function (event) {
-            event.preventDefault();
+                this.model.save(this.model.attributes, {
+                    success: function (model, response) {
+                        self.collection.add(response.result);
+                        self.unrender();
+                    },
+                    error: function () {
+                        window.console.log('error');
+                    }
+                });
+            },
 
-            this.unrender();
-        }
-    });
+            cancel: function (event) {
+                event.preventDefault();
 
-    return Form;
-});
+                this.unrender();
+            }
+        });
+
+        return Form;
+    }
+);
