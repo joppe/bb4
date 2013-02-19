@@ -57,9 +57,5 @@ require(
             router: router
         });
         $('div.navbar div.container').append(mainmenu.render().el);
-
-        router.navigate('/', {
-            trigger: true
-        });
     }
 );
