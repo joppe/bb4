@@ -1,63 +1,24 @@
 /*global define, window*/
 
-define(['jquery', 'backbone', 'underscore'], function ($, Backbone, _) {
-    'use strict';
+define(
+    ['jquery', 'backbone', 'underscore', 'core/view/form'],
+    function ($, Backbone, _, CoreForm) {
+        'use strict';
 
-    var Form;
+        var Form;
 
-    Form = Backbone.View.extend({
-        id: 'club-form',
+        Form = CoreForm.extend({
+            id: 'club-form',
 
-        template: _.template($('#tmpl-club-form').html()),
+            template: _.template($('#tmpl-club-form').html()),
 
-        events: {
-            'click a.btn-primary': 'save',
-            'click a.btn': 'cancel',
-            'click button.close': 'cancel'
-        },
+            getModelData: function () {
+                this.model.set('name', $('#field-name').val());
 
-        unrender: function () {
-            this.$el.modal('hide');
-            this.remove();
-        },
+                return this.model.attributes;
+            }
+        });
 
-        initialize: function (options) {
-            this.collection = options.collection;
-        },
-
-        render: function () {
-            this.$el.html(this.template(this.model.toJSON()));
-            this.$el.modal({
-                keyboard: true,
-                show: true
-            });
-            return this;
-        },
-
-        save: function (event) {
-            var self = this;
-
-            event.preventDefault();
-
-            this.model.set('name', $('#field-name').val());
-
-            this.model.save(this.model.attributes, {
-                success: function (model, response) {
-                    self.collection.add(response.result);
-                    self.unrender();
-                },
-                error: function () {
-                    window.console.log('error');
-                }
-            });
-        },
-
-        cancel: function (event) {
-            event.preventDefault();
-
-            this.unrender();
-        }
-    });
-
-    return Form;
-});
+        return Form;
+    }
+);

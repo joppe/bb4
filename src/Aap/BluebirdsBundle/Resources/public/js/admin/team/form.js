@@ -1,68 +1,28 @@
 /*global define, window*/
 
 define(
-    ['jquery', 'backbone', 'underscore'],
-    function ($, Backbone, _) {
+    ['jquery', 'backbone', 'underscore', 'core/view/form', 'core/club/collection'],
+    function ($, Backbone, _, CoreForm, ClubCollection) {
         'use strict';
 
         var Form;
 
-        Form = Backbone.View.extend({
+        Form = CoreForm.extend({
             id: 'team-form',
 
             template: _.template($('#tmpl-team-form').html()),
 
-            events: {
-                'click a.btn-primary': 'save',
-                'click a.btn': 'cancel',
-                'click button.close': 'cancel'
+            getDependencies: function () {
+                return {
+                    clubs: new ClubCollection()
+                };
             },
 
-            unrender: function () {
-                this.$el.modal('hide');
-                this.remove();
-            },
-
-            initialize: function (options) {
-                this.collection = options.collection;
-                this.clubs = options.clubs;
-            },
-
-            render: function () {
-                var attributes = this.model.toJSON();
-                attributes.clubs = this.clubs;
-
-                this.$el.html(this.template(attributes));
-                this.$el.modal({
-                    keyboard: true,
-                    show: true
-                });
-                return this;
-            },
-
-            save: function (event) {
-                var self = this;
-
-                event.preventDefault();
-
+            getModelData: function () {
                 this.model.set('name', $('#field-name').val());
                 this.model.set('club_id', $('#field-club').val());
 
-                this.model.save(this.model.attributes, {
-                    success: function (model, response) {
-                        self.collection.add(response.result);
-                        self.unrender();
-                    },
-                    error: function () {
-                        window.console.log('error');
-                    }
-                });
-            },
-
-            cancel: function (event) {
-                event.preventDefault();
-
-                this.unrender();
+                return this.model.attributes;
             }
         });
 
