@@ -8,6 +8,16 @@ define(
         var List;
 
         List = Backbone.View.extend({
+            entityName: 'Generic',
+
+            getColumns: function () {
+                return [];
+            },
+
+            getForm: function (model) {
+                alert('implement getForm!');
+            },
+
             template: _.template($('#tmpl-list').html()),
 
             events: {
@@ -17,12 +27,7 @@ define(
             },
 
             initialize: function (options) {
-                this.headers = options.headers;
-                this.entityName = options.entityName;
                 this.collection = options.collection;
-                this.modelClass = options.modelClass;
-                this.formClass = options.formClass;
-
                 this.collection.on('reset', this.addListItems, this);
                 this.collection.on('add', this.addListItem, this);
                 this.collection.fetch();
@@ -30,7 +35,7 @@ define(
 
             render: function () {
                 this.$el.html(this.template({
-                    headers: this.headers,
+                    headers: this.getColumns(),
                     entityName: this.entityName
                 }));
                 return this;
@@ -54,12 +59,8 @@ define(
             },
 
             showCreateForm: function (event) {
-                var ModelClass = this.modelClass,
-                    FormClass = this.formClass,
-                    form = new FormClass({
-                        collection: this.collection,
-                        model: new ModelClass()
-                    });
+                var ModelClass = this.collection.model,
+                    form = this.getForm(new ModelClass());
 
                 event.preventDefault();
 
@@ -90,11 +91,7 @@ define(
             showEditForm: function (event) {
                 var $anchor = $(event.currentTarget),
                     model = this.collection.get($anchor.data('id')),
-                    FormClass = this.formClass,
-                    form = new FormClass({
-                        collection: this.collection,
-                        model: model
-                    });
+                    form = this.getForm(model);
 
                 event.preventDefault();
 

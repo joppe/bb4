@@ -11,6 +11,7 @@ define(
             routes: {
                 '': 'showClubs',
                 'clubs': 'showClubs',
+                'clubs/:id': 'showClub',
                 'teams': 'showTeams',
                 'positions': 'showPositions'
             },
@@ -22,6 +23,11 @@ define(
             showClubs: function () {
                 var list = new ClubList();
                 this.$container.html(list.render().el);
+            },
+
+            showClub: function (id) {
+//                var list = new ClubList();
+//                this.$container.html(list.render().el);
             },
 
             showTeams: function () {
