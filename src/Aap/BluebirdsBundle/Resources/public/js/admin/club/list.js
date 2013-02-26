@@ -1,8 +1,8 @@
 /*global define, window*/
 
 define(
-    ['jquery', 'bootstrap', 'backbone', 'underscore', 'core/club/collection', 'admin/club/form', 'core/view/list'],
-    function ($, Bootstrap, Backbone, _, ClubCollection, ClubForm, CoreList) {
+    ['jquery', 'bootstrap', 'backbone', 'underscore', 'core/club/collection', 'admin/club/form', 'core/view/list', 'admin/club/list-item'],
+    function ($, Bootstrap, Backbone, _, ClubCollection, ClubForm, CoreList, ListItem) {
         'use strict';
 
         var List;
@@ -26,6 +26,12 @@ define(
             initialize: function () {
                 CoreList.prototype.initialize.call(this, {
                     collection: new ClubCollection()
+                });
+            },
+
+            createListItem: function (model) {
+                return new ListItem({
+                    model: model
                 });
             }
         });

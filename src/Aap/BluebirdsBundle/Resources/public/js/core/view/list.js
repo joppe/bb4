@@ -50,11 +50,14 @@ define(
                 });
             },
 
-            addListItem: function (model) {
-                var view = new ListItem({
+            createListItem: function (model) {
+                return new ListItem({
                     model: model
                 });
+            },
 
+            addListItem: function (model) {
+                var view = this.createListItem(model);
                 this.$el.find('tbody').append(view.render().el);
             },
 

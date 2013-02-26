@@ -14,16 +14,16 @@ define(
 
             initialize: function () {
                 this.model.on('destroy', this.unrender, this);
-                this.model.on('change:name', this.updateName, this);
+                this.model.on('change', this.render, this);
+            },
+
+            getTemplateData: function () {
+                return this.model.toJSON();
             },
 
             render: function () {
-                this.$el.html(this.template(this.model.toJSON()));
+                this.$el.html(this.template(this.getTemplateData()));
                 return this;
-            },
-
-            updateName: function () {
-                this.$el.find('td.name').text(this.model.get('name'));
             },
 
             unrender: function () {

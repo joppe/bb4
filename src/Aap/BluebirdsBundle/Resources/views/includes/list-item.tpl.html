@@ -7,3 +7,14 @@
         </div>
     </td>
 </script>
+<script type="text/tmpl-javascript" id="tmpl-list-item-with-detial">
+    <td class="name">
+        <a href="#<%= detailUrl %>/<%= id %>"><%= name %></a>
+    </td>
+    <td>
+        <div class="btn-group">
+            <a class="btn edit" data-id="<%= id %>" href="#"><i class="icon-pencil"></i></a>
+            <a class="btn remove" data-id="<%= id %>" href="#"><i class="icon-remove-sign"></i></a>
+        </div>
+    </td>
+</script>
