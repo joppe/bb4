@@ -23,9 +23,17 @@ define(
                 });
             },
 
-            initialize: function () {
+            initialize: function (options) {
+                var collection;
+
+                if (options && options.collection) {
+                    collection = options.collection;
+                } else {
+                    collection = new TeamCollection();
+                }
+
                 CoreList.prototype.initialize.call(this, {
-                    collection: new TeamCollection()
+                    collection: collection
                 });
             }
         });

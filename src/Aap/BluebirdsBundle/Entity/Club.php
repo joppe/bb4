@@ -170,9 +170,19 @@ class Club
      */
     public function asData()
     {
+        $teams = array_map(function ($team) {
+            return $team->asData();
+        }, $this->getTeams()->toArray());
+
+        $members = array_map(function ($member) {
+            return $member->asData();
+        }, $this->getMembers()->toArray());
+
         return array(
             'id' => (int) $this->getId(),
             'name' => $this->getName(),
+            'teams' => $teams,
+            'members' => $members,
         );
     }
 }

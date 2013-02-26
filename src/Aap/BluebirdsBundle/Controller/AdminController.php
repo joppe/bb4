@@ -92,7 +92,7 @@ class AdminController extends Controller
 
         return new JsonResponse(array(
             'error' => $error,
-            'result' => $entity !== null ? $entity->asData() : null
+            'result' => $entity
         ));
     }
 

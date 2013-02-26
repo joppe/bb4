@@ -30,7 +30,6 @@ define(
                 this.collection = options.collection;
                 this.collection.on('reset', this.addListItems, this);
                 this.collection.on('add', this.addListItem, this);
-                this.collection.fetch();
             },
 
             render: function () {
@@ -38,6 +37,13 @@ define(
                     headers: this.getColumns(),
                     entityName: this.entityName
                 }));
+
+                if (this.collection.length === 0) {
+                    this.collection.fetch();
+                } else {
+                    this.addListItems();
+                }
+
                 return this;
             },
 

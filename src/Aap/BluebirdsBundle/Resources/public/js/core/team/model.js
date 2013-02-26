@@ -16,11 +16,11 @@ define(['jquery', 'backbone'], function ($, Backbone) {
         },
 
         initialize: function () {
-            this.collections = {
-                team_members: [],
-                home_games: [],
-                away_games: []
-            };
+//            this.collections = {
+//                team_members: [],
+//                home_games: [],
+//                away_games: []
+//            };
         }
     });
 
