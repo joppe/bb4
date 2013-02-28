@@ -3,7 +3,11 @@
 define(['jquery', 'backbone', 'underscore'], function ($, Backbone, _) {
     'use strict';
 
-    var Confirm;
+    var Confirm,
+        defaults = {
+            confirm: function () {},
+            cancel: function () {}
+        };
 
     Confirm = Backbone.View.extend({
         events: {
@@ -14,13 +18,18 @@ define(['jquery', 'backbone', 'underscore'], function ($, Backbone, _) {
         template: _.template($('#tmpl-confirm').html()),
 
         initialize: function (options) {
+            _.defaults(options, defaults);
+
             this.templateData = options.templateData;
-            this.confirm = options.confirm;
-            this.cancel = options.cancel;
+            this.confirmCallback = options.confirm;
+            this.cancelCallback = options.cancel;
         },
 
         render: function () {
-            this.$el.html(this.template(this.templateData));
+            this.$el.html(this.template({
+                data: this.templateData
+            }));
+
             this.$el.modal({
                 keyboard: true,
                 show: true
@@ -33,21 +42,17 @@ define(['jquery', 'backbone', 'underscore'], function ($, Backbone, _) {
             this.$el.remove();
         },
 
-        proceed: function (event) {
+        confirm: function (event) {
             event.preventDefault();
 
-            if (typeof this.confirm === 'function') {
-                this.confirm();
-            }
+            this.confirmCallback();
             this.unrender();
         },
 
         cancel: function (event) {
             event.preventDefault();
 
-            if (typeof this.cancel === 'function') {
-                this.cancel();
-            }
+            this.cancelCallback();
             this.unrender();
         }
     });

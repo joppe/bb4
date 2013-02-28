@@ -1,8 +1,8 @@
 /*global define, window*/
 
 define(
-    ['jquery', 'bootstrap', 'backbone', 'underscore', 'core/club/collection', 'admin/club/form', 'core/view/list', 'admin/club/list-item'],
-    function ($, Bootstrap, Backbone, _, ClubCollection, ClubForm, CoreList, ListItem) {
+    ['jquery', 'bootstrap', 'backbone', 'underscore', 'core/club/collection', 'admin/club/form', 'core/view/list', 'core/view/confirm'],
+    function ($, Bootstrap, Backbone, _, ClubCollection, ClubForm, CoreList, Confirm) {
         'use strict';
 
         var List;
@@ -17,16 +17,16 @@ define(
             },
 
             initialize: function () {
-                this.clubs = new ClubCollection();
+                this.collection = new ClubCollection();
                 this.list = new CoreList({
-                    collection: this.clubs,
+                    collection: this.collection,
                     templateData: {
                         entityName: 'Club',
                         headers: ['Name', '']
                     }
                 });
 
-                this.clubs.fetch();
+                this.collection.fetch();
             },
 
             render: function () {
@@ -34,33 +34,54 @@ define(
                 return this;
             },
 
+            getForm: function (club) {
+                return new ClubForm({
+                    collection: this.collection,
+                    model: club
+                });
+            },
+
             create: function (event) {
                 event.preventDefault();
+
+                var ModelClass = this.collection.model,
+                    form = this.getForm(new ModelClass());
+
+                this.$el.prepend(form.render().el);
             },
 
             edit: function (event) {
                 event.preventDefault();
+
+                var $anchor = $(event.currentTarget),
+                    model = this.collection.get($anchor.data('id')),
+                    form = this.getForm(model);
+
+                this.$el.prepend(form.render().el);
             },
 
             remove: function (event) {
                 event.preventDefault();
-            }
 
-//            getForm: function (club) {
-//                return new ClubForm({
-//                    collection: this.collection,
-//                    model: club
-//                });
-//            },
-//
-//            showCreateForm: function (event) {
-//                var ModelClass = this.collection.model,
-//                    form = this.getForm(new ModelClass());
-//
-//                event.preventDefault();
-//
-//                this.$el.prepend(form.render().el);
-//            }
+                var self = this,
+                    $anchor = $(event.currentTarget),
+                    message = new Confirm({
+                        templateData: {
+                            entityName: this.entityName
+                        },
+                        confirm: function () {
+                            var model = self.collection.get($anchor.data('id'));
+
+                            model.destroy({
+                                error: function () {
+                                    window.console.log('error while deleting model');
+                                }
+                            });
+                        }
+                    });
+
+                this.$el.append(message.render().el);
+            }
         });
 
         return List;
