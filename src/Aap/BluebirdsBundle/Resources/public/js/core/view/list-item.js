@@ -5,20 +5,31 @@ define(
     function ($, Bootstrap, Backbone, _) {
         'use strict';
 
-        var ListItem;
+        var ListItem,
+            defaults = {
+                templateSelector: '#tmpl-list-item',
+                templateData: null
+            };
 
         ListItem = Backbone.View.extend({
             tagName: 'tr',
 
-            template: _.template($('#tmpl-list-item').html()),
+            initialize: function (options) {
+                _.defaults(options, defaults);
 
-            initialize: function () {
+                this.template = _.template($(options.templateSelector).html());
+                this.templateData = options.templateData;
+
                 this.model.on('destroy', this.unrender, this);
                 this.model.on('change', this.render, this);
             },
 
             getTemplateData: function () {
-                return this.model.toJSON();
+                var data = _.clone(this.model.attributes);
+
+                _.defaults(data, this.templateData);
+
+                return data;
             },
 
             render: function () {

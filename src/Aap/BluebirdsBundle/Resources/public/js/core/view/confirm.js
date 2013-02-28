@@ -7,16 +7,20 @@ define(['jquery', 'backbone', 'underscore'], function ($, Backbone, _) {
 
     Confirm = Backbone.View.extend({
         events: {
-            'click a.proceed': 'proceed',
+            'click a.confirm': 'confirm',
             'click a.cancel': 'cancel'
         },
 
         template: _.template($('#tmpl-confirm').html()),
 
+        initialize: function (options) {
+            this.templateData = options.templateData;
+            this.confirm = options.confirm;
+            this.cancel = options.cancel;
+        },
+
         render: function () {
-            this.$el.html(this.template({
-                entityName: this.options.entityName
-            }));
+            this.$el.html(this.template(this.templateData));
             this.$el.modal({
                 keyboard: true,
                 show: true
@@ -32,8 +36,8 @@ define(['jquery', 'backbone', 'underscore'], function ($, Backbone, _) {
         proceed: function (event) {
             event.preventDefault();
 
-            if (this.options.proceed) {
-                this.options.proceed();
+            if (typeof this.confirm === 'function') {
+                this.confirm();
             }
             this.unrender();
         },
@@ -41,8 +45,8 @@ define(['jquery', 'backbone', 'underscore'], function ($, Backbone, _) {
         cancel: function (event) {
             event.preventDefault();
 
-            if (this.options.cancel) {
-                this.options.cancel();
+            if (typeof this.cancel === 'function') {
+                this.cancel();
             }
             this.unrender();
         }

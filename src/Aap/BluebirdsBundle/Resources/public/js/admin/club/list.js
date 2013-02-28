@@ -7,33 +7,60 @@ define(
 
         var List;
 
-        List = CoreList.extend({
+        List = Backbone.View.extend({
             id: 'club-list',
 
-            entityName: 'Club',
-
-            getColumns: function () {
-                return ['Name', ''];
-            },
-
-            getForm: function (club) {
-                return new ClubForm({
-                    collection: this.collection,
-                    model: club
-                });
+            events: {
+                'click a.add': 'create',
+                'click a.edit': 'edit',
+                'click a.remove': 'remove'
             },
 
             initialize: function () {
-                CoreList.prototype.initialize.call(this, {
-                    collection: new ClubCollection()
+                this.clubs = new ClubCollection();
+                this.list = new CoreList({
+                    collection: this.clubs,
+                    templateData: {
+                        entityName: 'Club',
+                        headers: ['Name', '']
+                    }
                 });
+
+                this.clubs.fetch();
             },
 
-            createListItem: function (model) {
-                return new ListItem({
-                    model: model
-                });
+            render: function () {
+                this.$el.html(this.list.render().el);
+                return this;
+            },
+
+            create: function (event) {
+                event.preventDefault();
+            },
+
+            edit: function (event) {
+                event.preventDefault();
+            },
+
+            remove: function (event) {
+                event.preventDefault();
             }
+
+//            getForm: function (club) {
+//                return new ClubForm({
+//                    collection: this.collection,
+//                    model: club
+//                });
+//            },
+//
+//            showCreateForm: function (event) {
+//                var ModelClass = this.collection.model,
+//                    form = this.getForm(new ModelClass());
+//
+//                event.preventDefault();
+//
+//                this.$el.prepend(form.render().el);
+//            }
         });
 
         return List;

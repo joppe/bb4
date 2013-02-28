@@ -1,14 +1,14 @@
 <script type="text/tmpl-javascript" id="tmpl-list">
     <div class="btn-toolbar">
         <div class="btn-group">
-            <a class="btn add" href="#">Add <%= entityName %> <i class="icon-plus-sign"></i></a>
+            <a class="btn add" href="#">Add <%= data.entityName %> <i class="icon-plus-sign"></i></a>
         </div>
     </div>
     <table class="table table-striped">
-        <% if (headers.length > 0) { %>
+        <% if (data.headers.length > 0) { %>
         <thead>
             <tr>
-                <% _.each(headers, function (header) { %>
+                <% _.each(data.headers, function (header) { %>
                     <th><%= header %></th>
                 <% }) %>
             </tr>
