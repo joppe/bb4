@@ -1,8 +1,8 @@
 /*global define, window*/
 
 define(
-    ['jquery', 'bootstrap', 'backbone', 'underscore', 'core/club/collection', 'admin/club/form', 'admin/common/list-page', 'core/view/list'],
-    function ($, Bootstrap, Backbone, _, ClubCollection, ClubForm, CoreListPage, CoreList) {
+    ['core/club/collection', 'admin/club/form', 'admin/common/list-page', 'core/view/list'],
+    function (ClubCollection, ClubForm, CoreListPage, CoreList) {
         'use strict';
 
         var List;
