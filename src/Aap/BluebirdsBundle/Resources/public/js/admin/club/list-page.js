@@ -15,12 +15,14 @@ define(
 
                 this.templateData = {
                     entityName: 'Club',
-                    headers: ['Name', '']
+                    headers: ['Name', ''],
+                    detailUrl: 'clubs'
                 };
 
                 this.list = new CoreList({
                     collection: this.collection,
-                    templateData: this.templateData
+                    templateData: this.templateData,
+                    itemTemplateSelector: '#tmpl-list-item-with-detial'
                 });
 
                 this.collection.fetch();

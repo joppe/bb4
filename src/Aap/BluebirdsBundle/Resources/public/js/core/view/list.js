@@ -8,6 +8,7 @@ define(
         var List,
             defaults = {
                 templateSelector: '#tmpl-list',
+                itemTemplateSelector: null,
                 templateData: null
             };
 
@@ -17,6 +18,7 @@ define(
 
                 this.template = _.template($(options.templateSelector).html());
                 this.templateData = options.templateData;
+                this.itemTemplateSelector = options.itemTemplateSelector;
 
                 this.collection = options.collection;
                 this.collection.on('reset', this.addListItems, this);
@@ -45,7 +47,9 @@ define(
 
             createListItem: function (model) {
                 return new ListItem({
-                    model: model
+                    model: model,
+                    templateSelector: this.itemTemplateSelector,
+                    templateData: this.templateData
                 });
             }
         });
