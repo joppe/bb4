@@ -1,7 +1,7 @@
 /*global define*/
 
 define(
-    ['backbone', 'admin/club/list', 'admin/club/detail', 'admin/team/list', 'admin/position/list'],
+    ['backbone', 'admin/club/list-page', 'admin/club/detail', 'admin/team/list', 'admin/position/list'],
     function (Backbone, ClubList, ClubDetail, TeamList, PositionList) {
         'use strict';
 
