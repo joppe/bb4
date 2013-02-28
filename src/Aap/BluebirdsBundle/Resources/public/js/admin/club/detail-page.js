@@ -1,7 +1,7 @@
 /*global define*/
 
 define(
-    ['jquery', 'backbone', 'underscore', 'core/club/model', 'admin/team/list', 'core/team/collection'],
+    ['jquery', 'backbone', 'underscore', 'core/club/model', 'admin/team/list-page', 'core/team/collection'],
     function ($, Backbone, _, ClubModel, TeamList, TeamCollection) {
         'use strict';
 
