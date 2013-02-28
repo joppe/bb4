@@ -14,21 +14,21 @@ define(['jquery', 'backbone', 'underscore'], function ($, Backbone, _) {
 
         initialize: function (options) {
             this.collection = options.collection;
+            this.dependencies = this.getDependencies();
 
             this.loadDependencies();
         },
 
         loadDependencies: function () {
             var self = this,
-                dependencies = this.getDependencies(),
                 dependenciesLoaded = 0,
-                dependencyCount = _.keys(dependencies).length;
+                dependencyCount = _.keys(this.dependencies).length;
 
             if (dependencyCount === 0) {
                 this.parseTemplate();
             }
 
-            _.each(dependencies, function (dependency) {
+            _.each(this.dependencies, function (dependency) {
                 dependency.fetch({
                     success: function () {
                         dependenciesLoaded += 1;
@@ -51,10 +51,9 @@ define(['jquery', 'backbone', 'underscore'], function ($, Backbone, _) {
         },
 
         getTemplateData: function () {
-            var attributes = this.model.toJSON(),
-                dependencies = this.getDependencies();
+            var attributes = this.model.toJSON();
 
-            _.each(dependencies, function (dependency, key) {
+            _.each(this.dependencies, function (dependency, key) {
                 attributes[key] = dependency;
             });
 
