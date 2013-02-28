@@ -14,21 +14,21 @@ define(['jquery', 'backbone', 'underscore'], function ($, Backbone, _) {
 
         initialize: function (options) {
             this.collection = options.collection;
-            this.dependencies = this.getDependencies();
 
             this.loadDependencies();
         },
 
         loadDependencies: function () {
             var self = this,
+                dependencies = this.getDependencies(),
                 dependenciesLoaded = 0,
-                dependencyCount = _.keys(this.dependencies).length;
+                dependencyCount = _.keys(dependencies).length;
 
             if (dependencyCount === 0) {
                 this.parseTemplate();
             }
 
-            _.each(this.dependencies, function (dependency) {
+            _.each(dependencies, function (dependency) {
                 dependency.fetch({
                     success: function () {
                         dependenciesLoaded += 1;
@@ -51,9 +51,10 @@ define(['jquery', 'backbone', 'underscore'], function ($, Backbone, _) {
         },
 
         getTemplateData: function () {
-            var attributes = this.model.toJSON();
+            var attributes = this.model.toJSON(),
+                dependencies = this.getDependencies();
 
-            _.each(this.dependencies, function (dependency, key) {
+            _.each(dependencies, function (dependency, key) {
                 attributes[key] = dependency;
             });
 
@@ -77,13 +78,13 @@ define(['jquery', 'backbone', 'underscore'], function ($, Backbone, _) {
         },
 
         save: function (event) {
-            var self = this;
-
             event.preventDefault();
+
+            var self = this;
 
             this.model.save(this.getModelData(), {
                 success: function (model, response) {
-                    self.collection.add(response.result);
+                    self.collection.add(model);
                     self.unrender();
                 },
                 error: function () {
