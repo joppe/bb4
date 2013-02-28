@@ -1,8 +1,8 @@
 /*global define, window*/
 
 define(
-    ['jquery', 'bootstrap', 'backbone', 'underscore', 'core/view/list', 'core/view/confirm'],
-    function ($, Bootstrap, Backbone, _, CoreList, Confirm) {
+    ['jquery', 'bootstrap', 'backbone', 'underscore', 'core/view/confirm'],
+    function ($, Bootstrap, Backbone, _, Confirm) {
         'use strict';
 
         var List;
@@ -14,14 +14,8 @@ define(
                 'click a.remove': 'remove'
             },
 
-            initialize: function (options) {
-                this.collection = options.collection;
-                this.templateData = options.templateData;
-
-                this.list = new CoreList({
-                    collection: this.collection,
-                    templateData: this.templateData
-                });
+            initialize: function () {
+                window.console.log('the initialize() must be overrriden, define a templateData/collection/list object in the initialize');
             },
 
             render: function () {
@@ -30,7 +24,7 @@ define(
             },
 
             getForm: function (model) {
-                window.console('the getForm() method must be implemented', model);
+                window.console.log('the getForm() method must be implemented', model);
             },
 
             create: function (event) {
