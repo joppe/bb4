@@ -1,7 +1,7 @@
 /*global define*/
 
 define(
-    ['jquery', 'backbone', 'underscore', 'core/club/model', 'admin/team/list-page', 'core/team/collection'],
+    ['jquery', 'backbone', 'underscore', 'core/club/model', 'admin/club/team-list', 'core/team/collection'],
     function ($, Backbone, _, ClubModel, TeamList, TeamCollection) {
         'use strict';
 
@@ -11,24 +11,25 @@ define(
             template: _.template($('#tmpl-club-detail').html()),
 
             initialize: function (options) {
+                var self = this;
+
                 this.model = new ClubModel({
                     id: options.id
                 });
-            },
-
-            render: function () {
-                var self = this;
-
-                this.$el.html(this.template());
 
                 this.model.fetch({
                     success: function () {
                         var teamList = new TeamList({
-                            collection: self.model.collections.teams
+                            collection: self.model.collections.teams,
+                            club: self.model
                         });
                         self.$el.find('#teams').append(teamList.render().el);
                     }
                 });
+            },
+
+            render: function () {
+                this.$el.html(this.template());
                 return this;
             }
         });

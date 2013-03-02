@@ -5,21 +5,14 @@ define(
     function ($, Backbone, _, ListItem) {
         'use strict';
 
-        var List,
-            defaults = {
-                templateSelector: '#tmpl-list',
-                itemTemplateSelector: null,
-                templateData: null
-            };
+        var List;
 
         List = Backbone.View.extend({
+            templateData: {},
+
+            template: _.template($('#tmpl-list').html()),
+
             initialize: function (options) {
-                _.defaults(options, defaults);
-
-                this.template = _.template($(options.templateSelector).html());
-                this.templateData = options.templateData;
-                this.itemTemplateSelector = options.itemTemplateSelector;
-
                 this.collection = options.collection;
                 this.collection.on('reset', this.addListItems, this);
                 this.collection.on('add', this.addListItem, this);
@@ -47,9 +40,7 @@ define(
 
             createListItem: function (model) {
                 return new ListItem({
-                    model: model,
-                    templateSelector: this.itemTemplateSelector,
-                    templateData: this.templateData
+                    model: model
                 });
             }
         });

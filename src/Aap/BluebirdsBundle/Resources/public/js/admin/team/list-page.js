@@ -1,36 +1,28 @@
 /*global define, window*/
 
 define(
-    ['core/team/collection', 'admin/team/form', 'admin/common/list-page', 'core/view/list'],
-    function (TeamCollection, TeamForm, CoreListPage, CoreList) {
+    ['backbone', 'core/team/collection', 'admin/team/list'],
+    function (Backbone, TeamCollection, TeamList) {
         'use strict';
 
         var List;
 
-        List = CoreListPage.extend({
+        List = Backbone.View.extend({
             id: 'team-list',
 
             initialize: function (options) {
-                this.collection = new TeamCollection();
-
-                this.templateData = {
-                    entityName: 'Team',
-                    headers: ['Name', '']
-                };
-
-                this.list = new CoreList({
-                    collection: this.collection,
-                    templateData: this.templateData
-                });
-
-                this.collection.fetch();
+                this.teams = new TeamCollection();
             },
 
-            getForm: function (team) {
-                return new TeamForm({
-                    collection: this.collection,
-                    model: team
+            render: function () {
+                var teamList = new TeamList({
+                    collection: this.teams
                 });
+
+                this.$el.append(teamList.render().el);
+                this.teams.fetch();
+
+                return this;
             }
         });
 

@@ -45,15 +45,15 @@ define(['jquery', 'backbone', 'underscore'], function ($, Backbone, _) {
         confirm: function (event) {
             event.preventDefault();
 
-            this.confirmCallback();
             this.unrender();
+            this.confirmCallback();
         },
 
         cancel: function (event) {
             event.preventDefault();
 
-            this.cancelCallback();
             this.unrender();
+            this.cancelCallback();
         }
     });
 

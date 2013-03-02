@@ -1,41 +1,31 @@
 /*global define, window*/
 
 define(
-    ['core/club/collection', 'admin/club/form', 'admin/common/list-page', 'core/view/list'],
-    function (ClubCollection, ClubForm, CoreListPage, CoreList) {
+    ['backbone', 'core/club/collection', 'admin/club/list'],
+    function (Backbone, ClubCollection, ClubList) {
         'use strict';
 
-        var List;
+        var Page;
 
-        List = CoreListPage.extend({
+        Page = Backbone.View.extend({
             id: 'club-list',
 
             initialize: function () {
-                this.collection = new ClubCollection();
-
-                this.templateData = {
-                    entityName: 'Club',
-                    headers: ['Name', ''],
-                    detailUrl: 'clubs'
-                };
-
-                this.list = new CoreList({
-                    collection: this.collection,
-                    templateData: this.templateData,
-                    itemTemplateSelector: '#tmpl-list-item-with-detial'
-                });
-
-                this.collection.fetch();
+                this.clubs = new ClubCollection();
             },
 
-            getForm: function (club) {
-                return new ClubForm({
-                    collection: this.collection,
-                    model: club
-                });
+            render: function () {
+                var clubList = new ClubList({
+                        collection: this.clubs
+                    });
+
+                this.$el.append(clubList.render().el);
+                this.clubs.fetch();
+
+                return this;
             }
         });
 
-        return List;
+        return Page;
     }
 );

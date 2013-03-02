@@ -1,5 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<model:Screen xmlns:model="http://wireframesketcher.com/1.0/model.ecore">
+<model:Screen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://wireframesketcher.com/1.0/model.ecore">
+  <widgets xsi:type="model:Table" id="1" x="208" y="312" text="Name,Last\nName,=. Age v,(w:30). Kids,Likes,(align:center). Actions&#xA;Peter,Severin,36,[x],{computer},[Edit] [View]&#xA;Henri,Severin,6,[],{train},[Edit] [View]&#xA;Olga,Severin,61,[x],{note},[Edit] [View]&#xA;[-] You can even&#xA;  [+] Make a&#xA;  [+] Tree table" measuredWidth="359" measuredHeight="170" alternative="#eeeeee">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:ButtonBar" id="2" x="208" y="104" text="One, Two, Three" measuredWidth="143" measuredHeight="25" selection="0">
+    <font/>
+    <items x="0" y="0" width="45" height="25" text="One"/>
+    <items x="45" y="0" width="43" height="25" text="Two"/>
+    <items x="88" y="0" width="55" height="25" text="Three"/>
+  </widgets>
+  <widgets xsi:type="model:Breadcrumbs" id="3" x="208" y="152" text="Home,Next Level,Next Level,Current Page" measuredWidth="303" measuredHeight="22">
+    <font/>
+    <items x="0" y="0" width="35" height="22" text="Home"/>
+    <items x="55" y="0" width="63" height="22" text="Next Level"/>
+    <items x="138" y="0" width="63" height="22" text="Next Level"/>
+    <items x="221" y="0" width="79" height="22" text="Current Page"/>
+  </widgets>
+  <widgets xsi:type="model:Text" id="4" x="208" y="200" text="A paragraph of *text*.&#xA;* A bullet&#xA;* List&#xA;## Is created&#xA;## Like this" measuredWidth="126" measuredHeight="70">
+    <font/>
+  </widgets>
   <hRuler/>
   <vRuler/>
   <font size="12px"/>

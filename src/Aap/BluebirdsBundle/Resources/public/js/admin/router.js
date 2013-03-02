@@ -1,8 +1,8 @@
 /*global define*/
 
 define(
-    ['backbone', 'admin/club/list-page', 'admin/club/detail-page', 'admin/team/list-page', 'admin/position/list-page'],
-    function (Backbone, ClubList, ClubDetail, TeamList, PositionList) {
+    ['backbone', 'admin/club/list-page', 'admin/team/list-page', 'admin/position/list-page'],
+    function (Backbone, ClubList, TeamList, PositionList) {
         'use strict';
 
         var Router;
@@ -26,10 +26,10 @@ define(
             },
 
             showClub: function (id) {
-                var detail = new ClubDetail({
-                    id: id
-                });
-                this.$container.html(detail.render().el);
+//                var detail = new ClubDetail({
+//                    id: id
+//                });
+//                this.$container.html(detail.render().el);
             },
 
             showTeams: function () {

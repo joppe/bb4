@@ -8,7 +8,7 @@ define(['jquery', 'backbone', 'underscore'], function ($, Backbone, _) {
     Model = Backbone.Model.extend({
         collections: {},
 
-        parse: function (response, options) {
+        parse: function (response) {
             var attributes = response;
 
             if (typeof response.error === 'boolean' && typeof response.result === 'object') {

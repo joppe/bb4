@@ -7,13 +7,12 @@ define(['jquery', 'backbone', 'underscore'], function ($, Backbone, _) {
 
     Form = Backbone.View.extend({
         events: {
-            'click a.btn-primary': 'save',
-            'click a.btn': 'cancel',
+            'click a.save': 'save',
+            'click a.cancel': 'cancel',
             'click button.close': 'cancel'
         },
 
         initialize: function (options) {
-            this.collection = options.collection;
             this.dependencies = this.getDependencies();
 
             this.loadDependencies();
@@ -47,7 +46,7 @@ define(['jquery', 'backbone', 'underscore'], function ($, Backbone, _) {
 
         unrender: function () {
             this.$el.modal('hide');
-            this.remove();
+            this.$el.remove();
         },
 
         getTemplateData: function () {
@@ -82,9 +81,9 @@ define(['jquery', 'backbone', 'underscore'], function ($, Backbone, _) {
             var self = this;
 
             this.model.save(this.getModelData(), {
-                success: function (model, response) {
-                    self.collection.add(model);
+                success: function (model) {
                     self.unrender();
+                    self.trigger('saved', model);
                 },
                 error: function () {
                     window.console.log('error');

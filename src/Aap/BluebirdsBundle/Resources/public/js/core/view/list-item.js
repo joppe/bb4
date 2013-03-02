@@ -1,25 +1,20 @@
 /*global define*/
 
 define(
-    ['jquery', 'bootstrap', 'backbone', 'underscore'],
-    function ($, Bootstrap, Backbone, _) {
+    ['jquery', 'backbone', 'underscore'],
+    function ($, Backbone, _) {
         'use strict';
 
-        var ListItem,
-            defaults = {
-                templateSelector: '#tmpl-list-item',
-                templateData: null
-            };
+        var ListItem;
 
         ListItem = Backbone.View.extend({
             tagName: 'tr',
 
-            initialize: function (options) {
-                _.defaults(options, defaults);
+            template: _.template($('#tmpl-list-item').html()),
 
-                this.template = _.template($(options.templateSelector).html());
-                this.templateData = options.templateData;
+            templateData: {},
 
+            initialize: function () {
                 this.model.on('destroy', this.unrender, this);
                 this.model.on('change', this.render, this);
             },

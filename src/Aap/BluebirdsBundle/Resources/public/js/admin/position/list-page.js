@@ -1,39 +1,31 @@
 /*global define, window*/
 
 define(
-    ['core/position/collection', 'admin/position/form', 'admin/common/list-page', 'core/view/list'],
-    function (PositionCollection, PositionForm, CoreListPage, CoreList) {
+    ['backbone', 'core/position/collection', 'admin/position/list'],
+    function (Backbone, PositionCollection, PositionList) {
         'use strict';
 
-        var List;
+        var Page;
 
-        List = CoreListPage.extend({
+        Page = Backbone.View.extend({
             id: 'position-list',
 
             initialize: function () {
-                this.collection = new PositionCollection();
-
-                this.templateData = {
-                    entityName: 'Position',
-                    headers: ['Name', '']
-                };
-
-                this.list = new CoreList({
-                    collection: this.collection,
-                    templateData: this.templateData
-                });
-
-                this.collection.fetch();
+                this.positions = new PositionCollection();
             },
 
-            getForm: function (position) {
-                return new PositionForm({
-                    collection: this.collection,
-                    model: position
-                });
+            render: function () {
+                var positionList = new PositionList({
+                        collection: this.positions
+                    });
+
+                this.$el.append(positionList.render().el);
+                this.positions.fetch();
+
+                return this;
             }
         });
 
-        return List;
+        return Page;
     }
 );
