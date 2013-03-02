@@ -24,7 +24,7 @@ define(
 
                 var form = this.createForm(this.model);
 
-                this.$el.prepend(form.render().el);
+                $('body').prepend(form.render().el);
             },
 
             removeItem: function (event) {
@@ -42,7 +42,7 @@ define(
                         }
                     });
 
-                this.$el.append(message.render().el);
+                $('body').append(message.render().el);
             }
         });
 

@@ -15,6 +15,11 @@ define(['jquery', 'backbone', 'underscore'], function ($, Backbone, _) {
         initialize: function (options) {
             this.dependencies = this.getDependencies();
 
+            this.$el.modal({
+                keyboard: true,
+                show: true
+            });
+
             this.loadDependencies();
         },
 
@@ -63,14 +68,6 @@ define(['jquery', 'backbone', 'underscore'], function ($, Backbone, _) {
             this.$el.html(this.template(this.getTemplateData()));
         },
 
-        render: function () {
-            this.$el.modal({
-                keyboard: true,
-                show: true
-            });
-            return this;
-        },
-
         getModelData: function () {
             return this.model.attributes;
         },
@@ -80,9 +77,10 @@ define(['jquery', 'backbone', 'underscore'], function ($, Backbone, _) {
 
             var self = this;
 
+            self.unrender();
+
             this.model.save(this.getModelData(), {
                 success: function (model) {
-                    self.unrender();
                     self.trigger('saved', model);
                 },
                 error: function () {
