@@ -1,0 +1,86 @@
+<script type="text/tmpl-javascript" id="tmpl-member-form">
+    <div class="modal">
+        <div class="modal-header">
+            <button type="button" class="close" aria-hidden="true">&times;</button>
+            <h3>Member</h3>
+        </div>
+        <div class="modal-body">
+            <form class="form-horizontal">
+                <div class="control-group">
+                    <label class="control-label" for="field-club">Club</label>
+                    <div class="controls">
+                        <select id="field-club" name="club">
+                            <% clubs.each(function (club) { %>
+                                <option value="<%= club.get('id') %>"<% if (club_id == club.get('id')) { %>selected="selected"<% } %>><%= club.get('name') %></option>
+                            <% }) %>
+                        </select>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="field-first_name">First name</label>
+                    <div class="controls">
+                        <input type="text" id="field-first_name" placeholder="First name" value="<%= first_name %>">
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="field-middle_name">Middle name</label>
+                    <div class="controls">
+                        <input type="text" id="field-middle_name" placeholder="Middle name" value="<%= middle_name %>">
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="field-last_name">Last name</label>
+                    <div class="controls">
+                        <input type="text" id="field-last_name" placeholder="Last name" value="<%= last_name %>">
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="field-email">Email</label>
+                    <div class="controls">
+                        <input type="text" id="field-email" placeholder="Email" value="<%= email %>">
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="field-telephone">Telephone</label>
+                    <div class="controls">
+                        <input type="text" id="field-telephone" placeholder="Telephone" value="<%= telephone %>">
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="field-mobile">Mobile</label>
+                    <div class="controls">
+                        <input type="text" id="field-mobile" placeholder="Mobile" value="<%= mobile %>">
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="field-street">Street</label>
+                    <div class="controls">
+                        <input type="text" id="field-street" placeholder="Street" value="<%= street %>">
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="field-zip">ZIP</label>
+                    <div class="controls">
+                        <input type="text" id="field-zip" placeholder="ZIP" value="<%= zip %>">
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="field-city">City</label>
+                    <div class="controls">
+                        <input type="text" id="field-city" placeholder="City" value="<%= city %>">
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="field-membership_number">Membership number</label>
+                    <div class="controls">
+                        <input type="text" id="field-membership_number" placeholder="Membership number" value="<%= membership_number %>">
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <a href="#" class="btn cancel">Close</a>
+            <a href="#" class="btn btn-primary save">Save changes</a>
+        </div>
+    </div>
+</script>

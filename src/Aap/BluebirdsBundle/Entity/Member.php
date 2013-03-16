@@ -11,6 +11,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 /**
  * @ORM\Entity
  * @ORM\Table(name="member")
+ * @ORM\Entity(repositoryClass="Aap\BluebirdsBundle\Entity\Repository\MemberRepository")
  */
 class Member
 {
@@ -422,5 +423,82 @@ class Member
     public function getPlayers()
     {
         return $this->players;
+    }
+
+    /**
+     * @param array $data
+     * @throws \InvalidArgumentException
+     */
+    public function loadData($data)
+    {
+        foreach ($data as $key => $value) {
+            switch ($key) {
+                case 'id':
+                case 'team_members':
+                case 'players':
+                    // skip
+                    break;
+                case 'first_name':
+                    $this->setFirstName($value);
+                    break;
+                case 'middle_name':
+                    $this->setMiddleName($value);
+                    break;
+                case 'last_name':
+                    $this->setLastName($value);
+                    break;
+                case 'email':
+                    $this->setEmail($value);
+                    break;
+                case 'telephone':
+                    $this->setTelephone($value);
+                    break;
+                case 'mobile':
+                    $this->setMobile($value);
+                    break;
+                case 'street':
+                    $this->setStreet($value);
+                    break;
+                case 'zip':
+                    $this->setZip($value);
+                    break;
+                case 'city':
+                    $this->setCity($value);
+                    break;
+                case 'membership_number':
+                    $this->setMembershipNumber($value);
+                    break;
+                case 'club':
+                    $this->setClub($value);
+                    break;
+                default:
+                    throw new \InvalidArgumentException("{$key} is not a valid property");
+            }
+        }
+    }
+
+    /**
+     * @return array
+     */
+    public function asData()
+    {
+        $team_members = array();
+        $players = array();
+
+        return array(
+            'id' => (int) $this->getId(),
+            'team_members' => $team_members,
+            'players' => $players,
+            'first_name' => $this->getFirstName(),
+            'middle_name' => $this->getMiddleName(),
+            'last_name' => $this->getLastName(),
+            'email' => $this->getEmail(),
+            'telephone' => $this->getTelephone(),
+            'mobile' => $this->getMobile(),
+            'street' => $this->getStreet(),
+            'zip' => $this->getZip(),
+            'city' => $this->getCity(),
+            'membership_number' => $this->getMembershipNumber(),
+        );
     }
 }

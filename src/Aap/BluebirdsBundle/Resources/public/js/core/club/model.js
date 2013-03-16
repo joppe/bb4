@@ -1,8 +1,8 @@
 /*global define*/
 
 define(
-    ['jquery', 'backbone', 'core/model', 'core/team/collection'],
-    function ($, Backbone, CoreModel, TeamCollection) {
+    ['jquery', 'backbone', 'core/model', 'core/team/collection', 'core/member/collection'],
+    function ($, Backbone, CoreModel, TeamCollection, MemberCollection) {
         'use strict';
 
         var Club;
@@ -18,7 +18,7 @@ define(
 
             initialize: function () {
                 this.collections = {
-//                    members: new MemberCollection(),
+                    members: new MemberCollection(),
                     teams: new TeamCollection()
                 };
             }
