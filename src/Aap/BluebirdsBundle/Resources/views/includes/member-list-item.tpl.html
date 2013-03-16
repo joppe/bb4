@@ -1,6 +1,31 @@
 <script type="text/tmpl-javascript" id="tmpl-member-list-item">
+    <td class="membership_number">
+        <% if (membership_number) { %>
+            #<%= membership_number %>
+        <% } %>
+    </td>
     <td class="name">
-        <%= first_name %>
+        <%
+            var nameParts = [];
+            if (first_name) {
+                nameParts.push(first_name);
+            }
+            if (middle_name) {
+                nameParts.push(middle_name);
+            }
+            if (last_name) {
+                nameParts.push(last_name);
+            }
+        %>
+        <%= nameParts.join(' ') %>
+        <% if (mobile) { %>
+            <a class="btn btn-info btn-mini" href="tel:<%= mobile %>">tel</a>
+        <% } %>
+        <% if (email) { %>
+            <a class="btn btn-info btn-mini" href="mailto:<%= email %>">
+                <b>@</b>
+            </a>
+        <% } %>
     </td>
     <td>
         <div class="btn-group">

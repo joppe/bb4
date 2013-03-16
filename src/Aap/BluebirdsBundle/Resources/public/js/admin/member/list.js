@@ -11,6 +11,7 @@ define(
             templateData: {
                 entityName: 'Member',
                 headers: [
+                    '#',
                     'Name',
                     ''
                 ]
