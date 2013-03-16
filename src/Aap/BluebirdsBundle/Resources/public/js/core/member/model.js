@@ -27,10 +27,10 @@ define(
             },
 
             initialize: function () {
-    //            this.collections = {
-    //                team_members: [],
-    //                players: []
-    //            };
+                this.collections = {
+                    team_members: [],
+                    players: []
+                };
             }
         });
 

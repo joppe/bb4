@@ -499,6 +499,7 @@ class Member
             'zip' => $this->getZip(),
             'city' => $this->getCity(),
             'membership_number' => $this->getMembershipNumber(),
+            'club_id' => $this->getClub()->getId()
         );
     }
 }

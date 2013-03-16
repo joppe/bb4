@@ -17,7 +17,7 @@
                 nameParts.push(last_name);
             }
         %>
-        <%= nameParts.join(' ') %>
+        <a href="#clubs/<%= club_id %>/member/<%= id %>"><%= nameParts.join(' ') %></a>
         <% if (mobile) { %>
             <a class="btn btn-info btn-mini" href="tel:<%= mobile %>">tel</a>
         <% } %>
