@@ -45,18 +45,15 @@ require(
             menuItems: [
                 {
                     title: 'Clubs',
-                    url: '#clubs',
-                    routes: ['showClubs']
+                    url: '#clubs'
                 },
                 {
                     title: 'Teams',
-                    url: '#teams',
-                    routes: ['showTeams']
+                    url: '#teams'
                 },
                 {
                     title: 'Positions',
-                    url: '#positions',
-                    routes: ['showPositions']
+                    url: '#positions'
                 }
             ],
             router: router

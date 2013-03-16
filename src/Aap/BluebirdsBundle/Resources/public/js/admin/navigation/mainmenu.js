@@ -12,23 +12,18 @@ define(['jquery', 'backbone', 'underscore'], function ($, Backbone, _) {
         template: _.template($('#tmpl-menu-item').html()),
 
         initialize: function (options) {
-            var self = this,
-                hash = window.location.hash.replace('#', ''),
-                currentRoute;
-
             this.data = options.data;
             this.router = options.router;
 
-            currentRoute = this.router.routes[hash];
-            this.checkState(currentRoute);
+            this.checkState();
 
-            this.router.on('route', function (route) {
-                self.checkState(route);
-            });
+            this.router.on('route', this.checkState, this);
         },
 
-        checkState: function (route) {
-            if (this.data.routes.indexOf(route) !== -1) {
+        checkState: function () {
+            var name = window.location.hash ? window.location.hash.split('/')[0] : '';
+
+            if (name === this.data.url) {
                 this.$el.addClass('active');
             } else {
                 this.$el.removeClass('active');
@@ -52,17 +47,17 @@ define(['jquery', 'backbone', 'underscore'], function ($, Backbone, _) {
         },
 
         render: function () {
-            var self = this;
-
-            _.each(this.menuItems, function (menuItem) {
-                var view = new MenuItem({
-                    data: menuItem,
-                    router: self.router
-                });
-                self.$el.append(view.render().el);
-            });
+            _.each(this.menuItems, this.createMenuItem, this);
 
             return this;
+        },
+
+        createMenuItem: function (menuItem) {
+            var view = new MenuItem({
+                data: menuItem,
+                router: this.router
+            });
+            this.$el.append(view.render().el);
         }
     });
 
