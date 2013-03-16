@@ -75,11 +75,12 @@ define(['jquery', 'backbone', 'underscore'], function ($, Backbone, _) {
         save: function (event) {
             event.preventDefault();
 
-            var self = this;
+            var self = this,
+                attributes = this.getModelData();
 
-            self.unrender();
+            this.unrender();
 
-            this.model.save(this.getModelData(), {
+            this.model.save(attributes, {
                 success: function (model) {
                     self.trigger('saved', model);
                 },
