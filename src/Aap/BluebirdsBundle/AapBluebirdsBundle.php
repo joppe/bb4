@@ -8,6 +8,7 @@ namespace Aap\BluebirdsBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
-class AapBluebirdsBundle extends Bundle {
-}
+class AapBluebirdsBundle extends Bundle
+{
 
+}

@@ -1,0 +1,17 @@
+<?xml version="1.0" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="aap_rest.convert" class="Aap\RESTBundle\Request\Convert" scope="request">
+            <argument type="service" id="service_container" />
+            <argument type="service" id="router" />
+        </service>
+        <service id="aap_rest.request_listener" class="Aap\RESTBundle\EventListener\RequestListener" scope="request">
+            <tag name="kernel.event_listener" event="kernel.request" method="onKernelRequest" />
+            <argument type="service" id="service_container" />
+            <argument type="service" id="aap_rest.convert" />
+        </service>
+    </services>
+</container>
