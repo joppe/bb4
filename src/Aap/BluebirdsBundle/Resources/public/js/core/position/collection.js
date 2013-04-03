@@ -8,7 +8,7 @@ define(['jquery', 'backbone', 'core/position/model'], function ($, Backbone, Pos
     Collection = Backbone.Collection.extend({
         model: PositionModel,
 
-        url: 'admin/Position',
+        url: '/admin/Position',
 
         parse: function (response) {
             return response.result;

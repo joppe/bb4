@@ -8,7 +8,7 @@ define(['jquery', 'backbone', 'core/club/model'], function ($, Backbone, ClubMod
     Collection = Backbone.Collection.extend({
         model: ClubModel,
 
-        url: 'admin/Club',
+        url: '/admin/Club',
 
         parse: function (response) {
             return response.result;

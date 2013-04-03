@@ -212,29 +212,6 @@ class Team {
     }
 
     /**
-     * @param $data
-     * @throws \InvalidArgumentException
-     */
-    public function loadData($data)
-    {
-        foreach ($data as $key => $value) {
-            switch ($key) {
-                case 'id':
-                    // skip
-                    break;
-                case 'name':
-                    $this->setName($value);
-                    break;
-                case 'club':
-                    $this->setClub($value);
-                    break;
-                default:
-                    throw new \InvalidArgumentException("{$key} is not a valid property");
-            }
-        }
-    }
-
-    /**
      * @return array
      */
     public function asData()

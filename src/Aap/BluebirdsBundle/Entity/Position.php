@@ -199,32 +199,6 @@ class Position {
     }
 
     /**
-     * @param $data
-     * @throws \InvalidArgumentException
-     */
-    public function loadData($data)
-    {
-        foreach ($data as $key => $value) {
-            switch ($key) {
-                case 'id':
-                    // skip
-                    break;
-                case 'name':
-                    $this->setName($value);
-                    break;
-                case 'field_number':
-                    $this->setFieldNumber($value);
-                    break;
-                case 'rating_weight':
-                    $this->setRatingWeight($value);
-                    break;
-                default:
-                    throw new \InvalidArgumentException("{$key} is not a valid property");
-            }
-        }
-    }
-
-    /**
      * @return array
      */
     public function asData()

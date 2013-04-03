@@ -8,7 +8,7 @@ define(['jquery', 'backbone', 'core/member/model'], function ($, Backbone, Membe
     Collection = Backbone.Collection.extend({
         model: MemberModel,
 
-        url: 'admin/Member',
+        url: '/admin/Member',
 
         parse: function (response) {
             return response.result;

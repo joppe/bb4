@@ -35,6 +35,7 @@ class Club
      * @ORM\OneToMany(targetEntity="Team", mappedBy="club")
      */
     protected $teams;
+
     /**
      * Constructor
      */
@@ -141,28 +142,6 @@ class Club
     public function getTeams()
     {
         return $this->teams;
-    }
-
-    /**
-     * @param array $data
-     * @throws \InvalidArgumentException
-     */
-    public function loadData($data)
-    {
-        foreach ($data as $key => $value) {
-            switch ($key) {
-                case 'id':
-                case 'members':
-                case 'teams':
-                    // skip
-                    break;
-                case 'name':
-                    $this->setName($value);
-                    break;
-                default:
-                    throw new \InvalidArgumentException("{$key} is not a valid property");
-            }
-        }
     }
 
     /**
