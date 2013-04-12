@@ -42,7 +42,8 @@ class AdminController extends Controller
         $restManager = $this->get('aap_rest.manager');
 
         try {
-            $collection = $restManager->get('Aap', 'BluebirdsBundle', $entityName);
+            $collection = $restManager->get('Aap\\BluebirdsBundle\\Entity\\' . $entityName);
+//            $collection = $restManager->get('Aap', 'BluebirdsBundle', $entityName);
 
             $collection = array_map(function ($entity) {
                 return $entity->asData();
@@ -70,7 +71,7 @@ class AdminController extends Controller
         $restManager = $this->get('aap_rest.manager');
 
         try {
-            $entity = $restManager->getOne('Aap', 'BluebirdsBundle', $entityName, $id);
+            $entity = $restManager->getOne('Aap\\BluebirdsBundle\\Entity\\' . $entityName, $id);
 
             if ($entity) {
                 $entity = $entity->asData();
@@ -97,7 +98,7 @@ class AdminController extends Controller
         $restManager = $this->get('aap_rest.manager');
 
         try {
-            $entity = $restManager->post('Aap', 'BluebirdsBundle', $entityName, $this->getRequest());
+            $entity = $restManager->post('Aap\\BluebirdsBundle\\Entity\\' . $entityName, $this->getRequest());
 
             if ($entity && $entity->getId()) {
                 $entity = $entity->asData();

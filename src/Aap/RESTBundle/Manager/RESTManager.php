@@ -31,41 +31,39 @@ class RESTManager
     }
 
     /**
-     * @param string $vendor
-     * @param string $bundle
-     * @param $entityName
-     * @return array
+     * @param string $className
+     * @return mixed
      */
-    public function get($vendor, $bundle, $entityName)
+    public function get($className)
     {
-        return $this->getRepository($vendor, $bundle, $entityName)->findAll();
+        return $this
+                ->doctrine
+                ->getRepository($className)
+                ->findAll();
     }
 
     /**
-     * @param string $vendor
-     * @param string $bundle
-     * @param string $entityName
+     * @param string $className
      * @param int $id
      * @return object
      */
-    public function getOne($vendor, $bundle, $entityName, $id)
+    public function getOne($className, $id)
     {
-        return $this->getRepository($vendor, $bundle, $entityName)->find($id);
+        return $this
+                ->doctrine
+                ->getRepository($className)
+                ->find($id);
     }
 
     /**
-     * @param $vendor
-     * @param $bundle
-     * @param $entityName
+     * @param $className
      * @param Request $request
      * @return Entity
      */
-    public function post($vendor, $bundle, $entityName, $request)
+    public function post($className, $request)
     {
-        $em = $this->doctrine->getManager();
-
-        $entity = $this->createEntity($vendor, $bundle, $entityName);
-        $formType = $this->createFormType($vendor, $bundle, $entityName);
+        $entity = new $className();
+        $formType = $this->createFormType($className);
 
         $form = $this->formFactory->create($formType, $entity);
 
@@ -75,6 +73,7 @@ class RESTManager
             $form->bind($request);
 
             if ($form->isValid()) {
+                $em = $this->doctrine->getManager();
                 $em->persist($entity);
                 $em->flush();
             }
@@ -83,12 +82,20 @@ class RESTManager
         return $entity;
     }
 
-    public function put($vendor, $bundle, $entityName, $id, $request)
+    /**
+     * @param string $className
+     * @param int $id
+     * @param Request $request
+     * @return Entity
+     */
+    public function put($className, $id, $request)
     {
-        $em = $this->doctrine->getManager();
+        $entity = $this
+                ->doctrine
+                ->getRepository($className)
+                ->find($id);
 
-        $entity = $this->getRepository($vendor, $bundle, $entityName)->find($id);
-        $formType = $this->createFormType($vendor, $bundle, $entityName);
+        $formType = $this->createFormType($className);
 
         $form = $this->formFactory->create($formType, $entity);
 
@@ -98,6 +105,7 @@ class RESTManager
             $form->bind($request);
 
             if ($form->isValid()) {
+                $em = $this->doctrine->getManager();
                 $em->persist($entity);
                 $em->flush();
             }
@@ -106,9 +114,16 @@ class RESTManager
         return $entity;
     }
 
-    public function delete($vendor, $bundle, $entityName, $id)
+    /**
+     * @param string $className
+     * @param int $id
+     */
+    public function delete($className, $id)
     {
-        $entity = $this->getRepository($vendor, $bundle, $entityName)->find($id);
+        $entity = $this
+                ->doctrine
+                ->getRepository($className)
+                ->find($id);
 
         $em = $this->doctrine->getManager();
         $em->remove($entity);
@@ -116,37 +131,12 @@ class RESTManager
     }
 
     /**
-     * @param string $vendor
-     * @param string $bundle
-     * @param string $entityName
-     * @return string
+     * @param string $className
+     * @return FormType
      */
-    protected function createFormType($vendor, $bundle, $entityName)
+    protected function createFormType($className)
     {
-        $className = $vendor . '\\' . $bundle . '\\Form\\Type\\' . $entityName . 'Type';
-        return new $className();
-    }
-
-    /**
-     * @param string $vendor
-     * @param string $bundle
-     * @param string $entityName
-     * @return string
-     */
-    protected function createEntity($vendor, $bundle, $entityName)
-    {
-        $className = $vendor . '\\' . $bundle . '\\Entity\\' . $entityName;
-        return new $className();
-    }
-
-    /**
-     * @param string $vendor
-     * @param string $bundle
-     * @param string $entityName
-     * @return \Doctrine\Common\Persistence\ObjectRepository
-     */
-    protected function getRepository($vendor, $bundle, $entityName)
-    {
-        return $this->doctrine->getRepository($vendor . $bundle . ':' . $entityName);
+        $formType = str_replace('\\Entity\\', '\\Form\\Type\\', $className) . 'Type';
+        return new $formType();
     }
 }
