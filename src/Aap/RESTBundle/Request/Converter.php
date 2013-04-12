@@ -12,7 +12,7 @@ class Converter
         $this->container = $container;
     }
 
-    public function toPost()
+    public function jsonToPost()
     {
         /** @var Request $request */
         $request = $this->container->get('request');

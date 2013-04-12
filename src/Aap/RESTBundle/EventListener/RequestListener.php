@@ -21,7 +21,7 @@ class RequestListener
             $request = $event->getRequest();
 
             if ($request->isXmlHttpRequest() && in_array($request->getMethod(), array('POST', 'PUT'))) {
-                $this->converter->toPost();
+                $this->converter->jsonToPost();
             }
         }
     }
