@@ -28,7 +28,7 @@ class AdminController extends Controller
      * @Route("/{entityName}")
      * @Method("GET")
      * @param string $entityName
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return \Aap\JSONRESTBundle\Response\JSONRESTResponse
      */
     public function readCollectionAction($entityName)
     {
@@ -42,7 +42,7 @@ class AdminController extends Controller
      * @Method("GET")
      * @param string $entityName
      * @param int $id
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return \Aap\JSONRESTBundle\Response\JSONRESTResponse
      */
     public function readModelAction($entityName, $id)
     {
@@ -56,7 +56,7 @@ class AdminController extends Controller
      * @Route("/{entityName}")
      * @Method({"POST"})
      * @param string $entityName
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return \Aap\JSONRESTBundle\Response\JSONRESTResponse
      */
     public function createModelAction($entityName)
     {
@@ -71,7 +71,7 @@ class AdminController extends Controller
      * @Method("PUT")
      * @param string $entityName
      * @param int $id
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return \Aap\JSONRESTBundle\Response\JSONRESTResponse
      */
     public function updateModelAction($entityName, $id)
     {
@@ -87,7 +87,7 @@ class AdminController extends Controller
      * @Method("DELETE")
      * @param string $entityName
      * @param int $id
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return \Aap\JSONRESTBundle\Response\JSONRESTResponse
      */
     public function deleteModelAction($entityName, $id)
     {

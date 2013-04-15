@@ -5,7 +5,11 @@
 {% endblock %}
 
 {% block javascripts %}
-    <script data-main="{{ asset('bundles/aapbluebirds/js/admin') }}" src="{{ asset('bundles/aapbluebirds/js/3rd-party/require.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/aapbluebirds/js/3rd-party/jquery-1.9.0.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/aapbluebirds/js/3rd-party/json2.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/aapbluebirds/js/3rd-party/underscore-min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/aapbluebirds/js/3rd-party/backbone-min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/aapbluebirds/js/admin/admin.js') }}"></script>
 {% endblock %}
 
 {% block body %}
@@ -17,21 +21,5 @@
         </div>
     </div>
     <div class="container" id="content"></div>
-    {% block templates %}
-    {% endblock %}
-    <script type="text/tmpl-javascript" id="tmpl-confirm">
-        <div class="modal">
-            <div class="modal-header">
-                <button type="button" class="close" aria-hidden="true">&times;</button>
-                <h3>Are you sure?</h3>
-            </div>
-            <div class="modal-body">
-                <p class="text-warning">You are about to delete an <%= data.entityName %></p>
-            </div>
-            <div class="modal-footer">
-                <a href="#" class="btn confirm">Yes</a>
-                <a href="#" class="btn btn-primary cancel">No</a>
-            </div>
-        </div>
-    </script>
+    {% block templates %}{% endblock %}
 {% endblock %}
