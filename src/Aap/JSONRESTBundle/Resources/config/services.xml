@@ -4,14 +4,14 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <services>
-        <service id="aap_rest.controller" class="Aap\RESTBundle\Controller\RESTController">
+        <service id="aap_rest.controller" class="Aap\JSONRESTBundle\Controller\JSONRESTController">
             <argument type="service" id="doctrine" />
             <argument type="service" id="form.factory" />
         </service>
-        <service id="aap_rest.converter" class="Aap\RESTBundle\Request\Converter" scope="request">
+        <service id="aap_rest.converter" class="Aap\JSONRESTBundle\Request\Converter" scope="request">
             <argument type="service" id="service_container" />
         </service>
-        <service id="aap_rest.request_listener" class="Aap\RESTBundle\EventListener\RequestListener" scope="request">
+        <service id="aap_rest.request_listener" class="Aap\JSONRESTBundle\EventListener\RequestListener" scope="request">
             <tag name="kernel.event_listener" event="kernel.request" method="onKernelRequest" />
             <argument type="service" id="service_container" />
             <argument type="service" id="aap_rest.converter" />

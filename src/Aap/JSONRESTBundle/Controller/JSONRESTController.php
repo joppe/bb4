@@ -1,6 +1,6 @@
 <?php
 
-namespace Aap\RESTBundle\Controller;
+namespace Aap\JSONRESTBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Doctrine\Bundle\DoctrineBundle\Registry;
@@ -8,9 +8,9 @@ use Symfony\Component\Form\FormFactory;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-use Aap\RESTBundle\Response\RESTResponse;
+use Aap\JSONRESTBundle\Response\JSONRESTResponse;
 
-class RESTController extends Controller
+class JSONRESTController extends Controller
 {
     /**
      * @var Registry $doctrine
@@ -34,7 +34,7 @@ class RESTController extends Controller
 
     /**
      * @param string $className
-     * @return RESTResponse
+     * @return JSONRESTResponse
      */
     public function getAction($className)
     {
@@ -50,13 +50,13 @@ class RESTController extends Controller
             return $entity->asData();
         }, $collection);
 
-        return new RESTResponse($collection, $error);
+        return new JSONRESTResponse($collection, $error);
     }
 
     /**
      * @param string $className
      * @param int $id
-     * @return RESTResponse
+     * @return JSONRESTResponse
      */
     public function getOneAction($className, $id)
     {
@@ -73,13 +73,13 @@ class RESTController extends Controller
             $error = $className . ' with id "' . $id . '" not found.';
         }
 
-        return new RESTResponse($entity, $error);
+        return new JSONRESTResponse($entity, $error);
     }
 
     /**
      * @param $className
      * @param Request $request
-     * @return RESTResponse
+     * @return JSONRESTResponse
      */
     public function postAction($className, $request)
     {
@@ -102,14 +102,14 @@ class RESTController extends Controller
             $entity = null;
         }
 
-        return new RESTResponse($entity, $error);
+        return new JSONRESTResponse($entity, $error);
     }
 
     /**
      * @param string $className
      * @param int $id
      * @param Request $request
-     * @return RESTResponse
+     * @return JSONRESTResponse
      */
     public function putAction($className, $id, $request)
     {
@@ -139,13 +139,13 @@ class RESTController extends Controller
             $entity = null;
         }
 
-        return new RESTResponse($entity, $error);
+        return new JSONRESTResponse($entity, $error);
     }
 
     /**
      * @param string $className
      * @param int $id
-     * @return RESTResponse
+     * @return JSONRESTResponse
      */
     public function deleteAction($className, $id)
     {
@@ -164,7 +164,7 @@ class RESTController extends Controller
             $entity = null;
         }
 
-        return new RESTResponse($entity, $error);
+        return new JSONRESTResponse($entity, $error);
     }
 
     /**

@@ -1,13 +1,13 @@
 <?php
 
-namespace Aap\RESTBundle\DependencyInjection;
+namespace Aap\JSONRESTBundle\DependencyInjection;
 
 use Symfony\Component\HttpKernel\DependencyInjection\Extension as Extension;
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
-class AapRESTExtension extends Extension {
+class AapJSONRESTExtension extends Extension {
     /**
      * Loads a specific configuration.
      *

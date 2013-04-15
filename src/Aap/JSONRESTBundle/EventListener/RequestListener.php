@@ -1,8 +1,8 @@
 <?php
 
-namespace Aap\RESTBundle\EventListener;
+namespace Aap\JSONRESTBundle\EventListener;
 
-use Aap\RESTBundle\Request\Converter;
+use Aap\JSONRESTBundle\Request\Converter;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 use Symfony\Component\HttpKernel\HttpKernel;
 use Symfony\Component\DependencyInjection\ContainerInterface;

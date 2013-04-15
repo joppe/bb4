@@ -1,6 +1,6 @@
 <?php
 
-namespace Aap\RESTBundle\Manager;
+namespace Aap\JSONRESTBundle\Manager;
 
 use Doctrine\Bundle\DoctrineBundle\Registry;
 use Symfony\Component\Form\FormFactory;
@@ -8,7 +8,7 @@ use Doctrine\ORM\EntityNotFoundException;
 use Doctrine\ORM\NoResultException;
 use Symfony\Component\HttpFoundation\Request;
 
-class RESTManager
+class JSONRESTManager
 {
     /**
      * @var Registry $doctrine

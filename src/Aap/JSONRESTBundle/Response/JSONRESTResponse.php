@@ -1,10 +1,10 @@
 <?php
 
-namespace Aap\RESTBundle\Response;
+namespace Aap\JSONRESTBundle\Response;
 
 use Symfony\Component\HttpFoundation\JsonResponse;
 
-class RESTResponse extends JsonResponse
+class JSONRESTResponse extends JsonResponse
 {
     public function __construct($result, $error = false)
     {

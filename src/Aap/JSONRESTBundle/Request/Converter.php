@@ -1,6 +1,6 @@
 <?php
 
-namespace Aap\RESTBundle\Request;
+namespace Aap\JSONRESTBundle\Request;
 
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\Request;
