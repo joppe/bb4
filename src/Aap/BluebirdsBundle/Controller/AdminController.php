@@ -9,9 +9,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
-use Aap\RESTBundle\Response\RESTResponse;
-use Symfony\Component\HttpFoundation\Response;
-
 /**
  * @Route("/admin")
  */
@@ -31,28 +28,13 @@ class AdminController extends Controller
      * @Route("/{entityName}")
      * @Method("GET")
      * @param string $entityName
-     * @return RESTResponse
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function readCollectionAction($entityName)
     {
-        $error = false;
-        $collection = null;
-
-        /** @var \Aap\RESTBundle\Manager\RESTManager $restManager */
-        $restManager = $this->get('aap_rest.manager');
-
-        try {
-            $collection = $restManager->get('Aap\\BluebirdsBundle\\Entity\\' . $entityName);
-//            $collection = $restManager->get('Aap', 'BluebirdsBundle', $entityName);
-
-            $collection = array_map(function ($entity) {
-                return $entity->asData();
-            }, $collection);
-        } catch (\Exception $e) {
-            $error = (string) $e;
-        }
-
-        return new RESTResponse($collection, $error);
+        return $this->forward('aap_rest.controller:getAction', array(
+            'className' => 'Aap\\BluebirdsBundle\\Entity\\' . $entityName
+        ));
     }
 
     /**
@@ -60,55 +42,28 @@ class AdminController extends Controller
      * @Method("GET")
      * @param string $entityName
      * @param int $id
-     * @return RESTResponse
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function readModelAction($entityName, $id)
     {
-        $error = false;
-        $entity = null;
-
-        /** @var \Aap\RESTBundle\Manager\RESTManager $restManager */
-        $restManager = $this->get('aap_rest.manager');
-
-        try {
-            $entity = $restManager->getOne('Aap\\BluebirdsBundle\\Entity\\' . $entityName, $id);
-
-            if ($entity) {
-                $entity = $entity->asData();
-            }
-        } catch (\Exception $e) {
-            $error = (string) $e;
-        }
-
-        return new RESTResponse($entity, $error);
+        return $this->forward('aap_rest.controller:getOneAction', array(
+            'className' => 'Aap\\BluebirdsBundle\\Entity\\' . $entityName,
+            'id' => $id
+        ));
     }
 
     /**
      * @Route("/{entityName}")
      * @Method({"POST"})
      * @param string $entityName
-     * @return RESTResponse
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function createModelAction($entityName)
     {
-        $error = true;
-        $entity = null;
-
-        /** @var \Aap\RESTBundle\Manager\RESTManager $restManager */
-        $restManager = $this->get('aap_rest.manager');
-
-        try {
-            $entity = $restManager->post('Aap\\BluebirdsBundle\\Entity\\' . $entityName, $this->getRequest());
-
-            if ($entity && $entity->getId()) {
-                $entity = $entity->asData();
-                $error = false;
-            }
-        } catch (\Exception $e) {
-            $error = (string) $e;
-        }
-
-        return new RESTResponse($entity, $error);
+        return $this->forward('aap_rest.controller:postAction', array(
+            'className' => 'Aap\\BluebirdsBundle\\Entity\\' . $entityName,
+            'request' => $this->getRequest()
+        ));
     }
 
     /**
@@ -116,10 +71,15 @@ class AdminController extends Controller
      * @Method("PUT")
      * @param string $entityName
      * @param int $id
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function updateModelAction($entityName, $id)
     {
-
+        return $this->forward('aap_rest.controller:putAction', array(
+            'className' => 'Aap\\BluebirdsBundle\\Entity\\' . $entityName,
+            'id' => $id,
+            'request' => $this->getRequest()
+        ));
     }
 
     /**
@@ -127,9 +87,14 @@ class AdminController extends Controller
      * @Method("DELETE")
      * @param string $entityName
      * @param int $id
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function deleteModelAction($entityName, $id)
     {
-
+        return $this->forward('aap_rest.controller:deleteAction', array(
+            'className' => 'Aap\\BluebirdsBundle\\Entity\\' . $entityName,
+            'id' => $id,
+            'request' => $this->getRequest()
+        ));
     }
 }
